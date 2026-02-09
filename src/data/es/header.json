@@ -1,0 +1,29 @@
+{
+  "logo": {
+    "text": "Palo Alto",
+    "imageSrc": "",
+    "imageAlt": "Bodega Palo Alto",
+    "href": "/"
+  },
+  "nav": [
+    {
+      "label": "Bodega",
+      "href": "/bodega"
+    },
+    { "label": "Destilería", "href": "/destileria" },
+    {
+      "label": "Productos",
+      "href": "/productos"
+    },
+    { "label": "Contacto", "href": "/#contacto" }
+  ],
+  "shop": {
+    "label": "Shop",
+    "href": "https://shop.bodegapaloalto.com.ar/",
+    "external": true
+  },
+  "languages": [
+    { "code": "es", "label": "ES" },
+    { "code": "en", "label": "EN" }
+  ]
+}

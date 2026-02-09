@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "imageSrc": "",
+    "imageAlt": "Bodega Palo Alto - Bienvenida"
+  },
+  "title": "Bienvenidos a Bodega Palo Alto",
+  "message": "Para ingresar debes ser mayor de 18 años. ¿Confirmas que eres mayor de edad?",
+  "legalNotice": "Prohibida la venta a menores de 18 años.",
+  "buttons": {
+    "confirm": "Sí, soy mayor",
+    "confirmAriaLabel": "Sí, soy mayor de 18 años",
+    "decline": "No",
+    "declineAriaLabel": "No, no soy mayor de 18 años",
+    "declineUrl": "https://www.bodegapaloalto.com.ar"
+  }
+}

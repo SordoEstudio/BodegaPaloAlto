@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Palo Alto – Manual de marca (colores institucionales) */
+:root {
+  --background: #faf9f7;
+  --foreground: #3b2319;
+  /* Color principal de marca – debe predominar */
+  --palo-alto-primary: #c4996c;
+  /* Color secundario – fondos y elementos secundarios */
+  --palo-alto-secondary: #3b2319;
+  /* Header: tono más oscuro de la paleta */
+  --header-bg: #2a1812;
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-bg-strong: rgba(255, 255, 255, 0.25);
+  --glass-shadow: 0 8px 32px rgba(59, 35, 25, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-palo-alto-primary: var(--palo-alto-primary);
+  --color-palo-alto-secondary: var(--palo-alto-secondary);
+  --color-header-bg: var(--header-bg);
+  --font-sans: var(--font-ubuntu);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-geist-mono);
+  --shadow-glass: var(--glass-shadow);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ubuntu), system-ui, sans-serif;
+}
+
+/* Tipografía principal: logo y títulos (Manual de marca: Carleton; web: Cormorant) */
+.font-heading {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

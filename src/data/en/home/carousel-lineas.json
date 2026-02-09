@@ -1,0 +1,53 @@
+{
+  "sectionTitle": "Our wines",
+  "lineas": [
+    {
+      "id": "benito-a",
+      "name": "Benito A.",
+      "slug": "benito-a",
+      "imageSrc": "/lineas/benito-a.jpg",
+      "imageAlt": "Benito A. line",
+      "href": "/en/vinos/benito-a"
+    },
+    {
+      "id": "palo-alto",
+      "name": "Palo Alto",
+      "slug": "palo-alto",
+      "imageSrc": "/lineas/palo-alto.jpg",
+      "imageAlt": "Palo Alto line",
+      "href": "/en/vinos/palo-alto"
+    },
+    {
+      "id": "yllum",
+      "name": "Yllum",
+      "slug": "yllum",
+      "imageSrc": "/lineas/yllum.jpg",
+      "imageAlt": "Yllum line",
+      "href": "/en/vinos/yllum"
+    },
+    {
+      "id": "amadores",
+      "name": "Amadores",
+      "slug": "amadores",
+      "imageSrc": "/lineas/amadores.jpg",
+      "imageAlt": "Amadores line",
+      "href": "/en/vinos/amadores"
+    },
+    {
+      "id": "cumbres-del-plata",
+      "name": "Cumbres del Plata",
+      "slug": "cumbres-del-plata",
+      "imageSrc": "/lineas/cumbres-del-plata.jpg",
+      "imageAlt": "Cumbres del Plata line",
+      "href": "/en/vinos/cumbres-del-plata"
+    },
+    {
+      "id": "efigenia",
+      "name": "Efigenia",
+      "slug": "efigenia",
+      "imageSrc": "/lineas/efigenia.jpg",
+      "imageAlt": "Efigenia - Sparkling",
+      "href": "/en/espumantes/efigenia"
+    }
+  ]
+}

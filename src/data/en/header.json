@@ -1,0 +1,37 @@
+{
+  "logo": {
+    "text": "Palo Alto",
+    "imageSrc": "",
+    "imageAlt": "Palo Alto Winery",
+    "href": "/en"
+  },
+  "nav": [
+    {
+      "label": "Winery",
+      "href": "/en/bodega",
+      "children": [
+        { "label": "Estates", "href": "/en/bodega/fincas" },
+        { "label": "Our team", "href": "/en/bodega/equipo" }
+      ]
+    },
+    {
+      "label": "Wines",
+      "href": "/en/vinos",
+      "children": [
+        { "label": "Still wines", "href": "/en/vinos" },
+        { "label": "Sparkling", "href": "/en/espumantes" }
+      ]
+    },
+    { "label": "Contact", "href": "/en#contacto" },
+    { "label": "Distillery", "href": "/en/destileria" }
+  ],
+  "shop": {
+    "label": "Shop",
+    "href": "https://shop.bodegapaloalto.com.ar/",
+    "external": true
+  },
+  "languages": [
+    { "code": "es", "label": "ES" },
+    { "code": "en", "label": "EN" }
+  ]
+}
