@@ -1,53 +1,11 @@
 {
-  "sectionTitle": "Nuestros vinos",
-  "lineas": [
-    {
-      "id": "benito-a",
-      "name": "Benito A.",
-      "slug": "benito-a",
-      "imageSrc": "/lineas/benito-a.jpg",
-      "imageAlt": "Línea Benito A.",
-      "href": "/vinos/benito-a"
-    },
-    {
-      "id": "palo-alto",
-      "name": "Palo Alto",
-      "slug": "palo-alto",
-      "imageSrc": "/lineas/palo-alto.jpg",
-      "imageAlt": "Línea Palo Alto",
-      "href": "/vinos/palo-alto"
-    },
-    {
-      "id": "yllum",
-      "name": "Yllum",
-      "slug": "yllum",
-      "imageSrc": "/lineas/yllum.jpg",
-      "imageAlt": "Línea Yllum",
-      "href": "/vinos/yllum"
-    },
-    {
-      "id": "amadores",
-      "name": "Amadores",
-      "slug": "amadores",
-      "imageSrc": "/lineas/amadores.jpg",
-      "imageAlt": "Línea Amadores",
-      "href": "/vinos/amadores"
-    },
-    {
-      "id": "cumbres-del-plata",
-      "name": "Cumbres del Plata",
-      "slug": "cumbres-del-plata",
-      "imageSrc": "/lineas/cumbres-del-plata.jpg",
-      "imageAlt": "Línea Cumbres del Plata",
-      "href": "/vinos/cumbres-del-plata"
-    },
-    {
-      "id": "efigenia",
-      "name": "Efigenia",
-      "slug": "efigenia",
-      "imageSrc": "/lineas/efigenia.jpg",
-      "imageAlt": "Línea Efigenia - Espumantes",
-      "href": "/espumantes/efigenia"
-    }
+  "txt_titulo_seccion": "Nuestros vinos",
+  "lista_lineas": [
+    { "txt_nombre": "Benito A.", "img_linea": "/lineas/benito-a.jpg", "txt_alt_optional": "Línea Benito A.", "link_url": "/vinos/benito-a" },
+    { "txt_nombre": "Palo Alto", "img_linea": "/lineas/palo-alto.jpg", "txt_alt_optional": "Línea Palo Alto", "link_url": "/vinos/palo-alto" },
+    { "txt_nombre": "Yllum", "img_linea": "/lineas/yllum.jpg", "txt_alt_optional": "Línea Yllum", "link_url": "/vinos/yllum" },
+    { "txt_nombre": "Amadores", "img_linea": "/lineas/amadores.jpg", "txt_alt_optional": "Línea Amadores", "link_url": "/vinos/amadores" },
+    { "txt_nombre": "Cumbres del Plata", "img_linea": "/lineas/cumbres-del-plata.jpg", "txt_alt_optional": "Línea Cumbres del Plata", "link_url": "/vinos/cumbres-del-plata" },
+    { "txt_nombre": "Efigenia", "img_linea": "/lineas/efigenia.jpg", "txt_alt_optional": "Línea Efigenia - Espumantes", "link_url": "/espumantes/efigenia" }
   ]
 }

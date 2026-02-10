@@ -1,6 +1,12 @@
 {
-  "imageSrc": "/banners/banner-1.jpg",
-  "imageAlt": "Palo Alto Winery - Mendoza",
-  "title": "Our roots",
-  "href": "/en/bodega"
+  "img_fondo": "/banners/banner-1.jpg",
+  "txt_alt_optional": "Palo Alto Winery - Mendoza",
+  "txt_titulo": "Our roots",
+  "link_destino": {
+    "url": "/en/bodega",
+    "label": "Go to Winery"
+  },
+  "_configuracion": {
+    "parallax": true
+  }
 }

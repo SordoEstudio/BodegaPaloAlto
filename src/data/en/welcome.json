@@ -1,16 +1,18 @@
 {
-  "hero": {
-    "imageSrc": "/1.jpg",
-    "imageAlt": "Palo Alto Winery - Welcome"
+  "img_hero_optional": "/1.jpg",
+  "txt_alt_hero_optional": "Palo Alto Winery - Welcome",
+  "txt_titulo": "Welcome to Bodega Palo Alto",
+  "txt_mensaje": "You must be 18 or older to enter. Do you confirm that you are of legal drinking age?",
+  "txt_aviso_legal": "Sale to minors under 18 is prohibited.",
+  "btn_confirmar": {
+    "txt_label": "Yes, I am of age"
   },
-  "title": "Welcome to Bodega Palo Alto",
-  "message": "You must be 18 or older to enter. Do you confirm that you are of legal drinking age?",
-  "legalNotice": "Sale to minors under 18 is prohibited.",
-  "buttons": {
-    "confirm": "Yes, I am of age",
+  "link_decline": {
+    "url": "https://www.bodegapaloalto.com.ar",
+    "label": "No"
+  },
+  "_configuracion": {
     "confirmAriaLabel": "Yes, I am 18 or older",
-    "decline": "No",
-    "declineAriaLabel": "No, I am not 18 or older",
-    "declineUrl": "https://www.bodegapaloalto.com.ar"
+    "declineAriaLabel": "No, I am not 18 or older"
   }
 }

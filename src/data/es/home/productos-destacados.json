@@ -1,26 +1,8 @@
 {
-  "sectionTitle": "Productos destacados",
-  "products": [
-    {
-      "id": "palo-alto-reserva-malbec",
-      "name": "Palo Alto Reserva Malbec",
-      "imageSrc": "/productos/palo-alto-reserva-malbec.jpg",
-      "imageAlt": "Palo Alto Reserva Malbec",
-      "href": "/vinos/palo-alto/reserva/malbec"
-    },
-    {
-      "id": "yllum-gran-reserva-blend",
-      "name": "Yllum Gran Reserva Blend",
-      "imageSrc": "/productos/yllum-gran-reserva-blend.jpg",
-      "imageAlt": "Yllum Gran Reserva Blend",
-      "href": "/vinos/yllum/gran-reserva/blend"
-    },
-    {
-      "id": "efigenia-extra-brut",
-      "name": "Efigenia Extra Brut",
-      "imageSrc": "/productos/efigenia-extra-brut.jpg",
-      "imageAlt": "Efigenia Extra Brut",
-      "href": "/espumantes/efigenia/pinot-noir-chardonnay"
-    }
+  "txt_titulo_seccion": "Productos destacados",
+  "lista_productos": [
+    { "txt_nombre": "Palo Alto Reserva Malbec", "img_producto": "/productos/01.jpg", "txt_alt_optional": "Palo Alto Reserva Malbec", "link_url": "/vinos/palo-alto/reserva/malbec" },
+    { "txt_nombre": "Yllum Gran Reserva Blend", "img_producto": "/productos/02.jpg", "txt_alt_optional": "Yllum Gran Reserva Blend", "link_url": "/vinos/yllum/gran-reserva/blend" },
+    { "txt_nombre": "Efigenia Extra Brut", "img_producto": "/productos/03.jpg", "txt_alt_optional": "Efigenia Extra Brut", "link_url": "/espumantes/efigenia/pinot-noir-chardonnay" }
   ]
 }

@@ -1,6 +1,12 @@
 {
-  "imageSrc": "/banners/banner-2.jpg",
-  "imageAlt": "Vineyards and winery",
-  "title": "Discover our wines",
-  "href": "/en/vinos"
+  "img_fondo": "/banners/banner-2.jpg",
+  "txt_alt_optional": "Vineyards and winery",
+  "txt_titulo": "Discover our wines",
+  "link_destino": {
+    "url": "/en/vinos",
+    "label": "Go to Wines"
+  },
+  "_configuracion": {
+    "parallax": false
+  }
 }

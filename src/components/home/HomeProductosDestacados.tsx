@@ -22,23 +22,23 @@ export function HomeProductosDestacados({ data }: HomeProductosDestacadosProps) 
         >
           {sectionTitle}
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-6">
           {products.map((product) => (
             <Link
               key={product.id}
               href={product.href}
-              className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 hover:shadow-md"
+              className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 hover:shadow-md"
             >
-              <span className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-100">
+              <span className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden bg-zinc-50">
                 <Image
                   src={product.imageSrc}
                   alt={product.imageAlt}
                   fill
-                  className="object-cover transition group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-contain p-2 transition group-hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                 />
               </span>
-              <span className="p-4 font-semibold text-palo-alto-secondary">
+              <span className="p-2 text-center text-sm font-semibold text-palo-alto-secondary">
                 {product.name}
               </span>
             </Link>

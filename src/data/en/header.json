@@ -1,37 +1,37 @@
 {
-  "logo": {
-    "text": "Palo Alto",
-    "imageSrc": "",
-    "imageAlt": "Palo Alto Winery",
-    "href": "/en"
-  },
-  "nav": [
+  "txt_logo": "Palo Alto",
+  "img_logo_optional": "",
+  "txt_alt_logo_optional": "Palo Alto Winery",
+  "link_logo": { "url": "/en", "label": "Home" },
+  "lista_nav": [
     {
-      "label": "Winery",
-      "href": "/en/bodega",
-      "children": [
-        { "label": "Estates", "href": "/en/bodega/fincas" },
-        { "label": "Our team", "href": "/en/bodega/equipo" }
+      "txt_label": "Winery",
+      "link_url": "/en/bodega",
+      "lista_hijos_optional": [
+        { "txt_label": "Estates", "link_url": "/en/bodega/fincas" },
+        { "txt_label": "Our team", "link_url": "/en/bodega/equipo" }
       ]
     },
     {
-      "label": "Wines",
-      "href": "/en/vinos",
-      "children": [
-        { "label": "Still wines", "href": "/en/vinos" },
-        { "label": "Sparkling", "href": "/en/espumantes" }
+      "txt_label": "Wines",
+      "link_url": "/en/vinos",
+      "lista_hijos_optional": [
+        { "txt_label": "Still wines", "link_url": "/en/vinos" },
+        { "txt_label": "Sparkling", "link_url": "/en/espumantes" }
       ]
     },
-    { "label": "Contact", "href": "/en#contacto" },
-    { "label": "Distillery", "href": "/en/destileria" }
+    { "txt_label": "Contact", "link_url": "/en#contacto" },
+    { "txt_label": "Distillery", "link_url": "/en/destileria" }
   ],
-  "shop": {
-    "label": "Shop",
-    "href": "https://shop.bodegapaloalto.com.ar/",
-    "external": true
+  "btn_shop": {
+    "txt_label": "Shop",
+    "link_url": "https://shop.bodegapaloalto.com.ar/",
+    "link_tipo": "external"
   },
-  "languages": [
-    { "code": "es", "label": "ES" },
-    { "code": "en", "label": "EN" }
-  ]
+  "_configuracion": {
+    "lista_idiomas": [
+      { "code": "es", "label": "ES" },
+      { "code": "en", "label": "EN" }
+    ]
+  }
 }

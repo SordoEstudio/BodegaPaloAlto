@@ -1,53 +1,11 @@
 {
-  "sectionTitle": "Our wines",
-  "lineas": [
-    {
-      "id": "benito-a",
-      "name": "Benito A.",
-      "slug": "benito-a",
-      "imageSrc": "/lineas/benito-a.jpg",
-      "imageAlt": "Benito A. line",
-      "href": "/en/vinos/benito-a"
-    },
-    {
-      "id": "palo-alto",
-      "name": "Palo Alto",
-      "slug": "palo-alto",
-      "imageSrc": "/lineas/palo-alto.jpg",
-      "imageAlt": "Palo Alto line",
-      "href": "/en/vinos/palo-alto"
-    },
-    {
-      "id": "yllum",
-      "name": "Yllum",
-      "slug": "yllum",
-      "imageSrc": "/lineas/yllum.jpg",
-      "imageAlt": "Yllum line",
-      "href": "/en/vinos/yllum"
-    },
-    {
-      "id": "amadores",
-      "name": "Amadores",
-      "slug": "amadores",
-      "imageSrc": "/lineas/amadores.jpg",
-      "imageAlt": "Amadores line",
-      "href": "/en/vinos/amadores"
-    },
-    {
-      "id": "cumbres-del-plata",
-      "name": "Cumbres del Plata",
-      "slug": "cumbres-del-plata",
-      "imageSrc": "/lineas/cumbres-del-plata.jpg",
-      "imageAlt": "Cumbres del Plata line",
-      "href": "/en/vinos/cumbres-del-plata"
-    },
-    {
-      "id": "efigenia",
-      "name": "Efigenia",
-      "slug": "efigenia",
-      "imageSrc": "/lineas/efigenia.jpg",
-      "imageAlt": "Efigenia - Sparkling",
-      "href": "/en/espumantes/efigenia"
-    }
+  "txt_titulo_seccion": "Our wines",
+  "lista_lineas": [
+    { "txt_nombre": "Benito A.", "img_linea": "/lineas/benito-a.jpg", "txt_alt_optional": "Benito A. line", "link_url": "/en/vinos/benito-a" },
+    { "txt_nombre": "Palo Alto", "img_linea": "/lineas/palo-alto.jpg", "txt_alt_optional": "Palo Alto line", "link_url": "/en/vinos/palo-alto" },
+    { "txt_nombre": "Yllum", "img_linea": "/lineas/yllum.jpg", "txt_alt_optional": "Yllum line", "link_url": "/en/vinos/yllum" },
+    { "txt_nombre": "Amadores", "img_linea": "/lineas/amadores.jpg", "txt_alt_optional": "Amadores line", "link_url": "/en/vinos/amadores" },
+    { "txt_nombre": "Cumbres del Plata", "img_linea": "/lineas/cumbres-del-plata.jpg", "txt_alt_optional": "Cumbres del Plata line", "link_url": "/en/vinos/cumbres-del-plata" },
+    { "txt_nombre": "Efigenia", "img_linea": "/lineas/efigenia.jpg", "txt_alt_optional": "Efigenia - Sparkling", "link_url": "/en/espumantes/efigenia" }
   ]
 }

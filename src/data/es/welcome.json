@@ -1,16 +1,18 @@
 {
-  "hero": {
-    "imageSrc": "",
-    "imageAlt": "Bodega Palo Alto - Bienvenida"
+  "img_hero_optional": "",
+  "txt_alt_hero_optional": "Bodega Palo Alto - Bienvenida",
+  "txt_titulo": "Bienvenidos a Bodega Palo Alto",
+  "txt_mensaje": "Para ingresar debes ser mayor de 18 años. ¿Confirmas que eres mayor de edad?",
+  "txt_aviso_legal": "Prohibida la venta a menores de 18 años.",
+  "btn_confirmar": {
+    "txt_label": "Sí, soy mayor"
   },
-  "title": "Bienvenidos a Bodega Palo Alto",
-  "message": "Para ingresar debes ser mayor de 18 años. ¿Confirmas que eres mayor de edad?",
-  "legalNotice": "Prohibida la venta a menores de 18 años.",
-  "buttons": {
-    "confirm": "Sí, soy mayor",
+  "link_decline": {
+    "url": "https://www.bodegapaloalto.com.ar",
+    "label": "No"
+  },
+  "_configuracion": {
     "confirmAriaLabel": "Sí, soy mayor de 18 años",
-    "decline": "No",
-    "declineAriaLabel": "No, no soy mayor de 18 años",
-    "declineUrl": "https://www.bodegapaloalto.com.ar"
+    "declineAriaLabel": "No, no soy mayor de 18 años"
   }
 }

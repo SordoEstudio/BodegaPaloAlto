@@ -49,12 +49,14 @@ export interface HomeCarouselLineasData {
   lineas: LineaItem[];
 }
 
-/** Home - Banner genérico */
+/** Home - Banner genérico (contrato interno; los JSON pueden venir en formato CMS y mapearse) */
 export interface HomeBannerData {
   imageSrc: string;
   imageAlt: string;
   title?: string;
   href?: string;
+  /** Si true, se aplica efecto parallax; si false o ausente, versión original. */
+  config?: { parallax?: boolean };
 }
 
 /** Home - Productos destacados */
