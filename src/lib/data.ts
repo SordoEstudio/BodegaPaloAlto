@@ -12,6 +12,11 @@ import type {
   HomeContactoData,
   HeaderData,
   FooterData,
+  BodegaData,
+  BodegaQuienesSomosData,
+  BodegaEquipoData,
+  BodegaFincasSectionData,
+  BodegaFincaData,
   Locale,
 } from "@/types/sections";
 
@@ -34,6 +39,8 @@ import productosDestacadosEs from "@/data/es/home/productos-destacados.json";
 import productosDestacadosEn from "@/data/en/home/productos-destacados.json";
 import contactoEs from "@/data/es/home/contacto.json";
 import contactoEn from "@/data/en/home/contacto.json";
+import bodegaEs from "@/data/es/bodega.json";
+import bodegaEn from "@/data/en/bodega.json";
 
 const defaultLocale: Locale = "es";
 
@@ -249,4 +256,83 @@ export function getFooterData(locale?: string): FooterData {
   const loc = normalizeLocale(locale);
   const raw = (loc === "en" ? footerEn : footerEs) as Record<string, unknown>;
   return raw.logo != null && typeof raw.logo === "object" ? (raw as unknown as FooterData) : mapFooterFromCms(raw);
+}
+
+/** Mapea bodega en formato CMS (quienes_somos, equipo, finca_1, finca_2) a BodegaData */
+function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
+  const qs = (raw.quienes_somos as Record<string, unknown>) ?? {};
+  const eq = (raw.equipo as Record<string, unknown>) ?? {};
+  const listaEquipo = (eq.lista_equipo as Record<string, unknown>[]) ?? [];
+  const fs = (raw.fincas_seccion as Record<string, unknown>) ?? {};
+  const f1 = (raw.finca_1 as Record<string, unknown>) ?? {};
+  const f2 = (raw.finca_2 as Record<string, unknown>) ?? {};
+  const listaLabels = (f1.lista_caracteristicas as { txt_label?: string; txt_valor?: string }[]) ?? [];
+  const lista2 = (f2.lista_caracteristicas as { txt_label?: string; txt_valor?: string }[]) ?? [];
+
+  const imgFondoFincas = fs.img_fondo_optional as string | undefined;
+  const fincasSection: BodegaFincasSectionData = {
+    title: (fs.txt_titulo as string) ?? "Nuestras Fincas",
+    backgroundImage: imgFondoFincas
+      ? { imageSrc: imgFondoFincas, imageAlt: (fs.txt_alt_fondo_optional as string) || undefined }
+      : undefined,
+  };
+
+  const imgLeft = qs.img_izquierda_optional as string | undefined;
+  const imgFondo = qs.img_fondo_optional as string | undefined;
+  const quienesSomos: BodegaQuienesSomosData = {
+    title: (qs.txt_titulo as string) ?? "",
+    paragraphs: [(qs.txt_parrafo_1 as string) ?? "", (qs.txt_parrafo_2 as string) ?? ""].filter(Boolean),
+    highlight: (qs.txt_destacado as string) || undefined,
+    imageLeft: imgLeft ? { imageSrc: imgLeft, imageAlt: (qs.txt_alt_izquierda_optional as string) || undefined } : undefined,
+    backgroundImage: imgFondo ? { imageSrc: imgFondo, imageAlt: (qs.txt_alt_fondo_optional as string) || undefined } : undefined,
+    showEquipo: (qs.mostrar_equipo_optional as boolean) ?? false,
+  };
+
+  const avatarLayoutRaw = (eq.avatar_layout_optional as string) ?? "";
+  const equipo: BodegaEquipoData = {
+    sectionTitle: (eq.txt_titulo_seccion as string) ?? "",
+    avatarLayout: avatarLayoutRaw === "left" ? "left" : "top",
+    members: listaEquipo.map((m, i) => ({
+      id: `equipo-${i}`,
+      name: (m.txt_nombre as string) ?? "",
+      role: (m.txt_rol_optional as string) || undefined,
+      imageSrc: (m.img_avatar_optional as string) || undefined,
+      imageAlt: (m.txt_alt_avatar_optional as string) || undefined,
+      bio: (m.txt_bio_optional as string) || undefined,
+    })),
+  };
+
+  const f1Bg = (f1.img_fondo_optional as string) || undefined;
+  const f2Bg = (f2.img_fondo_optional as string) || undefined;
+  const finca1: BodegaFincaData = {
+    id: "finca-alto-ugarteche",
+    title: (f1.txt_titulo as string) ?? "",
+    location: (f1.txt_ubicacion_optional as string) || undefined,
+    description: (f1.txt_descripcion_optional as string) || undefined,
+    features: listaLabels.map((c) => ({ label: c.txt_label ?? "", value: c.txt_valor ?? "" })).filter((c) => c.label || c.value),
+    imageSrc: (f1.img_finca_optional as string) || undefined,
+    imageAlt: (f1.txt_alt_finca_optional as string) || undefined,
+    backgroundImage: f1Bg ? { imageSrc: f1Bg, imageAlt: (f1.txt_alt_fondo_optional as string) || undefined } : undefined,
+    parallax: (f1.parallax_optional as boolean) ?? false,
+  };
+
+  const finca2: BodegaFincaData = {
+    id: "finca-palo-alto",
+    title: (f2.txt_titulo as string) ?? "",
+    location: (f2.txt_ubicacion_optional as string) || undefined,
+    description: (f2.txt_descripcion_optional as string) || undefined,
+    features: lista2.map((c) => ({ label: c.txt_label ?? "", value: c.txt_valor ?? "" })).filter((c) => c.label || c.value),
+    imageSrc: (f2.img_finca_optional as string) || undefined,
+    imageAlt: (f2.txt_alt_finca_optional as string) || undefined,
+    backgroundImage: f2Bg ? { imageSrc: f2Bg, imageAlt: (f2.txt_alt_fondo_optional as string) || undefined } : undefined,
+    parallax: (f2.parallax_optional as boolean) ?? false,
+  };
+
+  return { quienesSomos, equipo, fincasSection, finca1, finca2 };
+}
+
+export function getBodegaData(locale?: string): BodegaData {
+  const loc = normalizeLocale(locale);
+  const raw = (loc === "en" ? bodegaEn : bodegaEs) as Record<string, unknown>;
+  return raw.quienes_somos != null ? mapBodegaFromCms(raw) : (raw as unknown as BodegaData);
 }

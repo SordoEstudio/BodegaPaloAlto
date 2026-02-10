@@ -1,0 +1,54 @@
+{
+  "quienes_somos": {
+    "txt_titulo": "About us",
+    "txt_parrafo_1": "Sober, simple, austere; in a respectful rescue of the past, with clear objectives for the future; with practically a century of existence, today it works with a name that in some way pays homage to the tall and thin native peoples, Huarpes Milcaya, the great conductors of water, who transformed the desert into a garden and who left their traces in Cruz de Piedra.",
+    "txt_parrafo_2": "A warm place dedicated entirely to the field of production, to which advanced technology has been incorporated, all in accordance with the sought-after level that allows us to achieve the optimum varietal expression in Premium wines; everything coexists with serenity without any bombast.",
+    "txt_destacado": "QUALITY BEFORE QUANTITY",
+    "img_izquierda_optional": "/fincas/0235.JPEG",
+    "txt_alt_izquierda_optional": "Alto Ugarteche vineyard",
+    "img_fondo_optional": "/fincas/0237.JPEG",
+    "txt_alt_fondo_optional": "Palo Alto estate",
+    "mostrar_equipo_optional": true
+  },
+  "equipo": {
+    "txt_titulo_seccion": "Our team",
+    "avatar_layout_optional": "left",
+    "lista_equipo": [
+      {
+        "txt_nombre": "Palo Alto Team",
+        "txt_rol_optional": "Production and quality",
+        "txt_bio_optional": "Our team unites technical and human resources for limited batches with the commitment that has always guided us: quality before quantity.",
+        "img_avatar_optional": ""
+      }
+    ]
+  },
+  "fincas_seccion": {
+    "txt_titulo": "Our Estates",
+    "img_fondo_optional": "/fincas/0237.JPEG",
+    "txt_alt_fondo_optional": "Palo Alto estate"
+  },
+  "finca_1": {
+    "txt_titulo": "Alto Ugarteche Vineyard",
+    "txt_ubicacion_optional": "Luján de Cuyo, Mendoza, Argentina",
+    "txt_descripcion_optional": "Characteristics of the vineyard in Alto Ugarteche.",
+    "lista_caracteristicas": [
+      { "txt_label": "Area", "txt_valor": "25 hectares" },
+      { "txt_label": "Cultivated area", "txt_valor": "22 hectares" },
+      { "txt_label": "Varieties", "txt_valor": "Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés and Cabernet Franc" }
+    ],
+    "img_finca_optional": "",
+    "img_fondo_optional": "/fincas/0235.JPEG",
+    "txt_alt_fondo_optional": "Alto Ugarteche vineyard",
+    "parallax_optional": true
+  },
+  "finca_2": {
+    "txt_titulo": "Palo Alto Vineyard",
+    "txt_ubicacion_optional": "Cruz de Piedra, Maipú, Mendoza, Argentina",
+    "txt_descripcion_optional": "Our home in Cruz de Piedra, where the winery produces its wines with advanced technology in a setting of serenity and tradition.",
+    "lista_caracteristicas": [],
+    "img_finca_optional": "",
+    "img_fondo_optional": "/fincas/0237.JPEG",
+    "txt_alt_fondo_optional": "Palo Alto estate",
+    "parallax_optional": false
+  }
+}

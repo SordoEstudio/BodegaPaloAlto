@@ -112,6 +112,64 @@ export interface HeaderData {
   languages: { code: Locale; label: string }[];
 }
 
+/** Bodega - Quiénes somos (bloque de texto + opcionales: imagen izq, fondo, mostrar equipo) */
+export interface BodegaQuienesSomosData {
+  title: string;
+  paragraphs: string[];
+  highlight?: string;
+  imageLeft?: { imageSrc: string; imageAlt?: string };
+  backgroundImage?: { imageSrc: string; imageAlt?: string };
+  showEquipo?: boolean;
+}
+
+/** Bodega - Ficha de miembro del equipo */
+export interface BodegaEquipoMember {
+  id: string;
+  name: string;
+  role?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  bio?: string;
+}
+
+/** Bodega - Equipo (lista de fichas) */
+export interface BodegaEquipoData {
+  sectionTitle: string;
+  members: BodegaEquipoMember[];
+  /** "top" = avatar arriba de la info (por defecto), "left" = avatar a la izquierda */
+  avatarLayout?: "top" | "left";
+}
+
+/** Bodega - Finca (una finca) */
+export interface BodegaFincaData {
+  id: string;
+  title: string;
+  location?: string;
+  description?: string;
+  features?: { label: string; value: string }[];
+  imageSrc?: string;
+  imageAlt?: string;
+  /** Imagen de fondo opcional para la sección (con overlay oscuro) */
+  backgroundImage?: { imageSrc: string; imageAlt?: string };
+  /** Si true, el fondo usa efecto parallax (background-attachment: fixed) */
+  parallax?: boolean;
+}
+
+/** Bodega - Sección "Nuestras Fincas" (título + fondo opcional) */
+export interface BodegaFincasSectionData {
+  title: string;
+  backgroundImage?: { imageSrc: string; imageAlt?: string };
+}
+
+/** Bodega - página completa */
+export interface BodegaData {
+  quienesSomos: BodegaQuienesSomosData;
+  equipo: BodegaEquipoData;
+  fincasSection: BodegaFincasSectionData;
+  finca1: BodegaFincaData;
+  finca2: BodegaFincaData;
+}
+
 /** Footer (pie de página) */
 export interface FooterData {
   logo: {

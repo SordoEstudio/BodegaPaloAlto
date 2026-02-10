@@ -1,0 +1,60 @@
+{
+  "quienes_somos": {
+    "txt_titulo": "Quiénes Somos",
+    "txt_parrafo_1": "Sobria, sencilla, austera; en un respetuoso rescate del pasado, con claros objetivos del futuro; con prácticamente un siglo de existencia, hoy funciona con un nombre que de alguna manera rinde homenaje a los altos y delgados pueblos originarios, Huarpes Milcaya, los grandes conductores del agua, que transformaron el desierto en vergel y que dejaron sus huellas en Cruz de Piedra.",
+    "txt_parrafo_2": "Un cálido lugar dedicado absolutamente al ámbito de la elaboración, al que se le ha incorporado tecnología de avanzada, en un todo acorde con el nivel buscado que nos permite alcanzar la óptima expresión varietal en vinos Premium; todo convive con serenidad sin altisonancias.",
+    "txt_destacado": "LA CALIDAD ANTES QUE LA CANTIDAD",
+    "img_izquierda_optional": "/bodega/02.jpg",
+    "txt_alt_izquierda_optional": "Viñedos Alto Ugarteche",
+    "img_fondo_optional": "/fincas/0237.JPEG",
+    "txt_alt_fondo_optional": "Finca Palo Alto",
+    "mostrar_equipo_optional": true
+  },
+  "equipo": {
+    "txt_titulo_seccion": "Nuestro equipo",
+    "avatar_layout_optional": "top",
+    "lista_equipo": [
+      {
+        "txt_nombre": "Luis Martinez",
+        "txt_rol_optional": "Enólogo ",
+        "txt_bio_optional": "Parte de nuestro equipo desde 2002.",
+        "img_avatar_optional": "/bodega/equipo/team-luis.jpg"
+      },
+      {
+        "txt_nombre": "Alejandro Campagnucci",
+        "txt_rol_optional": "Sommeliere ",
+        "txt_bio_optional": "Parte de nuestro equipo desde 2010.",
+        "img_avatar_optional": "/bodega/equipo/team-alejandro.jpg"
+      }
+    ]
+  },
+  "fincas_seccion": {
+    "txt_titulo": "Nuestras Fincas",
+    "img_fondo_optional": "",
+    "txt_alt_fondo_optional": "Finca Palo Alto"
+  },
+  "finca_1": {
+    "txt_titulo": "Finca Alto Ugarteche",
+    "txt_ubicacion_optional": "Luján de Cuyo, Mendoza, Argentina",
+    "txt_descripcion_optional": "Características de los viñedos en Alto Ugarteche.",
+    "lista_caracteristicas": [
+      { "txt_label": "Superficie", "txt_valor": "25 Hectáreas" },
+      { "txt_label": "Superficie plantada", "txt_valor": "22 Hectáreas" },
+      { "txt_label": "Variedades", "txt_valor": "Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés y Cabernet Franc" }
+    ],
+    "img_finca_optional": "",
+    "img_fondo_optional": "/bodega/fincas/0235.jpeg",
+    "txt_alt_fondo_optional": "Finca Alto Ugarteche",
+    "parallax_optional": true
+  },
+  "finca_2": {
+    "txt_titulo": "Finca Palo Alto",
+    "txt_ubicacion_optional": "Cruz de Piedra, Maipú, Mendoza, Argentina",
+    "txt_descripcion_optional": "Nuestra casa en Cruz de Piedra, donde la bodega elabora sus vinos con tecnología de avanzada en un marco de serenidad y tradición.",
+    "lista_caracteristicas": [],
+    "img_finca_optional": "",
+    "img_fondo_optional": "/bodega/fincas/0237.jpeg",
+    "txt_alt_fondo_optional": "Finca Palo Alto",
+    "parallax_optional": true
+  }
+}
