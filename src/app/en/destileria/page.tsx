@@ -24,6 +24,7 @@ export default async function DestileriaEnPage() {
         <DestileriaTextHighlight key={section.title ?? i} data={section} />
       ))}
       <DestileriaMissionVision data={data.missionVision} />
+      <DestileriaTextHighlight data={data.textPromises} />
       <DestileriaManifesto data={data.manifesto} />
     </>
   );

@@ -34,17 +34,17 @@
       "title": "The reason is always the encounter",
       "body": "Our products are designed to accompany real life: pre-gatherings with friends, barbecues, dinners, after-dinner conversations and family celebrations.\n\nWe want to be present —and chosen— every time people get together.\n\nBecause we believe the reason is always the encounter.",
       "textAlign": "center"
-    },
-    {
-      "title": "Our promise",
-      "body": "We develop our products to be part of every encounter.\n\nFrom gatherings with friends to family dinners.\n\nFrom the first toast to the last embrace.",
-      "highlightQuote": "We develop our products to be part of every encounter.",
-      "backgroundImage": "/destileria/65.jpg",
-      "backgroundImageAlt": "Magic Stone Distillery",
-      "parallax": true,
-      "textAlign": "center"
     }
   ],
+  "textPromises": {
+    "title": "Our promise",
+    "body": "We develop our products to be part of every encounter.\n\nFrom gatherings with friends to family dinners.\n\nFrom the first toast to the last embrace.",
+    "highlightQuote": "We develop our products to be part of every encounter.",
+    "backgroundImage": "/destileria/65.jpg",
+    "backgroundImageAlt": "Magic Stone Distillery",
+    "parallax": true,
+    "textAlign": "center"
+  },
   "missionVision": {
     "layout": "blocks",
     "tabLabels": { "mission": "Mission", "vision": "Vision", "values": "Values" },

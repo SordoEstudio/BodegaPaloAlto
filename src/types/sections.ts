@@ -273,6 +273,8 @@ export interface DestileriaData {
   storySplits: DestileriaStorySplitData[];
   /** Varios bloques de texto destacado (sustituye al antiguo momentsGrid) */
   textHighlights: DestileriaTextHighlightData[];
+  /** Bloque de texto destacado para la promesa (DestileriaTextHighlight) */
+  textPromises: DestileriaTextHighlightData;
   missionVision: DestileriaMissionVisionData;
   /** @deprecated Usar un ítem en textHighlights en su lugar */
   promise?: DestileriaPromiseData;

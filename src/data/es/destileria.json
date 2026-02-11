@@ -42,16 +42,15 @@
       "parallax": false
     }
   ],
-  "textPromises": 
-    {
-      "title": "Nuestra promesa",
-      "body": "Desde la previa con amigos hasta la cena familiar.\n\nDesde el primer brindis hasta el último abrazo.",
-      "highlightQuote": "Desarrollamos nuestros productos para que sean parte de cada encuentro.",
-      "backgroundImage": "/destileria/56.jpg",
-      "backgroundImageAlt": "Magic Stone Destilería",
-      "parallax": false,
-      "textAlign": "left"
-    },
+  "textPromises": {
+    "title": "Nuestra promesa",
+    "body": "Desde la previa con amigos hasta la cena familiar.\n\nDesde el primer brindis hasta el último abrazo.",
+    "highlightQuote": "Desarrollamos nuestros productos para que sean parte de cada encuentro.",
+    "backgroundImage": "/destileria/56.jpg",
+    "backgroundImageAlt": "Magic Stone Destilería",
+    "parallax": false,
+    "textAlign": "left"
+  },
   "missionVision": {
     "layout": "blocks",
     "tabLabels": { "mission": "Misión", "vision": "Visión", "values": "Valores" },
