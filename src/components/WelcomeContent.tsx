@@ -2,16 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { HeroFullScreen } from "@/components/HeroFullScreen";
-import { GlassCard } from "@/components/GlassCard";
-import { AGE_VERIFIED_COOKIE } from "@/lib/ageGate";
+import { setAgeVerifiedSession } from "@/lib/ageGate";
 import type { WelcomeData } from "@/types/sections";
-
-const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 año
-
-function setAgeVerifiedCookie() {
-  if (typeof document === "undefined") return;
-  document.cookie = `${AGE_VERIFIED_COOKIE}=1; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
-}
 
 interface WelcomeContentProps {
   data: WelcomeData;
@@ -22,7 +14,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
   const { hero, title, message, legalNotice, buttons } = data;
 
   const handleConfirm = () => {
-    setAgeVerifiedCookie();
+    setAgeVerifiedSession();
     router.push("/");
   };
 
@@ -36,8 +28,8 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
       imageAlt={hero.imageAlt}
       contentClassName="text-white"
     >
-      <GlassCard variant="strong" className="w-full max-w-md">
-        <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+<div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-white/35 px-8 py-10 ">
+         <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
           {title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed opacity-95">{message}</p>
@@ -45,7 +37,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <button
             type="button"
-            onClick={handleConfirm}
+            onClick={() => handleConfirm()}
             className="min-h-[44px] min-w-[140px] rounded-full bg-palo-alto-primary px-6 py-3 font-bold text-palo-alto-secondary shadow-lg transition focus:outline-none focus:ring-0 hover:opacity-95 active:opacity-90"
             aria-label={buttons.confirmAriaLabel}
           >
@@ -60,7 +52,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
             {buttons.decline}
           </button>
         </div>
-      </GlassCard>
+      </div>
     </HeroFullScreen>
   );
 }

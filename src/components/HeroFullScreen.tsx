@@ -51,7 +51,7 @@ export function HeroFullScreen({
 
   return (
     <section
-      className="relative flex min-h-[calc(100dvh-4.5rem)] w-full flex-col overflow-hidden pb-[22rem]"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden md:pb-0"
       aria-label="Sección principal"
     >
       {/* Fondo: gradiente por defecto */}

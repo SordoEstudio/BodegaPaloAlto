@@ -4,9 +4,9 @@
     "txt_parrafo_1": "Sobria, sencilla, austera; en un respetuoso rescate del pasado, con claros objetivos del futuro; con prácticamente un siglo de existencia, hoy funciona con un nombre que de alguna manera rinde homenaje a los altos y delgados pueblos originarios, Huarpes Milcaya, los grandes conductores del agua, que transformaron el desierto en vergel y que dejaron sus huellas en Cruz de Piedra.",
     "txt_parrafo_2": "Un cálido lugar dedicado absolutamente al ámbito de la elaboración, al que se le ha incorporado tecnología de avanzada, en un todo acorde con el nivel buscado que nos permite alcanzar la óptima expresión varietal en vinos Premium; todo convive con serenidad sin altisonancias.",
     "txt_destacado": "LA CALIDAD ANTES QUE LA CANTIDAD",
-    "img_izquierda_optional": "/bodega/02.jpg",
+    "img_izquierda_optional": "/bodega/02.JPG",
     "txt_alt_izquierda_optional": "Viñedos Alto Ugarteche",
-    "img_fondo_optional": "/fincas/0237.JPEG",
+    "img_fondo_optional": "/bodega/fincas/0237.JPEG",
     "txt_alt_fondo_optional": "Finca Palo Alto",
     "mostrar_equipo_optional": true
   },
@@ -29,7 +29,7 @@
     ]
   },
   "fincas_seccion": {
-    "txt_titulo": "Nuestras Bodegas",
+    "txt_titulo": "Nuestras Fincas",
     "img_fondo_optional": "",
     "txt_alt_fondo_optional": "Finca Palo Alto",
     "layout_optional": "tabs"
@@ -60,8 +60,8 @@
       },
       { "Dirección Técnica": "Ing. Agro. Hugo Martinez." }
     ],
-    "img_finca_optional": "/bodega/fincas/0235.jpeg",
-    "img_fondo_optional": "/bodega/fincas/0235.jpeg",
+    "img_finca_optional": "/bodega/fincas/0235.JPEG",
+    "img_fondo_optional": "/bodega/fincas/0235.JPEG",
     "txt_alt_fondo_optional": "Finca Alto Ugarteche",
     "parallax_optional": true
   },
@@ -89,8 +89,8 @@
       },
       { "Dirección Técnica": "Ing. Agro. Hugo Martinez." }
     ],
-    "img_finca_optional": "/bodega/fincas/0237.jpeg",
-    "img_fondo_optional": "/bodega/fincas/0237.jpeg",
+    "img_finca_optional": "/bodega/fincas/0237.JPEG",
+    "img_fondo_optional": "/bodega/fincas/0237.JPEG",
     "txt_alt_fondo_optional": "Finca Palo Alto",
     "parallax_optional": true
   }
