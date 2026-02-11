@@ -47,7 +47,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
         {/* Logo – tipografía principal (Carleton / Cormorant) */}
         <Link
           href={logo.href}
-          className="font-heading text-2xl font-semibold tracking-tight text-white focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-[var(--header-bg)] sm:text-3xl"
+          className="font-heading text-2xl font-semibold tracking-tight text-white focus:outline-none focus:ring-0 sm:text-3xl"
           aria-label={logo.imageAlt || logo.text}
         >
           {logo.imageSrc ? (
@@ -91,7 +91,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-medium text-white transition hover:text-palo-alto-primary focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-[var(--header-bg)] rounded"
+                className="font-medium text-white transition hover:text-palo-alto-primary focus:outline-none focus:ring-0 rounded"
               >
                 {item.label}
               </Link>
@@ -101,7 +101,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
             href={shop.href}
             target={shop.external ? "_blank" : undefined}
             rel={shop.external ? "noopener noreferrer" : undefined}
-            className="rounded-full bg-palo-alto-primary px-4 py-2 font-bold text-palo-alto-secondary transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-[var(--header-bg)]"
+            className="rounded-full bg-palo-alto-primary px-4 py-2 font-bold text-palo-alto-secondary transition hover:opacity-90 focus:outline-none focus:ring-0"
           >
             {shop.label}
           </Link>
@@ -114,7 +114,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
               <Link
                 key={lang.code}
                 href={lang.code === locale ? pathname : switchPath}
-                className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded px-2 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-[var(--header-bg)] ${
+                className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded px-2 text-sm font-bold transition focus:outline-none focus:ring-0 ${
                   lang.code === locale
                     ? "text-palo-alto-primary underline"
                     : "text-white/90 hover:text-white"
@@ -127,7 +127,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
           </div>
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded md:hidden text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-[var(--header-bg)]"
+            className="flex h-10 w-10 items-center justify-center rounded md:hidden text-white hover:bg-white/10 focus:outline-none focus:ring-0"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}

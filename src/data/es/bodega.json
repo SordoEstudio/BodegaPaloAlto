@@ -16,43 +16,80 @@
     "lista_equipo": [
       {
         "txt_nombre": "Luis Martinez",
-        "txt_rol_optional": "Enólogo ",
+        "txt_rol_optional": "Enólogo",
         "txt_bio_optional": "Parte de nuestro equipo desde 2002.",
         "img_avatar_optional": "/bodega/equipo/team-luis.jpg"
       },
       {
         "txt_nombre": "Alejandro Campagnucci",
-        "txt_rol_optional": "Sommeliere ",
+        "txt_rol_optional": "Sommeliere",
         "txt_bio_optional": "Parte de nuestro equipo desde 2010.",
         "img_avatar_optional": "/bodega/equipo/team-alejandro.jpg"
       }
     ]
   },
   "fincas_seccion": {
-    "txt_titulo": "Nuestras Fincas",
+    "txt_titulo": "Nuestras Bodegas",
     "img_fondo_optional": "",
-    "txt_alt_fondo_optional": "Finca Palo Alto"
+    "txt_alt_fondo_optional": "Finca Palo Alto",
+    "layout_optional": "tabs"
   },
   "finca_1": {
     "txt_titulo": "Finca Alto Ugarteche",
-    "txt_ubicacion_optional": "Luján de Cuyo, Mendoza, Argentina",
-    "txt_descripcion_optional": "Características de los viñedos en Alto Ugarteche.",
+    "txt_ubicacion_optional": "Luján de Cuyo - Mendoza - Argentina",
+    "txt_descripcion_optional": "Características de los viñedos.",
     "lista_caracteristicas": [
-      { "txt_label": "Superficie", "txt_valor": "25 Hectáreas" },
-      { "txt_label": "Superficie plantada", "txt_valor": "22 Hectáreas" },
-      { "txt_label": "Variedades", "txt_valor": "Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés y Cabernet Franc" }
+      { "Ubicación": "Luján de Cuyo - Mendoza - Argentina." },
+      { "Distrito": "Ugarteche." },
+      { "Superficie": "25 Hectáreas." },
+      { "Superficie plantada": "22 Hectáreas." },
+      {
+        "Variedades plantadas": "Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés y Cabernet Franc."
+      },
+      { "Antigüedad promedio de los viñedos": "18 años." },
+      { "Rendimiento promedio por hectárea": "80 quintales." },
+      { "Tipo de conducción": "Espaldero Alto." },
+      { "Tipo de riego": "Riego por goteo." },
+      { "Origen del agua": "Perforación a 180 m. de profundidad." },
+      { "Altitud": "1120 msnm." },
+      { "Tipo de suelo": "Franco arcilloso." },
+      { "Fecha de cosechas": "Febrero a Abril." },
+      { "Método de cosecha": "Manual." },
+      {
+        "Transporte de cosecha": "Cajas plásticas paletizadas de hasta 18 kg. cada una."
+      },
+      { "Dirección Técnica": "Ing. Agro. Hugo Martinez." }
     ],
-    "img_finca_optional": "",
+    "img_finca_optional": "/bodega/fincas/0235.jpeg",
     "img_fondo_optional": "/bodega/fincas/0235.jpeg",
     "txt_alt_fondo_optional": "Finca Alto Ugarteche",
     "parallax_optional": true
   },
   "finca_2": {
     "txt_titulo": "Finca Palo Alto",
-    "txt_ubicacion_optional": "Cruz de Piedra, Maipú, Mendoza, Argentina",
-    "txt_descripcion_optional": "Nuestra casa en Cruz de Piedra, donde la bodega elabora sus vinos con tecnología de avanzada en un marco de serenidad y tradición.",
-    "lista_caracteristicas": [],
-    "img_finca_optional": "",
+    "txt_ubicacion_optional": "Maipú - Mendoza - Argentina. Cruz de Piedra.",
+    "txt_descripcion_optional": "Características de los viñedos.",
+    "lista_caracteristicas": [
+      { "Ubicación": "Maipú - Mendoza - Argentina." },
+      { "Distrito": "Cruz de Piedra." },
+      { "Dirección": "Videla Aranda 502, Cruz de Piedra." },
+      { "Superficie": "16 Hectáreas." },
+      { "Superficie plantada": "5 Hectáreas." },
+      { "Variedades plantadas": "Malbec y Prosecco." },
+      { "Antigüedad promedio de los viñedos": "12 años." },
+      { "Rendimiento promedio por hectárea": "90 quintales." },
+      { "Tipo de conducción": "Espaldero." },
+      { "Tipo de riego": "Riego por goteo." },
+      { "Origen del agua": "Perforación a 130 m. de profundidad." },
+      { "Altitud": "920 msnm." },
+      { "Fecha de cosechas": "Febrero a Abril." },
+      { "Método de cosecha": "Manual." },
+      {
+        "Transporte de cosecha": "Cajas plásticas paletizadas de hasta 18 kg. cada una."
+      },
+      { "Dirección Técnica": "Ing. Agro. Hugo Martinez." }
+    ],
+    "img_finca_optional": "/bodega/fincas/0237.jpeg",
     "img_fondo_optional": "/bodega/fincas/0237.jpeg",
     "txt_alt_fondo_optional": "Finca Palo Alto",
     "parallax_optional": true

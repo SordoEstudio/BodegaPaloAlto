@@ -50,7 +50,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href={logo.href}
-              className="font-heading inline-block text-2xl font-semibold tracking-tight focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-palo-alto-secondary"
+              className="font-heading inline-block text-2xl font-semibold tracking-tight focus:outline-none focus:ring-0"
               aria-label={logo.imageAlt || logo.text}
             >
               {logo.imageSrc ? (
@@ -80,7 +80,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                       href={addressUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-palo-alto-primary underline transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-palo-alto-secondary rounded"
+                      className="hover:text-palo-alto-primary underline transition focus:outline-none focus:ring-0 rounded"
                     >
                       {address}
                     </Link>
@@ -135,7 +135,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.ariaLabel}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white/95 transition hover:border-palo-alto-primary hover:bg-palo-alto-primary/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-palo-alto-secondary"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white/95 transition hover:border-palo-alto-primary hover:bg-palo-alto-primary/20 hover:text-white focus:outline-none focus:ring-0"
                     >
                       {Icon ? <Icon className="h-5 w-5" /> : link.label}
                     </Link>
@@ -157,7 +157,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                 href={developedByUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-palo-alto-primary transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-palo-alto-secondary rounded"
+                className="hover:text-palo-alto-primary transition focus:outline-none focus:ring-0 rounded"
               >
                 {locale === "en" ? "Developed by" : "Desarrollado por"}{" "}
                 {developedBy}

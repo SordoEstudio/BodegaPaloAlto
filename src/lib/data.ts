@@ -266,15 +266,30 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
   const fs = (raw.fincas_seccion as Record<string, unknown>) ?? {};
   const f1 = (raw.finca_1 as Record<string, unknown>) ?? {};
   const f2 = (raw.finca_2 as Record<string, unknown>) ?? {};
-  const listaLabels = (f1.lista_caracteristicas as { txt_label?: string; txt_valor?: string }[]) ?? [];
-  const lista2 = (f2.lista_caracteristicas as { txt_label?: string; txt_valor?: string }[]) ?? [];
+  /** Convierte lista_caracteristicas en formato items [{ "Superficie": "25 Hectáreas" }, ...] o legacy [{ txt_label, txt_valor }] a { label, value }[] */
+  function mapCaracteristicas(rawList: unknown): { label: string; value: string }[] {
+    const list = Array.isArray(rawList) ? rawList : [];
+    return list.map((item) => {
+      const obj = item as Record<string, string>;
+      if (obj.txt_label != null || obj.txt_valor != null) {
+        return { label: obj.txt_label ?? "", value: obj.txt_valor ?? "" };
+      }
+      const keys = Object.keys(obj).filter((k) => !k.startsWith("_"));
+      const key = keys[0];
+      return key ? { label: key, value: String(obj[key] ?? "") } : { label: "", value: "" };
+    }).filter((c) => c.label || c.value);
+  }
+  const listaLabels = mapCaracteristicas(f1.lista_caracteristicas);
+  const lista2 = mapCaracteristicas(f2.lista_caracteristicas);
 
   const imgFondoFincas = fs.img_fondo_optional as string | undefined;
+  const layoutRaw = (fs.layout_optional as string) ?? "";
   const fincasSection: BodegaFincasSectionData = {
-    title: (fs.txt_titulo as string) ?? "Nuestras Fincas",
+    title: (fs.txt_titulo as string) ?? "Nuestras Bodegas",
     backgroundImage: imgFondoFincas
       ? { imageSrc: imgFondoFincas, imageAlt: (fs.txt_alt_fondo_optional as string) || undefined }
       : undefined,
+    layout: layoutRaw === "tabs" ? "tabs" : "stacked",
   };
 
   const imgLeft = qs.img_izquierda_optional as string | undefined;
@@ -309,7 +324,7 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     title: (f1.txt_titulo as string) ?? "",
     location: (f1.txt_ubicacion_optional as string) || undefined,
     description: (f1.txt_descripcion_optional as string) || undefined,
-    features: listaLabels.map((c) => ({ label: c.txt_label ?? "", value: c.txt_valor ?? "" })).filter((c) => c.label || c.value),
+    features: listaLabels,
     imageSrc: (f1.img_finca_optional as string) || undefined,
     imageAlt: (f1.txt_alt_finca_optional as string) || undefined,
     backgroundImage: f1Bg ? { imageSrc: f1Bg, imageAlt: (f1.txt_alt_fondo_optional as string) || undefined } : undefined,
@@ -321,7 +336,7 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     title: (f2.txt_titulo as string) ?? "",
     location: (f2.txt_ubicacion_optional as string) || undefined,
     description: (f2.txt_descripcion_optional as string) || undefined,
-    features: lista2.map((c) => ({ label: c.txt_label ?? "", value: c.txt_valor ?? "" })).filter((c) => c.label || c.value),
+    features: lista2,
     imageSrc: (f2.img_finca_optional as string) || undefined,
     imageAlt: (f2.txt_alt_finca_optional as string) || undefined,
     backgroundImage: f2Bg ? { imageSrc: f2Bg, imageAlt: (f2.txt_alt_fondo_optional as string) || undefined } : undefined,

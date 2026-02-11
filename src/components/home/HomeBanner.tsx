@@ -57,7 +57,7 @@ export function HomeBanner({ data }: HomeBannerProps) {
     return (
       <Link
         href={href}
-        className="block focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2"
+        className="block focus:outline-none focus:ring-0"
       >
         {content}
       </Link>

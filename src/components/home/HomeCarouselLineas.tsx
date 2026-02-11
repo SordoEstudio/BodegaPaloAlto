@@ -30,7 +30,7 @@ export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
             <Link
               key={linea.id}
               href={linea.href}
-              className="group flex flex-col items-center rounded-xl border border-white/20 bg-white/5 p-4 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-palo-alto-secondary hover:bg-white/10 hover:border-white/30"
+              className="group flex flex-col items-center rounded-xl border border-white/20 bg-white/5 p-4 backdrop-blur-sm transition focus:outline-none focus:ring-0 hover:bg-white/10 hover:border-white/30"
             >
               <span className="relative inline-block h-[85px] w-[145px] overflow-hidden rounded-lg">
                 <Image

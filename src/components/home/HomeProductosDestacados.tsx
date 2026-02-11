@@ -27,7 +27,7 @@ export function HomeProductosDestacados({ data }: HomeProductosDestacadosProps) 
             <Link
               key={product.id}
               href={product.href}
-              className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 hover:shadow-md"
+              className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition focus:outline-none focus:ring-0 hover:shadow-md"
             >
               <span className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden bg-zinc-50">
                 <Image

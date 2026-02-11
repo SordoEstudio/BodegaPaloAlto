@@ -46,7 +46,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
           <button
             type="button"
             onClick={handleConfirm}
-            className="min-h-[44px] min-w-[140px] rounded-full bg-palo-alto-primary px-6 py-3 font-bold text-palo-alto-secondary shadow-lg transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent hover:opacity-95 active:opacity-90"
+            className="min-h-[44px] min-w-[140px] rounded-full bg-palo-alto-primary px-6 py-3 font-bold text-palo-alto-secondary shadow-lg transition focus:outline-none focus:ring-0 hover:opacity-95 active:opacity-90"
             aria-label={buttons.confirmAriaLabel}
           >
             {buttons.confirm}
@@ -54,7 +54,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
           <button
             type="button"
             onClick={handleDecline}
-            className="min-h-[44px] min-w-[140px] rounded-full border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent hover:bg-white/10 hover:border-white/80 active:bg-white/20"
+            className="min-h-[44px] min-w-[140px] rounded-full border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition focus:outline-none focus:ring-0 hover:bg-white/10 hover:border-white/80 active:bg-white/20"
             aria-label={buttons.declineAriaLabel}
           >
             {buttons.decline}

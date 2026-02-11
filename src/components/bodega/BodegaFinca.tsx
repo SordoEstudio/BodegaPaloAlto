@@ -52,7 +52,7 @@ export function BodegaFinca({ data }: BodegaFincaProps) {
           ) : null}
           {description ? (
             <p
-              className={`mt-3 text-base leading-relaxed ${hasBg ? "text-white/95" : "text-foreground/90"}`}
+              className={` mt-3 text-base leading-relaxed ${hasBg ? "text-white/95" : "text-foreground/90"}`}
             >
               {description}
             </p>
@@ -60,13 +60,13 @@ export function BodegaFinca({ data }: BodegaFincaProps) {
           {features?.length ? (
             <dl className="mt-4 space-y-2">
               {features.map((f, i) => (
-                <div key={i} className="flex flex-col sm:flex-row sm:gap-2">
+                <div key={i} className="flex flex-col sm:flex-row sm:gap-2 border-l border-white/20 pl-2">
                   <dt
                     className={`shrink-0 font-medium ${hasBg ? "text-white/90" : "text-palo-alto-secondary"}`}
                   >
                     {f.label}:
                   </dt>
-                  <dd className={hasBg ? "text-white/95" : "text-foreground/90"}>
+                  <dd className={` ${hasBg ? "text-white/95" : "text-foreground/90"}`}>
                     {f.value}
                   </dd>
                 </div>

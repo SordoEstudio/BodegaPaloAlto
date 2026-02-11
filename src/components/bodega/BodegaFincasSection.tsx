@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { BodegaFincasSectionData, BodegaFincaData } from "@/types/sections";
 import { BodegaFinca } from "./BodegaFinca";
+import { BodegaFincasTabs } from "./BodegaFincasTabs";
 
 interface BodegaFincasSectionProps {
   data: BodegaFincasSectionData;
@@ -13,15 +14,29 @@ export function BodegaFincasSection({
   finca1,
   finca2,
 }: BodegaFincasSectionProps) {
-  const { title, backgroundImage } = data;
+  const { title, backgroundImage, layout } = data;
   const hasBg = !!backgroundImage?.imageSrc;
+  const useTabs = layout === "tabs";
+  const useTabsLightGlass = useTabs;
 
-  const content = (
+  const content = useTabs ? (
     <>
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 ">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-4">
         <h2
           id="fincas-heading"
-          className={`font-heading text-center text-2xl font-bold sm:text-3xl text-white`}
+          className="font-heading text-center text-2xl font-bold text-palo-alto-secondary sm:text-3xl"
+        >
+          {title}
+        </h2>
+      </div>
+      <BodegaFincasTabs finca1={finca1} finca2={finca2} hasDarkBg={false} />
+    </>
+  ) : (
+    <>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-16">
+        <h2
+          id="fincas-heading"
+          className={`font-heading text-center text-2xl font-bold sm:text-3xl ${hasBg ? "text-white" : "text-palo-alto-secondary"}`}
         >
           {title}
         </h2>
@@ -30,6 +45,23 @@ export function BodegaFincasSection({
       <BodegaFinca data={finca2} />
     </>
   );
+
+  if (useTabsLightGlass) {
+    return (
+      <section
+        className="relative overflow-hidden py-16"
+        aria-labelledby="fincas-heading"
+      >
+        <div
+          className="absolute inset-0 bg-linear-to-b from-palo-alto-primary/5 to-palo-alto-secondary/5"
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+          {content}
+        </div>
+      </section>
+    );
+  }
 
   if (hasBg) {
     return (
@@ -49,7 +81,6 @@ export function BodegaFincasSection({
             sizes="100vw"
           />
         </div>
-        {/* Overlay oscuro, misma estética que Quiénes somos / hero */}
         <div className="absolute inset-0 z-1 bg-black/70" aria-hidden />
         {content}
       </section>

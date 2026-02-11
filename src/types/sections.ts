@@ -155,10 +155,12 @@ export interface BodegaFincaData {
   parallax?: boolean;
 }
 
-/** Bodega - Sección "Nuestras Fincas" (título + fondo opcional) */
+/** Bodega - Sección "Nuestras Fincas" (título + fondo opcional + layout) */
 export interface BodegaFincasSectionData {
   title: string;
   backgroundImage?: { imageSrc: string; imageAlt?: string };
+  /** "stacked" = dos bloques (actual); "tabs" = pestañas, contenido en el mismo lugar con imagen vertical que expande al hover */
+  layout?: "stacked" | "tabs";
 }
 
 /** Bodega - página completa */
