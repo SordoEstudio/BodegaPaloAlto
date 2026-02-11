@@ -17,6 +17,7 @@ type HeroFullScreenProps = {
   /** Contenido sobre el hero (título, subtítulo). Se muestra sobre un overlay para legibilidad. */
   children: React.ReactNode;
   contentClassName?: string;
+  dark?: boolean;
 };
 
 const ROTATE_INTERVAL_MS = 5000;
@@ -30,6 +31,7 @@ export function HeroFullScreen({
   imageAlt = "Bodega Palo Alto",
   children,
   contentClassName = "",
+  dark = false,
 }: HeroFullScreenProps) {
   const hasCarousel = slides && slides.length > 1;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,7 +97,7 @@ export function HeroFullScreen({
 
       {/* Overlay para legibilidad del texto (sin glassmorphism) */}
       <div
-        className="absolute inset-0 bg-black/70"
+        className={`absolute inset-0 ${dark ? "bg-black/70" : "bg-white/40"}`}
         aria-hidden
       />
 

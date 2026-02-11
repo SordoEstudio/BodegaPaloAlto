@@ -12,6 +12,7 @@ export function HomeHero({ data }: HomeHeroProps) {
     <HeroFullScreen
       slides={slides}
       contentClassName="text-white"
+      dark={true}
     >
       <div >
         <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">

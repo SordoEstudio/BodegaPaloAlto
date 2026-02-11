@@ -1,0 +1,339 @@
+{
+  "page": {
+    "slug": "destileria-magic-stone",
+    "template": "brand_landing",
+    "seo": {
+      "meta_title": {
+        "es": "Magic Stone | Destilería Tandil",
+        "en": "Magic Stone | Tandil Distillery"
+      },
+      "meta_description": {
+        "es": "Destilados de autor nacidos en Tandil. Artesanía técnica, identidad local y bebidas pensadas para el encuentro.",
+        "en": "Author-crafted spirits born in Tandil. Technical craftsmanship and locally rooted identity."
+      }
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "id": "hero_magic_stone",
+        "content": {
+          "title": {
+            "es": "MAGIC STONE",
+            "en": "MAGIC STONE"
+          },
+          "subtitle": {
+            "es": "Destilamos encuentros. Embotellamos experiencias.",
+            "en": "We distill encounters. We bottle experiences."
+          },
+          "cta": {
+            "label": {
+              "es": "Ver productos",
+              "en": "View products"
+            },
+            "url": "/productos?marca=magic-stone"
+          },
+          "background_image": "/images/magic-stone/hero.jpg"
+        }
+      },
+      {
+        "type": "story_split",
+        "id": "legend_section",
+        "content": {
+          "title": {
+            "es": "La leyenda que nos inspira",
+            "en": "The legend that inspires us"
+          },
+          "body": {
+            "es": "Era la gran piedra de Tandil, la llamada piedra mágica...",
+            "en": "It was the great stone of Tandil, the so-called magic stone..."
+          },
+          "image": "/images/magic-stone/piedra.jpg"
+        }
+      },
+      {
+        "type": "text_highlight",
+        "id": "distillery_intro",
+        "content": {
+          "title": {
+            "es": "Destilados de autor nacidos en Tandil",
+            "en": "Author-crafted spirits born in Tandil"
+          },
+          "body": {
+            "es": "Creamos destilados elaborados por partidas en alambiques de cobre...",
+            "en": "We craft spirits produced in batches using copper stills..."
+          },
+          "highlight_quote": {
+            "es": "Nuestros productos están pensados para acompañar la vida real.",
+            "en": "Our products are designed to accompany real life."
+          }
+        }
+      },
+      {
+        "type": "moments_grid",
+        "id": "encounter_section",
+        "content": {
+          "title": {
+            "es": "El motivo siempre es el encuentro",
+            "en": "The reason is always the encounter"
+          },
+          "moments": [
+            {
+              "es": "Previas con amigos",
+              "en": "Pre-gatherings with friends"
+            },
+            {
+              "es": "Asados",
+              "en": "Barbecues"
+            },
+            {
+              "es": "Sobremesas",
+              "en": "After-dinner conversations"
+            },
+            {
+              "es": "Celebraciones familiares",
+              "en": "Family celebrations"
+            }
+          ]
+        }
+      },
+      {
+        "type": "mission_vision_values",
+        "id": "brand_principles",
+        "content": {
+          "mission": {
+            "es": "Crear destilados con identidad local y artesanía técnica...",
+            "en": "To create spirits with local identity and technical craftsmanship..."
+          },
+          "vision": {
+            "es": "Ser la destilería argentina referente...",
+            "en": "To become Argentina’s reference distillery..."
+          },
+          "values": [
+            {
+              "key": "encuentro",
+              "title": {
+                "es": "Encuentro",
+                "en": "Encounter"
+              },
+              "description": {
+                "es": "Diseñamos nuestros productos para acompañar personas, no eventos.",
+                "en": "We design our products to accompany people, not events."
+              }
+            },
+            {
+              "key": "artesania_tecnica",
+              "title": {
+                "es": "Artesanía técnica",
+                "en": "Technical craftsmanship"
+              },
+              "description": {
+                "es": "Producción por partidas, alambiques de cobre...",
+                "en": "Batch production, copper stills..."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "promise_block",
+        "id": "brand_promise",
+        "content": {
+          "title": {
+            "es": "Nuestra promesa",
+            "en": "Our promise"
+          },
+          "lines": {
+            "es": [
+              "Desde la previa con amigos hasta la cena familiar.",
+              "Desde el primer brindis hasta el último abrazo."
+            ],
+            "en": [
+              "From gatherings with friends to family dinners.",
+              "From the first toast to the last embrace."
+            ]
+          }
+        }
+      },
+      {
+        "type": "manifesto_block",
+        "id": "manifesto",
+        "content": {
+          "lines": {
+            "es": [
+              "Creemos en la mesa como punto de encuentro.",
+              "Destilamos con técnica, tiempo y criterio humano.",
+              "Honramos Tandil en cada botella.",
+              "Magic Stone está donde las personas se encuentran."
+            ],
+            "en": [
+              "We believe in the table as a meeting point.",
+              "We distill with technique, time and human criteria.",
+              "We honor Tandil in every bottle.",
+              "Magic Stone is where people gather."
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+
+2️⃣ Especificación UI por componente
+🟫 1. HERO COMPONENT
+Tipo
+
+Full viewport section (min-height: 90vh)
+
+Layout
+
+Background image full bleed
+
+Overlay oscuro 40–60%
+
+Texto centrado vertical y horizontal
+
+Tipografía
+
+Title: serif elegante (ej. Playfair / Cormorant)
+
+Subtitle: sans-serif liviana
+
+Funcional
+
+CTA opcional
+
+Animación fade-in
+
+Scroll indicator opcional
+
+Responsive
+
+Mobile: texto centrado
+
+Desktop: max-width 900px
+
+🟫 2. STORY SPLIT (Text + Image)
+Layout
+
+Desktop:
+
+| Text (50%) | Image (50%) |
+
+
+Mobile:
+
+Image
+Text
+
+Estética
+
+Fondo blanco o beige piedra
+
+Tipografía editorial
+
+Margen vertical amplio (120px desktop)
+
+Funcional
+
+Imagen optimizada
+
+Lazy load
+
+Texto editable rich text
+
+🟫 3. TEXT HIGHLIGHT
+Layout
+
+Centered narrow container (max-width 800px)
+
+Componentes
+
+H2
+
+Paragraph
+
+Blockquote destacado
+
+Estética
+
+Blockquote con línea lateral vertical
+
+Espaciado generoso
+
+🟫 4. MOMENTS GRID
+Layout
+
+Grid 2x2 (desktop)
+Stack (mobile)
+
+UI
+
+Cada momento:
+
+Tarjeta con fondo neutro
+
+Hover subtle lift
+
+Tipografía mediana
+
+Opcional:
+
+imágenes lifestyle detrás con overlay
+
+🟫 5. MISSION / VISION / VALUES
+Layout
+
+Tabs o acordeón
+
+Desktop:
+
+Mission | Vision | Values
+
+
+Values:
+Grid 3 columnas
+
+Value Card
+
+Ícono
+
+Título
+
+Descripción breve
+
+UX
+
+Transición suave entre tabs
+
+Animación fade
+
+🟫 6. PROMISE BLOCK
+Layout
+
+Centered
+Background distinto (oscuro o textura piedra)
+
+Estética
+
+Texto grande
+
+Líneas separadas
+
+Espaciado vertical amplio
+
+🟫 7. MANIFESTO BLOCK
+Layout
+
+Full width
+Fondo oscuro
+
+Texto centrado
+Max width 700px
+
+Estética
+
+Tipografía grande
+
+Mucho aire
+
+Línea por línea

@@ -17,6 +17,7 @@ import type {
   BodegaEquipoData,
   BodegaFincasSectionData,
   BodegaFincaData,
+  DestileriaData,
   Locale,
 } from "@/types/sections";
 
@@ -41,6 +42,8 @@ import contactoEs from "@/data/es/home/contacto.json";
 import contactoEn from "@/data/en/home/contacto.json";
 import bodegaEs from "@/data/es/bodega.json";
 import bodegaEn from "@/data/en/bodega.json";
+import destileriaEs from "@/data/es/destileria.json";
+import destileriaEn from "@/data/en/destileria.json";
 
 const defaultLocale: Locale = "es";
 
@@ -350,4 +353,9 @@ export function getBodegaData(locale?: string): BodegaData {
   const loc = normalizeLocale(locale);
   const raw = (loc === "en" ? bodegaEn : bodegaEs) as Record<string, unknown>;
   return raw.quienes_somos != null ? mapBodegaFromCms(raw) : (raw as unknown as BodegaData);
+}
+
+export function getDestileriaData(locale?: string): DestileriaData {
+  const loc = normalizeLocale(locale);
+  return (loc === "en" ? destileriaEn : destileriaEs) as unknown as DestileriaData;
 }

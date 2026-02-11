@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "MAGIC STONE",
+    "subtitle": "We distill encounters. We bottle experiences.",
+    "ctaLabel": "View products",
+    "ctaUrl": "/en/productos?marca=magic-stone",
+    "backgroundImage": "/destileria/hero.jpg",
+    "logoImage": "/destileria/logo_stone.png"
+  },
+  "storySplits": [
+    {
+      "title": "The legend that inspires us",
+      "body": "It was the great stone of Tandil, the so-called magic stone. A rock of over three hundred tons that balanced on the top of the hill, defying gravity and astonishing those who came to see it. For the people of Tandil and for visitors from afar, the Movediza Stone was a symbol of identity, encounter and roots.\n\nIn 1912 the stone fell, but its legend lived on. At Magic Stone we honor that story with every drop we distill: with technique, time and human judgment. Our spirits are born in Tandil and carry in every bottle the spirit of encounter that the great stone once represented.",
+      "imageSrc": "/destileria/piedra.jpg",
+      "imageAlt": "Magic Stone of Tandil",
+      "imagePosition": "right"
+    },
+    {
+      "title": "Author-crafted spirits in Tandil",
+      "body": "We work in batches in copper stills, with selected raw materials and a process that prioritizes quality over quantity. Every bottle reflects the mountain landscape and the identity of Tandil: a place of encounter, shared tables and real moments.\n\nOur products are designed to accompany everyday life: from gatherings with friends to family dinners, from the first toast to the last embrace. We believe in the table as a meeting point and in the spirit as a gesture of welcome.",
+      "imageSrc": "/destileria/piedra.jpg",
+      "imageAlt": "Magic Stone Distillery Tandil",
+      "imagePosition": "left"
+    }
+  ],
+  "textHighlights": [
+    {
+      "title": "Author-crafted spirits born in Tandil",
+      "body": "We craft spirits produced in batches using copper stills, with local identity and a constant pursuit of quality. Every bottle reflects the landscape and spirit of Tandil.",
+      "highlightQuote": "Our products are designed to accompany real life.",
+      "textAlign": "left"
+    },
+    {
+      "title": "The reason is always the encounter",
+      "body": "Our products are designed to accompany real life: pre-gatherings with friends, barbecues, dinners, after-dinner conversations and family celebrations.\n\nWe want to be present —and chosen— every time people get together.\n\nBecause we believe the reason is always the encounter.",
+      "textAlign": "center"
+    },
+    {
+      "title": "Our promise",
+      "body": "We develop our products to be part of every encounter.\n\nFrom gatherings with friends to family dinners.\n\nFrom the first toast to the last embrace.",
+      "highlightQuote": "We develop our products to be part of every encounter.",
+      "backgroundImage": "/destileria/65.jpg",
+      "backgroundImageAlt": "Magic Stone Distillery",
+      "parallax": true,
+      "textAlign": "center"
+    }
+  ],
+  "missionVision": {
+    "layout": "blocks",
+    "tabLabels": { "mission": "Mission", "vision": "Vision", "values": "Values" },
+    "mission": "To create spirits with local identity and technical craftsmanship, that accompany people's real moments.",
+    "vision": "To become Argentina's reference distillery in quality and connection with the territory.",
+    "values": [
+      { "key": "encuentro", "title": "Encounter", "description": "We design our products to accompany people, not events." },
+      { "key": "artesania_tecnica", "title": "Technical craftsmanship", "description": "Batch production, copper stills and a process that prioritizes quality over quantity." },
+      { "key": "identidad_local", "title": "Local identity", "description": "We honor Tandil and its roots in every bottle." }
+    ]
+  },
+  "manifesto": {
+    "lines": [
+      "We believe in the table as a meeting point.",
+      "We distill with technique, time and human criteria.",
+      "We honor Tandil in every bottle.",
+      "Magic Stone is where people gather."
+    ],
+    "images": [
+      { "imageSrc": "/destileria/images/01.jpg", "imageAlt": "Magic Stone Distillery" },
+      { "imageSrc": "/destileria/images/02.jpg", "imageAlt": "Magic Stone Distillery" },
+      { "imageSrc": "/destileria/images/03.jpeg", "imageAlt": "Magic Stone Distillery" },
+      { "imageSrc": "/destileria/images/04.jpeg", "imageAlt": "Magic Stone Distillery" },
+      { "imageSrc": "/destileria/images/05.jpeg", "imageAlt": "Magic Stone Distillery" },
+      { "imageSrc": "/destileria/images/06.jpeg", "imageAlt": "Magic Stone Distillery" }
+    ]
+  }
+}

@@ -190,3 +190,91 @@ export interface FooterData {
   developedBy: string;
   developedByUrl?: string;
 }
+
+/** Destilería Magic Stone – Hero */
+export interface DestileriaHeroData {
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  backgroundImage?: string;
+  logoImage?: string;
+}
+
+/** Destilería – Story split (texto + imagen); imagePosition define lado de la imagen en desktop */
+export interface DestileriaStorySplitData {
+  title: string;
+  body: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  /** "right" = texto izq, imagen der (default); "left" = imagen izq, texto der */
+  imagePosition?: "left" | "right";
+}
+
+/** Destilería – Text highlight (título, párrafo, cita opcional); fondo y alineación opcionales */
+export interface DestileriaTextHighlightData {
+  title?: string;
+  body: string;
+  highlightQuote?: string;
+  /** Imagen de fondo a ancho completo; si parallax es true se usa background-attachment: fixed */
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+  parallax?: boolean;
+  /** Alineación del texto (default: left) */
+  textAlign?: "left" | "center" | "right";
+}
+
+
+/** Destilería – Mission / Vision / Values */
+export interface DestileriaValueItem {
+  key: string;
+  title: string;
+  description: string;
+}
+
+export interface DestileriaMissionVisionData {
+  mission: string;
+  vision: string;
+  values: DestileriaValueItem[];
+  /** Etiquetas (i18n) */
+  tabLabels?: { mission: string; vision: string; values: string };
+  /** "tabs" = pestañas fondo oscuro; "blocks" = bloques separados fondo claro, alineado al hero */
+  layout?: "tabs" | "blocks";
+}
+
+/** Destilería – Promise block */
+export interface DestileriaPromiseData {
+  title: string;
+  subtitle?: string;
+  lines: string[];
+  /** Imagen de fondo; si se define, se muestra detrás del contenido con overlay. */
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+  /** Si true, la imagen de fondo usa efecto parallax (background-attachment: fixed). */
+  parallax?: boolean;
+}
+
+/** Destilería – Manifesto block */
+export interface DestileriaManifestoImage {
+  imageSrc: string;
+  imageAlt: string;
+}
+
+export interface DestileriaManifestoData {
+  lines: string[];
+  /** Opcional: imágenes para carousel vertical con controles tipo bullet */
+  images?: DestileriaManifestoImage[];
+}
+
+/** Destilería – página completa */
+export interface DestileriaData {
+  hero: DestileriaHeroData;
+  /** Varios bloques texto+imagen; cada uno puede tener imagen a izquierda o derecha */
+  storySplits: DestileriaStorySplitData[];
+  /** Varios bloques de texto destacado (sustituye al antiguo momentsGrid) */
+  textHighlights: DestileriaTextHighlightData[];
+  missionVision: DestileriaMissionVisionData;
+  /** @deprecated Usar un ítem en textHighlights en su lugar */
+  promise?: DestileriaPromiseData;
+  manifesto: DestileriaManifestoData;
+}

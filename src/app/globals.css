@@ -15,6 +15,12 @@
   --glass-border: rgba(255, 255, 255, 0.35);
   --glass-bg-strong: rgba(255, 255, 255, 0.25);
   --glass-shadow: 0 8px 32px rgba(59, 35, 25, 0.15);
+
+  /* Destilería Magic Stone – primary (#910834), acento y fondos */
+  --magic-stone-primary: #910834;
+  --magic-stone-accent: #910834;
+  --magic-stone-bg: #2a2220;
+  --magic-stone-bg-dark: #1a1615;
 }
 
 @theme inline {
@@ -23,6 +29,10 @@
   --color-palo-alto-primary: var(--palo-alto-primary);
   --color-palo-alto-secondary: var(--palo-alto-secondary);
   --color-header-bg: var(--header-bg);
+  --color-magic-stone-primary: var(--magic-stone-primary);
+  --color-magic-stone-accent: var(--magic-stone-accent);
+  --color-magic-stone-bg: var(--magic-stone-bg);
+  --color-magic-stone-bg-dark: var(--magic-stone-bg-dark);
   --font-sans: var(--font-ubuntu);
   --font-heading: var(--font-heading);
   --font-mono: var(--font-geist-mono);
@@ -38,6 +48,35 @@ body {
 /* Tipografía principal: logo y títulos (Manual de marca: Carleton; web: Cormorant) */
 .font-heading {
   font-family: var(--font-heading), Georgia, serif;
+}
+
+/* Destilería Magic Stone – título hero: Biennale Heavy (archivo en public/fonts/Biennale-Heavy.woff2) */
+@font-face {
+  font-family: "Biennale Heavy";
+  src: url("/fonts/Biennale-Heavy.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-destileria-hero {
+  font-family: "Biennale Heavy", var(--font-heading), system-ui, sans-serif;
+  font-weight: 800;
+}
+
+/* Balanceo suave del logo Magic Stone (Piedra de Tandil) */
+@keyframes rock-stone {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+.animate-rock-stone {
+  animation: rock-stone 4s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
