@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { getLocaleFromPathname } from "@/lib/i18n";
 import type { HeaderData, FooterData } from "@/types/sections";
 
 interface LayoutClientProps {
@@ -21,7 +23,12 @@ export function LayoutClient({
   footerEn,
 }: LayoutClientProps) {
   const pathname = usePathname() ?? "/";
-  const isWelcome = pathname === "/bienvenida";
+  const isWelcome = pathname.includes("/bienvenida");
+
+  useEffect(() => {
+    const locale = getLocaleFromPathname(pathname);
+    document.documentElement.lang = locale;
+  }, [pathname]);
 
   return (
     <>

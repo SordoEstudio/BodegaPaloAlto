@@ -10,6 +10,8 @@ export interface WelcomeData {
     imageSrc?: string;
     imageAlt: string;
   };
+  logoImage?: string;
+  logoAlt?: string;
   title: string;
   message: string;
   legalNotice: string;
@@ -30,6 +32,8 @@ export interface HomeHeroSlide {
 
 export interface HomeHeroData {
   slides: HomeHeroSlide[];
+  logoImage?: string;
+  logoAlt?: string;
   title: string;
   subtitle: string;
 }
@@ -112,6 +116,48 @@ export interface HeaderData {
   languages: { code: Locale; label: string }[];
 }
 
+/** Página Contacto – formulario */
+export interface ContactFormData {
+  sectionTitle: string;
+  sectionDescription?: string;
+  labels: {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    privacy: string;
+    submit: string;
+  };
+  successMessage: string;
+  errorMessage: string;
+}
+
+/** Página Contacto – bloque de datos (Bodega o Destilería) */
+export interface ContactBlockData {
+  title: string;
+  facebookUrl?: string;
+  instagramUrl?: string;
+  address?: string;
+  addressUrl?: string;
+}
+
+/** Página Contacto – datos completos */
+export interface ContactPageData {
+  form: ContactFormData;
+  bodega: ContactBlockData;
+  destileria: ContactBlockData;
+  /** Si true, los datos de contacto van en una card flotante (glass + sombra) que se ajusta al contenido; si false, ocupan toda la mitad izquierda */
+  contactCardFloating?: boolean;
+  /** Imagen de fondo de la sección split (parallax opcional) */
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+  parallax?: boolean;
+  mapTitle: string;
+  mapLinkLabel: string;
+  mapEmbedUrl?: string;
+  mapLinkUrl: string;
+}
+
 /** Bodega - Quiénes somos (bloque de texto + opcionales: imagen izq, fondo, mostrar equipo) */
 export interface BodegaQuienesSomosData {
   title: string;
@@ -140,27 +186,32 @@ export interface BodegaEquipoData {
   avatarLayout?: "top" | "left";
 }
 
-/** Bodega - Finca (una finca) */
+/** Bodega - Finca (una finca); compatible con DestileriaStorySplit (title, paragraphs, imageSrc, imageAlt, imagePosition) */
 export interface BodegaFincaData {
-  id: string;
+  /** Identificador estable para keys (ej. "finca-alto-ugarteche") */
+  id?: string;
   title: string;
   location?: string;
   description?: string;
   features?: { label: string; value: string }[];
   imageSrc?: string;
   imageAlt?: string;
+  imageSrc2?: string;
+  imageAlt2?: string;
+  /** Párrafos narrativos; se muestra con StorySplit. Origen: finca_1_txt / finca_2_txt (array en CMS). */
+  paragraphs: string[];
+  /** Lado de la imagen en StorySplit: "right" = texto izq (default), "left" = imagen izq */
+  imagePosition?: "left" | "right";
   /** Imagen de fondo opcional para la sección (con overlay oscuro) */
   backgroundImage?: { imageSrc: string; imageAlt?: string };
   /** Si true, el fondo usa efecto parallax (background-attachment: fixed) */
   parallax?: boolean;
 }
 
-/** Bodega - Sección "Nuestras Fincas" (título + fondo opcional + layout) */
+/** Bodega - Sección "Nuestras Fincas" (título + fondo opcional) */
 export interface BodegaFincasSectionData {
   title: string;
   backgroundImage?: { imageSrc: string; imageAlt?: string };
-  /** "stacked" = dos bloques (actual); "tabs" = pestañas, contenido en el mismo lugar con imagen vertical que expande al hover */
-  layout?: "stacked" | "tabs";
 }
 
 /** Bodega - página completa */
@@ -203,8 +254,10 @@ export interface DestileriaHeroData {
 
 /** Destilería – Story split (texto + imagen); imagePosition define lado de la imagen en desktop */
 export interface DestileriaStorySplitData {
-  title: string;
-  body: string;
+  /** Opcional: si no se pasa, no se muestra encabezado (útil para segundo bloque de una misma sección) */
+  title?: string;
+  /** Párrafos de texto (cada ítem = un <p>) */
+  paragraphs: string[];
   imageSrc?: string;
   imageAlt?: string;
   /** "right" = texto izq, imagen der (default); "left" = imagen izq, texto der */

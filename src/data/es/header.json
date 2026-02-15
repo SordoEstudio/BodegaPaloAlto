@@ -1,19 +1,16 @@
 {
-  "txt_logo": "Palo Alto",
-  "img_logo_optional": "",
-  "txt_alt_logo_optional": "Bodega Palo Alto",
-  "link_logo": { "url": "/", "label": "Inicio" },
+  "txt_logo": "",
+  "img_logo_optional": "/logos/tipo-b.png",
+  "txt_alt_logo_optional": "Logo Palo Alto",
+  "link_logo": { "url": "/es", "label": "Inicio" },
   "lista_nav": [
-    { "txt_label": "Bodega", "link_url": "/bodega" },
-    { "txt_label": "Destilería", "link_url": "/destileria" },
-    { "txt_label": "Productos", "link_url": "/productos" },
-    { "txt_label": "Contacto", "link_url": "/#contacto" }
-  ],
-  "btn_shop": {
-    "txt_label": "Shop",
+    { "txt_label": "Bodega", "link_url": "/es/bodega" },
+    { "txt_label": "Destilería", "link_url": "/es/destileria" },
+    { "txt_label": "Productos", "link_url": "/es/productos" },
+    { "txt_label": "Contacto", "link_url": "/es/contacto" },{    "txt_label": "Shop",
     "link_url": "https://shop.bodegapaloalto.com.ar/",
-    "link_tipo": "external"
-  },
+    "link_tipo": "external"}
+  ],
   "_configuracion": {
     "lista_idiomas": [
       { "code": "es", "label": "ES" },

@@ -10,14 +10,20 @@
   "storySplits": [
     {
       "title": "The legend that inspires us",
-      "body": "It was the great stone of Tandil, the so-called magic stone. A rock of over three hundred tons that balanced on the top of the hill, defying gravity and astonishing those who came to see it. For the people of Tandil and for visitors from afar, the Movediza Stone was a symbol of identity, encounter and roots.\n\nIn 1912 the stone fell, but its legend lived on. At Magic Stone we honor that story with every drop we distill: with technique, time and human judgment. Our spirits are born in Tandil and carry in every bottle the spirit of encounter that the great stone once represented.",
+      "paragraphs": [
+        "It was the great stone of Tandil, the so-called magic stone. A rock of over three hundred tons that balanced on the top of the hill, defying gravity and astonishing those who came to see it. For the people of Tandil and for visitors from afar, the Movediza Stone was a symbol of identity, encounter and roots.",
+        "In 1912 the stone fell, but its legend lived on. At Magic Stone we honor that story with every drop we distill: with technique, time and human judgment. Our spirits are born in Tandil and carry in every bottle the spirit of encounter that the great stone once represented."
+      ],
       "imageSrc": "/destileria/piedra.jpg",
       "imageAlt": "Magic Stone of Tandil",
       "imagePosition": "right"
     },
     {
       "title": "Author-crafted spirits in Tandil",
-      "body": "We work in batches in copper stills, with selected raw materials and a process that prioritizes quality over quantity. Every bottle reflects the mountain landscape and the identity of Tandil: a place of encounter, shared tables and real moments.\n\nOur products are designed to accompany everyday life: from gatherings with friends to family dinners, from the first toast to the last embrace. We believe in the table as a meeting point and in the spirit as a gesture of welcome.",
+      "paragraphs": [
+        "We work in batches in copper stills, with selected raw materials and a process that prioritizes quality over quantity. Every bottle reflects the mountain landscape and the identity of Tandil: a place of encounter, shared tables and real moments.",
+        "Our products are designed to accompany everyday life: from gatherings with friends to family dinners, from the first toast to the last embrace. We believe in the table as a meeting point and in the spirit as a gesture of welcome."
+      ],
       "imageSrc": "/destileria/piedra.jpg",
       "imageAlt": "Magic Stone Distillery Tandil",
       "imagePosition": "left"

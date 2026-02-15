@@ -6,28 +6,17 @@
   "lista_nav": [
     {
       "txt_label": "Winery",
-      "link_url": "/en/bodega",
-      "lista_hijos_optional": [
-        { "txt_label": "Estates", "link_url": "/en/bodega/fincas" },
-        { "txt_label": "Our team", "link_url": "/en/bodega/equipo" }
-      ]
+      "link_url": "/en/bodega"
     },
+    { "txt_label": "Distillery", "link_url": "/en/destileria" },
     {
-      "txt_label": "Wines",
-      "link_url": "/en/vinos",
-      "lista_hijos_optional": [
-        { "txt_label": "Still wines", "link_url": "/en/vinos" },
-        { "txt_label": "Sparkling", "link_url": "/en/espumantes" }
-      ]
+      "txt_label": "Products",
+      "link_url": "/en/productos"
     },
-    { "txt_label": "Contact", "link_url": "/en#contacto" },
-    { "txt_label": "Distillery", "link_url": "/en/destileria" }
-  ],
-  "btn_shop": {
-    "txt_label": "Shop",
+    { "txt_label": "Contact", "link_url": "/en/contacto" },{    "txt_label": "Shop",
     "link_url": "https://shop.bodegapaloalto.com.ar/",
-    "link_tipo": "external"
-  },
+    "link_tipo": "external"}
+  ],
   "_configuracion": {
     "lista_idiomas": [
       { "code": "es", "label": "ES" },

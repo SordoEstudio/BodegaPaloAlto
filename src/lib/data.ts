@@ -18,6 +18,7 @@ import type {
   BodegaFincasSectionData,
   BodegaFincaData,
   DestileriaData,
+  ContactPageData,
   Locale,
 } from "@/types/sections";
 
@@ -44,6 +45,8 @@ import bodegaEs from "@/data/es/bodega.json";
 import bodegaEn from "@/data/en/bodega.json";
 import destileriaEs from "@/data/es/destileria.json";
 import destileriaEn from "@/data/en/destileria.json";
+import contactPageEs from "@/data/es/contacto.json";
+import contactPageEn from "@/data/en/contacto.json";
 
 const defaultLocale: Locale = "es";
 
@@ -75,6 +78,8 @@ function mapWelcomeFromCms(raw: Record<string, unknown>): WelcomeData {
       imageSrc: (raw.img_hero_optional as string) || undefined,
       imageAlt: (raw.txt_alt_hero_optional as string) ?? "",
     },
+    logoImage: (raw.logoImage as string) || undefined,
+    logoAlt: (raw.logoAlt as string) || undefined,
     title: (raw.txt_titulo as string) ?? "",
     message: (raw.txt_mensaje as string) ?? "",
     legalNotice: (raw.txt_aviso_legal as string) ?? "",
@@ -131,6 +136,8 @@ function mapHeroFromCms(raw: Record<string, unknown>): HomeHeroData {
   const lista = (raw.lista_slides as { img_src?: string; txt_alt?: string }[]) ?? [];
   return {
     slides: lista.map((s) => ({ imageSrc: s.img_src ?? "", imageAlt: s.txt_alt ?? "" })),
+    logoImage: (raw.logoImage as string) || undefined,
+    logoAlt: (raw.logoAlt as string) || undefined,
     title: (raw.txt_titulo as string) ?? "",
     subtitle: (raw.txt_subtitulo as string) ?? "",
   };
@@ -286,13 +293,11 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
   const lista2 = mapCaracteristicas(f2.lista_caracteristicas);
 
   const imgFondoFincas = fs.img_fondo_optional as string | undefined;
-  const layoutRaw = (fs.layout_optional as string) ?? "";
   const fincasSection: BodegaFincasSectionData = {
-    title: (fs.txt_titulo as string) ?? "Nuestras Bodegas",
+    title: (fs.txt_titulo as string) ?? "Nuestras Fincas",
     backgroundImage: imgFondoFincas
       ? { imageSrc: imgFondoFincas, imageAlt: (fs.txt_alt_fondo_optional as string) || undefined }
       : undefined,
-    layout: layoutRaw === "tabs" ? "tabs" : "stacked",
   };
 
   const imgLeft = qs.img_izquierda_optional as string | undefined;
@@ -320,6 +325,11 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     })),
   };
 
+  const finca1Txt = raw.finca_1_txt as string[] | undefined;
+  const finca2Txt = raw.finca_2_txt as string[] | undefined;
+  const toParagraphs = (arr: string[] | undefined) =>
+    Array.isArray(arr) ? arr.filter((s): s is string => typeof s === "string" && s.length > 0) : [];
+
   const f1Bg = (f1.img_fondo_optional as string) || undefined;
   const f2Bg = (f2.img_fondo_optional as string) || undefined;
   const finca1: BodegaFincaData = {
@@ -329,7 +339,9 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     description: (f1.txt_descripcion_optional as string) || undefined,
     features: listaLabels,
     imageSrc: (f1.img_finca_optional as string) || undefined,
-    imageAlt: (f1.txt_alt_finca_optional as string) || undefined,
+    imageAlt: (f1.txt_alt_finca_optional as string) || (f1.txt_alt_fondo_optional as string) || undefined,
+    paragraphs: toParagraphs(finca1Txt),
+    imagePosition: "right",
     backgroundImage: f1Bg ? { imageSrc: f1Bg, imageAlt: (f1.txt_alt_fondo_optional as string) || undefined } : undefined,
     parallax: (f1.parallax_optional as boolean) ?? false,
   };
@@ -341,7 +353,9 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     description: (f2.txt_descripcion_optional as string) || undefined,
     features: lista2,
     imageSrc: (f2.img_finca_optional as string) || undefined,
-    imageAlt: (f2.txt_alt_finca_optional as string) || undefined,
+    imageAlt: (f2.txt_alt_finca_optional as string) || (f2.txt_alt_fondo_optional as string) || undefined,
+    paragraphs: toParagraphs(finca2Txt),
+    imagePosition: "left",
     backgroundImage: f2Bg ? { imageSrc: f2Bg, imageAlt: (f2.txt_alt_fondo_optional as string) || undefined } : undefined,
     parallax: (f2.parallax_optional as boolean) ?? false,
   };
@@ -349,13 +363,52 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
   return { quienesSomos, equipo, fincasSection, finca1, finca2 };
 }
 
+function normalizeFincaFromRaw(obj: unknown): BodegaFincaData | null {
+  const r = obj as Record<string, unknown> | null;
+  if (!r || typeof r !== "object") return null;
+  const title = (r.title as string) ?? "";
+  const paragraphs = Array.isArray(r.paragraphs)
+    ? (r.paragraphs as string[]).filter((s): s is string => typeof s === "string")
+    : [];
+  return {
+    id: (r.id as string) || undefined,
+    title,
+    location: (r.location as string) || undefined,
+    description: (r.description as string) || undefined,
+    features: undefined,
+    imageSrc: (r.imageSrc as string) || undefined,
+    imageAlt: (r.imageAlt as string) || undefined,
+    imageSrc2: (r.imageSrc2 as string) || undefined,
+    imageAlt2: (r.imageAlt2 as string) || undefined,
+    paragraphs,
+    imagePosition: r.imagePosition === "left" ? "left" : "right",
+    backgroundImage: undefined,
+    parallax: false,
+  };
+}
+
 export function getBodegaData(locale?: string): BodegaData {
   const loc = normalizeLocale(locale);
   const raw = (loc === "en" ? bodegaEn : bodegaEs) as Record<string, unknown>;
-  return raw.quienes_somos != null ? mapBodegaFromCms(raw) : (raw as unknown as BodegaData);
+  const base = raw.quienes_somos != null ? mapBodegaFromCms(raw) : (raw as unknown as BodegaData);
+  const directFinca1 = normalizeFincaFromRaw(raw.finca1);
+  const directFinca2 = normalizeFincaFromRaw(raw.finca2);
+  if (directFinca1 && directFinca2) {
+    return {
+      ...base,
+      finca1: { ...directFinca1, id: directFinca1.id ?? "finca-alto-ugarteche" },
+      finca2: { ...directFinca2, id: directFinca2.id ?? "finca-palo-alto" },
+    };
+  }
+  return base;
 }
 
 export function getDestileriaData(locale?: string): DestileriaData {
   const loc = normalizeLocale(locale);
   return (loc === "en" ? destileriaEn : destileriaEs) as unknown as DestileriaData;
+}
+
+export function getContactPageData(locale?: string): ContactPageData {
+  const loc = normalizeLocale(locale);
+  return (loc === "en" ? contactPageEn : contactPageEs) as unknown as ContactPageData;
 }

@@ -1,0 +1,34 @@
+{
+  "form": {
+    "sectionTitle": "Escribinos",
+    "sectionDescription": "Si tenés alguna pregunta o querés contactarnos, completá el formulario.",
+    "labels": {
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "message": "Mensaje",
+      "privacy": "Acepto la política de privacidad y el tratamiento de mis datos.",
+      "submit": "Enviar"
+    },
+    "successMessage": "Gracias por tu mensaje. Te responderemos a la brevedad.",
+    "errorMessage": "Ocurrió un error. Por favor intentá nuevamente."
+  },
+  "bodega": {
+    "title": "Bodega Palo Alto",
+    "facebookUrl": "https://www.facebook.com/people/Bodega-Palo-Alto/100086268882550/",
+    "instagramUrl": "https://www.instagram.com/bodegapaloalto/",
+    "address": "Videla Aranda 502, Cruz de Piedra, Maipú, Mendoza, Argentina",
+    "addressUrl": "https://www.google.com/maps/search/?api=1&query=Videla+Aranda+502+Maipú+Mendoza"
+  },
+  "destileria": {
+    "title": "Destilería Magic Stone",
+    "instagramUrl": "https://www.instagram.com/destiladosmagicstone/"
+  },
+  "contactCardFloating": true,
+  "backgroundImage": "/18.jpeg",
+  "backgroundImageAlt": "Contacto Bodega Palo Alto",
+  "parallax": true,
+  "mapTitle": "Ubicación",
+  "mapLinkLabel": "Ver en Google Maps",
+  "mapLinkUrl": "https://www.google.com/maps/search/?api=1&query=Videla+Aranda+502+Maipú+Mendoza"
+}

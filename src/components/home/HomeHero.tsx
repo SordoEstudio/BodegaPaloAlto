@@ -6,7 +6,7 @@ interface HomeHeroProps {
 }
 
 export function HomeHero({ data }: HomeHeroProps) {
-  const { slides, title, subtitle } = data;
+  const { slides, title, subtitle, logoImage, logoAlt } = data;
 
   return (
     <HeroFullScreen
@@ -15,6 +15,11 @@ export function HomeHero({ data }: HomeHeroProps) {
       dark={true}
     >
       <div >
+        {logoImage && (
+          <div className="flex justify-center">
+            <img src={logoImage} alt={logoAlt} width={400} height={400} className="object-contain" />
+          </div>
+        )}
         <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
           {title}
         </h1>

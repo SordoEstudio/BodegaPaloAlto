@@ -23,63 +23,36 @@
     ]
   },
   "fincas_seccion": {
-    "txt_titulo": "Our Wineries",
-    "img_fondo_optional": "/bodega/fincas/0237.JPEG",
-    "txt_alt_fondo_optional": "Palo Alto estate",
-    "layout_optional": "tabs"
+    "txt_titulo": "Our Estates"
   },
-  "finca_1": {
-    "txt_titulo": "Alto Ugarteche Vineyard",
-    "txt_ubicacion_optional": "Luján de Cuyo - Mendoza - Argentina",
-    "txt_descripcion_optional": "Vineyard characteristics.",
-    "lista_caracteristicas": [
-      { "Location": "Luján de Cuyo - Mendoza - Argentina." },
-      { "District": "Ugarteche." },
-      { "Area": "25 Hectares." },
-      { "Cultivated area": "22 Hectares." },
-      { "Varieties": "Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés and Cabernet Franc." },
-      { "Average vineyard age": "18 years." },
-      { "Average yield per hectare": "80 quintals." },
-      { "Training system": "High trellis (Espaldero Alto)." },
-      { "Irrigation type": "Drip irrigation." },
-      { "Water source": "Borehole at 180 m depth." },
-      { "Altitude": "1120 masl." },
-      { "Soil type": "Clay loam." },
-      { "Harvest period": "February to April." },
-      { "Harvest method": "Manual." },
-      { "Harvest transport": "Palletized plastic boxes up to 18 kg each." },
-      { "Technical direction": "Agr. Eng. Hugo Martinez." }
-    ],
-    "img_finca_optional": "",
-    "img_fondo_optional": "/bodega/fincas/0235.JPEG",
-    "txt_alt_fondo_optional": "Alto Ugarteche vineyard",
-    "parallax_optional": true
+  "finca1": {
+    "title": "Alto Ugarteche Vineyard",
+    "imageSrc": "/bodega/fincas/0235.JPEG",
+    "imageAlt": "Alto Ugarteche Vineyard",
+    "imageSrc2": "/bodega/fincas/0282.JPEG",
+    "imageAlt2": "Alto Ugarteche estate",
+    "imagePosition": "right",
+    "paragraphs": [
+      "Alto Ugarteche estate lies in the heart of Luján de Cuyo, Mendoza, Argentina, within the prestigious district of Ugarteche. With a total area of 25 hectares, 22 of which are planted with vineyards, the estate embodies the expression of Mendozan terroir in each of its parcels.",
+      "The vineyards host a diversity of carefully selected varieties, including Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés and Cabernet Franc, with an average age of 18 years, ensuring complexity and depth in the grapes. Each hectare yields an average of 80 quintals, under a high trellis (Espaldero Alto) system that maximizes sun exposure and fruit quality.",
+      "Irrigation is controlled and efficient, using drip irrigation with water from a 180-metre deep borehole, while the altitude of 1120 masl and clay loam soils contribute to the unique expression of each varietal.",
+      "Harvests take place between February and April, by hand, ensuring the selection of the best clusters. Each grape is carefully transported in palletized plastic boxes of up to 18 kg, preserving its integrity until it reaches the winery. The estate is under the technical direction of Agr. Eng. Hugo Martínez, who oversees all processes so that each vintage reflects the essence of Alto Ugarteche.",
+      "Together, the estate combines tradition, technique and passion, creating a place where every cluster reflects the identity and richness of Mendozan terroir."
+    ]
   },
-  "finca_2": {
-    "txt_titulo": "Palo Alto Vineyard",
-    "txt_ubicacion_optional": "Maipú - Mendoza - Argentina. Cruz de Piedra.",
-    "txt_descripcion_optional": "Vineyard characteristics. Our home in Cruz de Piedra, where the winery produces its wines with advanced technology in a setting of serenity and tradition.",
-    "lista_caracteristicas": [
-      { "Location": "Maipú - Mendoza - Argentina." },
-      { "District": "Cruz de Piedra." },
-      { "Address": "Videla Aranda 502, Cruz de Piedra." },
-      { "Area": "16 Hectares." },
-      { "Cultivated area": "5 Hectares." },
-      { "Varieties": "Malbec and Prosecco." },
-      { "Average vineyard age": "12 years." },
-      { "Average yield per hectare": "90 quintals." },
-      { "Training system": "Trellis (Espaldero)." },
-      { "Irrigation type": "Drip irrigation." },
-      { "Water source": "Borehole at 130 m depth." },
-      { "Altitude": "920 masl." },
-      { "Harvest period": "February to April." },
-      { "Harvest method": "Manual." },
-      { "Harvest transport": "Palletized plastic boxes up to 18 kg each." },
-      { "Technical direction": "Agr. Eng. Hugo Martinez." }
-    ],
-    "img_finca_optional": "",
-    "img_fondo_optional": "/bodega/fincas/0237.JPEG",
-    "txt_alt_fondo_optional": "Palo Alto estate",
-    "parallax_optional": false
+  "finca2": {
+    "title": "Palo Alto Vineyard",
+    "imageSrc": "/bodega/fincas/0237.JPEG",
+    "imageAlt": "Palo Alto Vineyard",
+    "imageSrc2": "/bodega/fincas/0244.JPEG",
+    "imageAlt2": "Palo Alto estate",
+    "imagePosition": "right",
+    "paragraphs": [
+      "Palo Alto estate is located in Maipú, Mendoza, Argentina, in the Cruz de Piedra district, at Videla Aranda 502. The estate has a total area of 16 hectares, 5 of which are devoted to vineyards, with a focus on quality and selection in each crop.",
+      "The Palo Alto vineyards are planted with Malbec and Prosecco, with an average age of 12 years, ensuring ripe, well-developed grapes. Each hectare yields around 90 quintals, under a trellis system that optimizes sun exposure and balanced vine development.",
+      "Irrigation is by drip system, using water from a 130-metre deep borehole, while the estate sits at 920 masl on soils that favour the expression of the planted varietals.",
+      "Harvests take place between February and April, using a manual method that allows careful selection of the healthiest and most suitable clusters. Each harvest is transported in palletized plastic boxes of up to 18 kg, ensuring the fruit arrives at the winery in optimum condition. The estate operates under the technical direction of Agr. Eng. Hugo Martínez, who oversees all processes to maintain Palo Alto's standards of excellence.",
+      "Together, the estate combines tradition and technical precision, offering quality grapes that reflect the unique character of Cruz de Piedra terroir in Mendoza."
+    ]
   }
 }

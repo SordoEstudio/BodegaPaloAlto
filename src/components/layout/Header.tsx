@@ -6,26 +6,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import type { HeaderData } from "@/types/sections";
+import { getLocaleFromPathname, getLocalizedPath } from "@/lib/i18n";
 
 interface HeaderProps {
   dataEs: HeaderData;
   dataEn: HeaderData;
-}
-
-function getLocaleFromPathname(pathname: string): "es" | "en" {
-  return pathname.startsWith("/en") ? "en" : "es";
-}
-
-function getLocalizedPath(pathname: string, newLocale: "es" | "en"): string {
-  if (newLocale === "en") {
-    if (pathname === "/" || pathname === "") return "/en";
-    return pathname.startsWith("/en") ? pathname : `/en${pathname}`;
-  }
-  if (pathname.startsWith("/en")) {
-    const withoutEn = pathname.slice(3) || "/";
-    return withoutEn === "" ? "/" : withoutEn;
-  }
-  return pathname || "/";
 }
 
 export function Header({ dataEs, dataEn }: HeaderProps) {
@@ -54,10 +39,10 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
             <Image
               src={logo.imageSrc}
               alt={logo.imageAlt ?? logo.text}
-              width={140}
-              height={40}
-              className="h-8 w-auto sm:h-10"
-            />
+              width={140} 
+              height={140}
+/*               className="h-2 w-auto sm:h-10"
+ */            />
           ) : (
             logo.text
           )}
@@ -97,14 +82,14 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
               </Link>
             )
           )}
-          <Link
+{/*           <Link
             href={shop.href}
             target={shop.external ? "_blank" : undefined}
             rel={shop.external ? "noopener noreferrer" : undefined}
             className="rounded-full bg-palo-alto-primary px-4 py-2 font-bold text-palo-alto-secondary transition hover:opacity-90 focus:outline-none focus:ring-0"
           >
             {shop.label}
-          </Link>
+          </Link> */}
         </nav>
 
         {/* Idiomas + menú móvil */}

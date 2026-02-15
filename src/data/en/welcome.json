@@ -1,7 +1,9 @@
 {
   "img_hero_optional": "/1.jpg",
+  "logoImage": "/logos/logo-palo-alto-full.png",
+  "logoAlt": "Palo Alto logo",
   "txt_alt_hero_optional": "Palo Alto Winery - Welcome",
-  "txt_titulo": "Welcome to Bodega Palo Alto",
+  "txt_titulo": "",
   "txt_mensaje": "You must be 18 or older to enter. Do you confirm that you are of legal drinking age?",
   "txt_aviso_legal": "Sale to minors under 18 is prohibited.",
   "btn_confirmar": {

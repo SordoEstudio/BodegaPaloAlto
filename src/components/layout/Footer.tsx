@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 import type { FooterData } from "@/types/sections";
 
 interface FooterProps {
@@ -15,6 +15,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Facebook: FaFacebookF,
   Instagram: FaInstagram,
   WhatsApp: FaWhatsapp,
+  Ubicación: FaMapMarkerAlt,
 };
 
 function getLocaleFromPathname(pathname: string): "es" | "en" {
@@ -57,9 +58,8 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                 <Image
                   src={logo.imageSrc}
                   alt={logo.imageAlt ?? logo.text}
-                  width={120}
+                  width={200}
                   height={36}
-                  className="h-9 w-auto"
                 />
               ) : (
                 logo.text
@@ -68,7 +68,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
           </div>
 
           {/* Contacto */}
-          <div>
+{/*           <div>
             <h3 className="font-heading mb-4 text-xs font-bold uppercase tracking-wider text-palo-alto-primary/90">
               {locale === "en" ? "Contact" : "Contacto"}
             </h3>
@@ -118,12 +118,12 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                 </p>
               )}
             </address>
-          </div>
+          </div> */}
 
           {/* Redes */}
           <div>
             <h3 className="font-heading mb-4 text-xs font-bold uppercase tracking-wider text-palo-alto-primary/90">
-              {locale === "en" ? "Follow us" : "Síguenos"}
+              {locale === "en" ? "Follow us" : "Seguinos"}
             </h3>
             <ul className="flex flex-wrap gap-3" role="list">
               {socialLinks.map((link) => {
@@ -150,6 +150,9 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/15 pt-8 text-center sm:flex-row sm:justify-between sm:items-center">
           <p className="text-sm font-medium text-white/90">
             {disclaimer}
+          </p>
+          <p className="text-sm font-medium text-white/90">
+            Bodega Palo Alto - Todos los derechos reservados - 2026
           </p>
           <p className="text-sm text-white/70">
             {developedByUrl ? (

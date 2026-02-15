@@ -4,18 +4,21 @@ import { useRouter } from "next/navigation";
 import { HeroFullScreen } from "@/components/HeroFullScreen";
 import { setAgeVerifiedSession } from "@/lib/ageGate";
 import type { WelcomeData } from "@/types/sections";
+import type { Locale } from "@/lib/i18n";
 
 interface WelcomeContentProps {
   data: WelcomeData;
+  /** Locale actual; tras confirmar se redirige a /${locale} */
+  locale?: Locale;
 }
 
-export function WelcomeContent({ data }: WelcomeContentProps) {
+export function WelcomeContent({ data, locale = "es" }: WelcomeContentProps) {
   const router = useRouter();
-  const { hero, title, message, legalNotice, buttons } = data;
+  const { hero, title, message, legalNotice, buttons, logoImage, logoAlt } = data;
 
   const handleConfirm = () => {
     setAgeVerifiedSession();
-    router.push("/");
+    router.push(`/${locale}`);
   };
 
   const handleDecline = () => {
@@ -29,11 +32,15 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
       contentClassName="text-white"
     >
 <div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-white/35 px-8 py-10 ">
+  {logoImage && (
+    <div className="flex justify-center">
+      <img src={logoImage} alt={logoAlt} width={400} height={400} className="object-contain" />
+    </div>
+  )}
          <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
           {title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed opacity-95">{message}</p>
-        <p className="mt-2 text-sm opacity-90">{legalNotice}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <button
             type="button"
@@ -52,6 +59,7 @@ export function WelcomeContent({ data }: WelcomeContentProps) {
             {buttons.decline}
           </button>
         </div>
+        <p className="pt-4 text-sm opacity-90">{legalNotice}</p>
       </div>
     </HeroFullScreen>
   );

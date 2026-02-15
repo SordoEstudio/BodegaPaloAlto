@@ -59,10 +59,10 @@ export function DestileriaMissionVision({ data }: DestileriaMissionVisionProps) 
                     className="rounded-xl border border-magic-stone-primary/40 bg-white p-6 shadow-sm"
                     role="listitem"
                   >
-                    <h4 className="font-heading text-base font-semibold text-magic-stone-primary">
+                    <h4 className="font-heading text-center text-base font-semibold text-magic-stone-primary">
                       {v.title}
                     </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/85">{v.description}</p>
+                    <p className="mt-2 text-center text-sm leading-relaxed text-foreground/85">{v.description}</p>
                   </li>
                 ))}
               </ul>

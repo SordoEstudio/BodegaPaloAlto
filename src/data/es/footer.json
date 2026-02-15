@@ -1,10 +1,10 @@
 {
   "txt_logo": "Palo Alto",
-  "img_logo_optional": "",
+  "img_logo_optional": "/logos/logo-f-mm-b.png",
   "txt_alt_logo_optional": "Bodega Palo Alto",
-  "link_logo": { "url": "/", "label": "Inicio" },
-  "txt_direccion": "Videla Aranda 502, Cruz de Piedra, Maipú, Mendoza, Argentina",
-  "link_direccion": "https://www.google.com/maps/search/?api=1&query=Videla+Aranda+502+Maipú+Mendoza",
+  "link_logo": { "url": "/es", "label": "Inicio" },
+  "txt_direccion": "",
+  "link_direccion": "",
   "txt_telefono_optional": "",
   "txt_email_optional": "",
   "link_whatsapp_optional": "",
@@ -20,6 +20,12 @@
       "txt_label": "Instagram",
       "link_destino": "https://www.instagram.com/bodegapaloalto/",
       "txt_aria_optional": "Instagram Bodega Palo Alto"
+    },
+    {
+      "icon_contacto": "FaMapMarkerAlt",
+      "txt_label": "Ubicación",
+      "link_destino": "https://www.google.com/maps/search/?api=1&query=Videla+Aranda+502+Maipú+Mendoza",
+      "txt_aria_optional": "Ubicación Bodega Palo Alto"
     }
   ],
   "txt_disclaimer": "Prohibida la venta a menores de 18 años.",

@@ -9,14 +9,14 @@
   "storySplits": [
     {
       "title": "La leyenda que nos inspira",
-      "body": "Era la gran piedra de Tandil, la llamada piedra mágica. Oscilaba al borde del abismo entre 30 y 40 veces por hora, y esa oscilación la hizo famosa en el mundo. Un metro cuadrado era el punto de apoyo sobre el cual se acunaban sus 600 toneladas de roca dómica y caliza. Era tan imperceptible su movimiento  que los visitantes colocaban botellas debajo de la milenaria mole de granito, y el sonido de los cristales al romperse, ese rumor de vidrio molido era la música que acompasaba el vaivén de la Movediza.",
+      "paragraphs": ["Era la gran piedra de Tandil, la llamada piedra mágica. Oscilaba al borde del abismo entre 30 y 40 veces por hora, y esa oscilación la hizo famosa en el mundo. Un metro cuadrado era el punto de apoyo sobre el cual se acunaban sus 600 toneladas de roca dómica y caliza. Era tan imperceptible su movimiento  que los visitantes colocaban botellas debajo de la milenaria mole de granito, y el sonido de los cristales al romperse, ese rumor de vidrio molido era la música que acompasaba el vaivén de la Movediza."],
       "imageSrc": "/destileria/2.jpg",
       "imageAlt": "Piedra Mágica de Tandil",
       "imagePosition": "right"
     },
     {
       "title": "Destilados de autor",
-      "body": "Nos hubiera encantado estar allí. Con todas las botellas de nuestra destilería. Para ser testigos de aquel milagro geológico. De aquella belleza poética. Estar allí con todas nuestras botellas. Botellas de ginebra, botellas de grapa, botellas de whisky. Seguramente de haber sido contemporáneos a la Piedra Movediza hasta 1912, todas nuestras botellas, todos los sabores de nuestras bebidas, toda la mística de nuestros productos, también serían parte de su leyenda.\n\nHoy desde Destilados Tandil con nuestro Gin MAGIC STONE empezamos a escribir nuestra propia historia. Se trata de otra gran piedra, la cual también se mueve al compás de una industria que produce, sueña, crea trabajo y valor agregado para nuestra comunidad.",
+      "paragraphs": ["Nos hubiera encantado estar allí. Con todas las botellas de nuestra destilería. Para ser testigos de aquel milagro geológico. De aquella belleza poética. Estar allí con todas nuestras botellas. Botellas de ginebra, botellas de grapa, botellas de whisky. Seguramente de haber sido contemporáneos a la Piedra Movediza hasta 1912, todas nuestras botellas, todos los sabores de nuestras bebidas, toda la mística de nuestros productos, también serían parte de su leyenda.", "Hoy desde Destilados Tandil con nuestro Gin MAGIC STONE empezamos a escribir nuestra propia historia. Se trata de otra gran piedra, la cual también se mueve al compás de una industria que produce, sueña, crea trabajo y valor agregado para nuestra comunidad."],
       "imageSrc": "/destileria/3.jpg",
       "imageAlt": "Magic Stone Destilería Tandil",
       "imagePosition": "left"
@@ -57,10 +57,10 @@
     "mission": "Crear destilados con identidad local y artesanía técnica, desarrollados para estar presentes en todos los momentos donde las personas se reúnen, acompañando encuentros reales entre amigos, familias y generaciones.",
     "vision": "Ser la destilería argentina referente en bebidas para compartir, reconocida por unir tradición y tecnología, y por acompañar a las personas a lo largo de sus historias de vida, estando presentes en cada encuentro.",
     "values": [
-      { "key": "encuentro", "title": "Encuentro", "description": "Diseñamos nuestros productos para acompañar personas, no eventos." },
-      { "key": "calidad_con_propósito", "title": "Calidad con propósito", "description": "Cada bebida nace con una intención clara: estar a la altura del momento compartido." },
-      { "key": "origen", "title": "Origen ", "description": "Tandil como raíz y forma de hacer." },
-      { "key": "evolucion_constante", "title": "Evolución constante", "description": "Hoy gin. Mañana nuevos destilados. Crecemos junto a nuestra comunidad." },
+
+      { "key": "calidad_con_propósito", "title": "Calidad", "description": "Cada bebida nace con una intención clara: estar a la altura del momento compartido." },
+
+      { "key": "evolucion_constante", "title": "Evolución", "description": "Hoy gin. Mañana nuevos destilados. Crecemos junto a nuestra comunidad." },
       { "key": "cecania", "title": "Cercanía", "description": "Somos una marca humana, presente en la mesa y en la vida cotidiana." }
     ]
   },

@@ -40,14 +40,14 @@ export function DestileriaHero({ data }: DestileriaHeroProps) {
         <p className="mt-4 text-lg font-light opacity-95 sm:text-xl">
           {subtitle}
         </p>
-        {ctaLabel && ctaUrl && (
+{/*         {ctaLabel && ctaUrl && (
           <Link
             href={ctaUrl}
             className="mt-8 inline-block rounded-full bg-magic-stone-primary px-8 py-3 font-semibold text-white transition hover:opacity-90 focus:outline-none focus:ring-0"
           >
             {ctaLabel}
           </Link>
-        )}
+        )} */}
         </div>
       </div>
     </HeroFullScreen>

@@ -1,6 +1,6 @@
 {
   "txt_logo": "Palo Alto",
-  "img_logo_optional": "",
+  "img_logo_optional": "/logos/logo-f-mm-b.png",
   "txt_alt_logo_optional": "Palo Alto Winery",
   "link_logo": { "url": "/en", "label": "Home" },
   "txt_direccion": "Videla Aranda 502, Cruz de Piedra, Maipú, Mendoza, Argentina",

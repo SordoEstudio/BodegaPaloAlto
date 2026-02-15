@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import type { BodegaFincasSectionData, BodegaFincaData } from "@/types/sections";
-import { BodegaFinca } from "./BodegaFinca";
-import { BodegaFincasTabs } from "./BodegaFincasTabs";
+import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySplit";
+
+type FincaKey = "finca1" | "finca2";
 
 interface BodegaFincasSectionProps {
   data: BodegaFincasSectionData;
@@ -9,59 +13,91 @@ interface BodegaFincasSectionProps {
   finca2: BodegaFincaData;
 }
 
+/** Divide los párrafos en dos mitades para mostrar en dos bloques (imagen derecha → imagen izquierda). */
+function splitParagraphs(paragraphs: string[]): [string[], string[]] {
+  if (paragraphs.length <= 1) return [paragraphs, []];
+  const mid = Math.ceil(paragraphs.length / 2);
+  return [paragraphs.slice(0, mid), paragraphs.slice(mid)];
+}
+
 export function BodegaFincasSection({
   data,
   finca1,
   finca2,
 }: BodegaFincasSectionProps) {
-  const { title, backgroundImage, layout } = data;
+  const [selectedFinca, setSelectedFinca] = useState<FincaKey>("finca1");
+  const { title, backgroundImage } = data;
   const hasBg = !!backgroundImage?.imageSrc;
-  const useTabs = layout === "tabs";
-  const useTabsLightGlass = useTabs;
 
-  const content = useTabs ? (
+  const fincas = { finca1, finca2 };
+  const current = fincas[selectedFinca];
+  const [firstHalf, secondHalf] = splitParagraphs(current.paragraphs);
+
+  const content = (
     <>
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-4">
-        <h2
-          id="fincas-heading"
-          className="font-heading text-center text-2xl font-bold text-palo-alto-secondary sm:text-3xl"
-        >
-          {title}
-        </h2>
-      </div>
-      <BodegaFincasTabs finca1={finca1} finca2={finca2} hasDarkBg={false} />
-    </>
-  ) : (
-    <>
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-6">
         <h2
           id="fincas-heading"
           className={`font-heading text-center text-2xl font-bold sm:text-3xl ${hasBg ? "text-white" : "text-palo-alto-secondary"}`}
         >
           {title}
         </h2>
+        <div className="mt-8 flex flex-wrap justify-center gap-4" role="tablist" aria-label="Seleccionar finca">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={selectedFinca === "finca1"}
+            aria-controls="fincas-content"
+            id="tab-finca1"
+            onClick={() => setSelectedFinca("finca1")}
+            className={`rounded-full px-6 py-2.5 font-medium transition-colors ${selectedFinca === "finca1"
+              ? "bg-palo-alto-secondary text-white"
+              : "bg-white/90 text-palo-alto-secondary hover:bg-white"
+            }`}
+          >
+            {finca1.title}
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={selectedFinca === "finca2"}
+            aria-controls="fincas-content"
+            id="tab-finca2"
+            onClick={() => setSelectedFinca("finca2")}
+            className={`rounded-full px-6 py-2.5 font-medium transition-colors ${selectedFinca === "finca2"
+              ? "bg-palo-alto-secondary text-white"
+              : "bg-white/90 text-palo-alto-secondary hover:bg-white"
+            }`}
+          >
+            {finca2.title}
+          </button>
+        </div>
       </div>
-      <BodegaFinca data={finca1} />
-      <BodegaFinca data={finca2} />
+      <div id="fincas-content" role="tabpanel" aria-labelledby={`tab-${selectedFinca}`}>
+        {firstHalf.length > 0 && (
+          <DestileriaStorySplit
+            data={{
+              title: current.title,
+              paragraphs: firstHalf,
+              imageSrc: current.imageSrc,
+              imageAlt: current.imageAlt,
+              imagePosition: "right",
+            }}
+          />
+        )}
+        {secondHalf.length > 0 && (
+          <DestileriaStorySplit
+            data={{
+              paragraphs: secondHalf,
+              imageSrc: current.imageSrc2 ?? current.imageSrc,
+              imageAlt: current.imageAlt2 ?? current.imageAlt,
+              imagePosition: "left",
+            }}
+          />
+        )}
+      </div>
     </>
   );
-
-  if (useTabsLightGlass) {
-    return (
-      <section
-        className="relative overflow-hidden py-16"
-        aria-labelledby="fincas-heading"
-      >
-        <div
-          className="absolute inset-0 bg-linear-to-b from-palo-alto-primary/5 to-palo-alto-secondary/5"
-          aria-hidden
-        />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-          {content}
-        </div>
-      </section>
-    );
-  }
 
   if (hasBg) {
     return (
@@ -89,10 +125,14 @@ export function BodegaFincasSection({
 
   return (
     <section
-      className="bg-palo-alto-secondary"
+      className="relative overflow-hidden py-16"
       aria-labelledby="fincas-heading"
     >
-      {content}
+      <div
+        className="absolute inset-0 bg-linear-to-b from-palo-alto-primary/5 to-palo-alto-secondary/5"
+        aria-hidden
+      />
+      <div className="relative z-10">{content}</div>
     </section>
   );
 }
