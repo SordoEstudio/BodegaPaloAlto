@@ -22,6 +22,7 @@
 
 # Data
 /ReferenceData
+/unused_components
 # misc
 .DS_Store
 *.pem
