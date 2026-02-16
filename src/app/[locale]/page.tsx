@@ -9,8 +9,11 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCarouselLineas } from "@/components/home/HomeCarouselLineas";
 import { HomeBanner } from "@/components/home/HomeBanner";
 import { HomeProductosDestacados } from "@/components/home/HomeProductosDestacados";
+import { HomePageWithCMS } from "@/components/home/HomePageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
+
+const useCmsLayout = process.env.NEXT_PUBLIC_USE_CMS_LAYOUT === "true";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -28,7 +31,7 @@ export default async function HomePage({ params }: PageProps) {
   const banner2Data = getHomeBanner2Data(locale);
   const productosData = getHomeProductosDestacadosData(locale);
 
-  return (
+  const staticContent = (
     <>
       <div className="relative min-h-[calc(100dvh-4.5rem)]">
         <HomeHero data={heroData} />
@@ -40,5 +43,11 @@ export default async function HomePage({ params }: PageProps) {
       <HomeBanner data={banner2Data} />
       <HomeProductosDestacados data={productosData} />
     </>
+  );
+
+  return (
+    <HomePageWithCMS useCmsLayout={useCmsLayout}>
+      {staticContent}
+    </HomePageWithCMS>
   );
 }

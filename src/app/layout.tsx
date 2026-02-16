@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Ubuntu, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { LayoutClient } from "@/components/layout/LayoutClient";
 import { getHeaderData, getFooterData } from "@/lib/data";
+import { ClientConfigProvider } from "@/portable-dynamic-cms";
+import { getClientConfig } from "@/portable-dynamic-cms/config/client-config-loader";
 
 /** Tipografía secundaria (textos): Ubuntu – Manual de marca */
 const ubuntu = Ubuntu({
@@ -26,11 +29,18 @@ export const metadata: Metadata = {
     "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const host = headersList.get("host") ?? "localhost";
+  const serverOrigin =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (host ? `http${process.env.NODE_ENV === "development" ? "" : "s"}://${host}` : "");
+  const initialConfig = await getClientConfig(host, serverOrigin || undefined);
+
   const headerEs = getHeaderData("es");
   const headerEn = getHeaderData("en");
   const footerEs = getFooterData("es");
@@ -39,14 +49,16 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${ubuntu.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
-        <LayoutClient
-          headerEs={headerEs}
-          headerEn={headerEn}
-          footerEs={footerEs}
-          footerEn={footerEn}
-        >
-          {children}
-        </LayoutClient>
+        <ClientConfigProvider initialConfig={initialConfig}>
+          <LayoutClient
+            headerEs={headerEs}
+            headerEn={headerEn}
+            footerEs={footerEs}
+            footerEn={footerEn}
+          >
+            {children}
+          </LayoutClient>
+        </ClientConfigProvider>
       </body>
     </html>
   );

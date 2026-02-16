@@ -28,6 +28,14 @@
       "txt_aria_optional": "Ubicación Bodega Palo Alto"
     }
   ],
+  "lista_contacto_destileria":[
+    {
+      "icon_contacto": "FaInstagram",
+      "txt_label": "Instagram",
+      "link_destino": "https://www.instagram.com/destiladosmagicstone/",
+      "txt_aria_optional": "Destilería Magic Stone Instagram"
+    }
+  ],
   "txt_disclaimer": "Prohibida la venta a menores de 18 años.",
   "txt_desarrollado_por": "HARVI Digital",
   "link_desarrollado_por_optional": "https://harvi.digital"

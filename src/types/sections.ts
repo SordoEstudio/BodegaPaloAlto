@@ -232,6 +232,8 @@ export interface FooterData {
     href: string;
   };
   address: string;
+  lista_contacto: { label: string; href: string; ariaLabel: string }[];
+  lista_contacto_destileria: { label: string; href: string; ariaLabel: string }[];
   addressUrl?: string;
   phone?: string;
   email?: string;

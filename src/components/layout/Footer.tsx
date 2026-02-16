@@ -29,11 +29,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
 
   const {
     logo,
-    address,
-    addressUrl,
-    phone,
-    email,
-    whatsapp,
+    lista_contacto_destileria,
     socialLinks,
     disclaimer,
     developedBy,
@@ -69,7 +65,28 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
                   </li>
                 );
               })}
+              <span className="text-xs border-r border-white/30 pr-2 text-white/95"></span>
+  {(lista_contacto_destileria ?? []).map((link) => {
+    const Icon = iconMap[link.label];
+    return (
+      <li key={link.label} role="listitem">
+        <Link
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.ariaLabel}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-white/50 border border-white/30 text-white/95 transition hover:border-palo-alto-primary hover:bg-white/80 hover:text-white focus:outline-none focus:ring-0"
+        >
+          {Icon ? <Icon className="h-5 w-5 text-magic-stone-primary" /> : link.label}
+          
+        </Link>
+        
+      </li>
+    );
+  })}
             </ul>
+
+
           </div>
           {/* Logo */}
           <div className="sm:col-span-2 lg:col-span-1 text-center">
@@ -90,7 +107,30 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
               )}
             </Link>
           </div>
-
+{/* Destilería */}
+{/* <div className="sm:col-span-2 lg:col-span-1 ">
+<h3 className="font-heading mb-4 text-xs font-bold uppercase tracking-wider text-palo-alto-primary/90 ">{locale === "en" ? "Destilería" : "Destilería"}</h3>
+<ul className="flex flex-wrap gap-3" role="list">
+  {(lista_contacto_destileria ?? []).map((link) => {
+    const Icon = iconMap[link.label];
+    return (
+      <li key={link.label} role="listitem">
+        <Link
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.ariaLabel}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white/95 transition hover:border-palo-alto-primary hover:bg-palo-alto-primary/20 hover:text-white focus:outline-none focus:ring-0"
+        >
+          {Icon ? <Icon className="h-5 w-5" /> : link.label}
+          
+        </Link>
+        
+      </li>
+    );
+  })}
+</ul>
+</div> */}
           {/* Contacto */}
 {/*           <div>
             <h3 className="font-heading mb-4 text-xs font-bold uppercase tracking-wider text-palo-alto-primary/90">

@@ -109,7 +109,7 @@ export function BodegaFincasTabs({
   finca2,
   hasDarkBg = false,
 }: BodegaFincasTabsProps) {
-  const [activeId, setActiveId] = useState<string>(finca1.id);
+  const [activeId, setActiveId] = useState<string>(finca1.id ?? "");
   const active = activeId === finca1.id ? finca1 : finca2;
   const titleClass = hasDarkBg
     ? "text-white"
@@ -144,7 +144,7 @@ export function BodegaFincasTabs({
           aria-controls="finca-panel"
           id="tab-finca-1"
           className={`${tabBase} ${activeId === finca1.id ? tabActive : tabInactive}`}
-          onClick={() => setActiveId(finca1.id)}
+          onClick={() => setActiveId(finca1.id ?? "")}
         >
           {finca1.title}
         </button>
@@ -155,7 +155,7 @@ export function BodegaFincasTabs({
           aria-controls="finca-panel"
           id="tab-finca-2"
           className={`${tabBase} ${activeId === finca2.id ? tabActive : tabInactive}`}
-          onClick={() => setActiveId(finca2.id)}
+          onClick={() => setActiveId(finca2.id ?? "")}
         >
           {finca2.title}
         </button>

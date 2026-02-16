@@ -56,7 +56,7 @@ function normalizeLocale(locale: string | undefined): Locale {
 }
 
 /** Mapea banner en formato CMS (img_fondo, txt_titulo, link_destino, _configuracion) a HomeBannerData */
-function mapBannerFromCms(raw: Record<string, unknown>): HomeBannerData {
+export function mapBannerFromCms(raw: Record<string, unknown>): HomeBannerData {
   const link = raw.link_destino as { url?: string; label?: string } | undefined;
   const config = raw._configuracion as { parallax?: boolean } | undefined;
   return {
@@ -132,7 +132,7 @@ function mapHeaderFromCms(raw: Record<string, unknown>): HeaderData {
   };
 }
 
-function mapHeroFromCms(raw: Record<string, unknown>): HomeHeroData {
+export function mapHeroFromCms(raw: Record<string, unknown>): HomeHeroData {
   const lista = (raw.lista_slides as { img_src?: string; txt_alt?: string }[]) ?? [];
   return {
     slides: lista.map((s) => ({ imageSrc: s.img_src ?? "", imageAlt: s.txt_alt ?? "" })),
@@ -149,7 +149,7 @@ export function getHomeHeroData(locale?: string): HomeHeroData {
   return Array.isArray(raw.slides) ? (raw as unknown as HomeHeroData) : mapHeroFromCms(raw);
 }
 
-function mapCarouselLineasFromCms(raw: Record<string, unknown>): HomeCarouselLineasData {
+export function mapCarouselLineasFromCms(raw: Record<string, unknown>): HomeCarouselLineasData {
   const lista = (raw.lista_lineas as { txt_nombre?: string; img_linea?: string; txt_alt_optional?: string; link_url?: string }[]) ?? [];
   return {
     sectionTitle: (raw.txt_titulo_seccion as string) ?? "",
@@ -184,7 +184,7 @@ export function getHomeBanner2Data(locale?: string): HomeBannerData {
   return raw.imageSrc != null ? (raw as unknown as HomeBannerData) : mapBannerFromCms(raw);
 }
 
-function mapProductosDestacadosFromCms(raw: Record<string, unknown>): HomeProductosDestacadosData {
+export function mapProductosDestacadosFromCms(raw: Record<string, unknown>): HomeProductosDestacadosData {
   const lista = (raw.lista_productos as { txt_nombre?: string; img_producto?: string; txt_alt_optional?: string; link_url?: string }[]) ?? [];
   return {
     sectionTitle: (raw.txt_titulo_seccion as string) ?? "",
@@ -235,10 +235,11 @@ export function getHeaderData(locale?: string): HeaderData {
   return raw.logo != null && typeof raw.logo === "object" ? (raw as unknown as HeaderData) : mapHeaderFromCms(raw);
 }
 
-/** Mapea footer en formato CMS (txt_*, lista_contacto, link_*) a FooterData */
+/** Mapea footer en formato CMS (txt_*, lista_contacto, lista_contacto_destileria, link_*) a FooterData */
 function mapFooterFromCms(raw: Record<string, unknown>): FooterData {
   const linkLogo = raw.link_logo as { url?: string } | undefined;
   const listaContacto = (raw.lista_contacto as { txt_label?: string; link_destino?: string; txt_aria_optional?: string }[]) ?? [];
+  const listaDestileria = (raw.lista_contacto_destileria as { txt_label?: string; link_destino?: string; txt_aria_optional?: string }[]) ?? [];
   return {
     logo: {
       text: (raw.txt_logo as string) ?? "Palo Alto",
@@ -251,7 +252,17 @@ function mapFooterFromCms(raw: Record<string, unknown>): FooterData {
     phone: (raw.txt_telefono_optional as string) || undefined,
     email: (raw.txt_email_optional as string) || undefined,
     whatsapp: (raw.link_whatsapp_optional as string) || undefined,
+    lista_contacto: listaContacto.map((c) => ({
+      label: c.txt_label ?? "",
+      href: c.link_destino ?? "",
+      ariaLabel: c.txt_aria_optional ?? c.txt_label ?? "",
+    })),
     socialLinks: listaContacto.map((c) => ({
+      label: c.txt_label ?? "",
+      href: c.link_destino ?? "",
+      ariaLabel: c.txt_aria_optional ?? c.txt_label ?? "",
+    })),
+    lista_contacto_destileria: listaDestileria.map((c) => ({
       label: c.txt_label ?? "",
       href: c.link_destino ?? "",
       ariaLabel: c.txt_aria_optional ?? c.txt_label ?? "",
