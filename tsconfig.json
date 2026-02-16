@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "ReferenceData/data_text/_unused_components"]
+  "exclude": ["node_modules", "ReferenceData", "src/_unused_components", "portable-dynamic-cms"]
 }

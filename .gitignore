@@ -22,7 +22,7 @@
 
 # Data
 /ReferenceData
-/unused_components
+src/_unused_components
 /portable-dynamic-cms
 # misc
 .DS_Store
