@@ -23,6 +23,7 @@
 # Data
 /ReferenceData
 /unused_components
+/portable-dynamic-cms
 # misc
 .DS_Store
 *.pem
