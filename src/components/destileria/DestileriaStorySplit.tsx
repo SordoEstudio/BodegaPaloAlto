@@ -7,13 +7,14 @@ interface DestileriaStorySplitProps {
 
 /** Texto + imagen 50/50 (desktop), stack en móvil. imagePosition: "right" = texto izq (default), "left" = imagen izq. */
 export function DestileriaStorySplit({ data }: DestileriaStorySplitProps) {
-  const { title, paragraphs, imageSrc, imageAlt, imagePosition = "right" } = data;
+  const { title, paragraphs, imageSrc, imageAlt, paloalto = false, imagePosition = "right" } = data;
   const hasTitle = typeof title === "string" && title.trim().length > 0;
   const sectionId = hasTitle ? `story-${title!.replace(/\s+/g, "-").toLowerCase().replace(/[^a-z0-9-]/g, "")}` : undefined;
   const imageAltText: string = (imageAlt ?? (typeof title === "string" ? title : "")) || "";
   const imageOnLeft = imagePosition === "left";
   const textOrder = imageOnLeft ? "lg:order-2" : "lg:order-1";
   const imageOrder = imageOnLeft ? "lg:order-1" : "lg:order-2";
+  const textColor = paloalto ? "text-palo-alto-secondary" : "text-magic-stone-primary"
 
   return (
     <section className="destileria-section bg-background py-16 md:py-24" {...(sectionId ? { "aria-labelledby": sectionId } : {})}>
@@ -23,7 +24,7 @@ export function DestileriaStorySplit({ data }: DestileriaStorySplitProps) {
             {hasTitle && (
               <h2
                 id={sectionId}
-                className="font-heading text-2xl font-bold text-magic-stone-primary sm:text-3xl"
+                className={`font-heading text-2xl font-bold ${textColor} sm:text-3xl`}
               >
                 {title}
               </h2>

@@ -4,7 +4,7 @@
     "txt_parrafo_1": "Sober, simple, austere; in a respectful rescue of the past, with clear objectives for the future; with practically a century of existence, today it works with a name that in some way pays homage to the tall and thin native peoples, Huarpes Milcaya, the great conductors of water, who transformed the desert into a garden and who left their traces in Cruz de Piedra.",
     "txt_parrafo_2": "A warm place dedicated entirely to the field of production, to which advanced technology has been incorporated, all in accordance with the sought-after level that allows us to achieve the optimum varietal expression in Premium wines; everything coexists with serenity without any bombast.",
     "txt_destacado": "QUALITY BEFORE QUANTITY",
-    "img_izquierda_optional": "/bodega/fincas/0235.JPEG",
+    "img_izquierda_optional": "/bodega/02.JPG",
     "txt_alt_izquierda_optional": "Alto Ugarteche vineyard",
     "img_fondo_optional": "/bodega/fincas/0237.JPEG",
     "txt_alt_fondo_optional": "Palo Alto estate",
@@ -12,13 +12,19 @@
   },
   "equipo": {
     "txt_titulo_seccion": "Our team",
-    "avatar_layout_optional": "left",
+    "avatar_layout_optional": "top",
     "lista_equipo": [
       {
-        "txt_nombre": "Palo Alto Team",
-        "txt_rol_optional": "Production and quality",
-        "txt_bio_optional": "Our team unites technical and human resources for limited batches with the commitment that has always guided us: quality before quantity.",
-        "img_avatar_optional": ""
+        "txt_nombre": "Luis Martinez",
+        "txt_rol_optional": "Winemaker",
+        "txt_bio_optional": "Part of our team since 2002.",
+        "img_avatar_optional": "/bodega/equipo/team-luis.jpg"
+      },
+      {
+        "txt_nombre": "Alejandro Campagnucci",
+        "txt_rol_optional": "Sommelier",
+        "txt_bio_optional": "Part of our team since 2010.",
+        "img_avatar_optional": "/bodega/equipo/team-alejandro.jpg"
       }
     ]
   },

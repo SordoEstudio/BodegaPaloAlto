@@ -120,7 +120,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
   // Cambia el color de fondo de los inputs a un color más oscuro de la paleta
   // Puedes ajustar el color aquí (usando por ejemplo bg-zinc-800). Puedes cambiarlo a bg-palo-alto-secondary/80 si tienes esa clase.
   const inputClass =
-    "w-full rounded-lg border border-palo-alto-secondary bg-palo-alto-secondary px-4 py-2.5 text-white transition focus:border-palo-alto-primary focus:outline-none focus:ring-1 focus:ring-palo-alto-primary disabled:opacity-60 placeholder:text-zinc-400";
+    "w-full rounded-lg border border-white/20 bg-white/20 px-4 py-2.5 text-white transition focus:border-palo-alto-primary focus:outline-none focus:ring-1 focus:ring-palo-alto-primary disabled:opacity-60 placeholder:text-zinc-400";
 
   const titleClass = onDark
     ? "font-heading text-2xl font-bold text-white sm:text-3xl"

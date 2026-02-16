@@ -93,9 +93,9 @@ export function ContactPageSection({ data, locale, sourcePage = "contacto" }: Co
 
   const content = (
     <div className="grid min-h-[480px] grid-cols-1 lg:grid-cols-2">
-            {/* Mitad derecha: overlay + formulario */}
-            <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 border-r  bg-black ">
-        {hasBg && <div className="absolute inset-0 z-0 bg-palo-alto-secondary/70" aria-hidden />}
+            {/* Mitad izquierda: overlay + formulario */}
+            <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 border-r">
+        {hasBg && <div className="absolute inset-0 z-0 bg-black/60 backdrop-blur-sm " aria-hidden />}
         {!hasBg && (
           <div className="absolute inset-0 z-0 bg-zinc-100" aria-hidden />
         )}
@@ -108,7 +108,7 @@ export function ContactPageSection({ data, locale, sourcePage = "contacto" }: Co
           />
         </div>
       </div>
-      {/* Mitad izquierda: glassmorphism + datos de contacto (full height o card flotante) */}
+      {/* Mitad derecha: glassmorphism + datos de contacto (full height o card flotante) */}
       <div
         className={
           floatingCard

@@ -262,6 +262,8 @@ export interface DestileriaStorySplitData {
   imageAlt?: string;
   /** "right" = texto izq, imagen der (default); "left" = imagen izq, texto der */
   imagePosition?: "left" | "right";
+  /** Si true, usa colores Palo Alto (text-palo-alto-secondary) en título; si false, Magic Stone (destilería). */
+  paloalto?: boolean;
 }
 
 /** Destilería – Text highlight (título, párrafo, cita opcional); fondo y alineación opcionales */

@@ -82,6 +82,7 @@ export function BodegaFincasSection({
               imageSrc: current.imageSrc,
               imageAlt: current.imageAlt,
               imagePosition: "right",
+              paloalto: true,
             }}
           />
         )}
@@ -89,6 +90,7 @@ export function BodegaFincasSection({
           <DestileriaStorySplit
             data={{
               paragraphs: secondHalf,
+              paloalto: true,
               imageSrc: current.imageSrc2 ?? current.imageSrc,
               imageAlt: current.imageAlt2 ?? current.imageAlt,
               imagePosition: "left",
