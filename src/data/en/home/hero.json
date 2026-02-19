@@ -1,1 +1,14 @@
-{"lista_slides": [{"img_src": "/1.jpg", "txt_alt": "Palo Alto Winery - Mendoza Vineyards"}, {"img_src": "/0001.JPEG", "txt_alt": "Palo Alto Winery - Mendoza"}], "txt_titulo": "Bodega Palo Alto", "txt_subtitulo": "Passion for the lands of Mendoza and the nobility of the vine gave rise to this formidable family business.", "logoImage": "/logos/logo-f-mm-b.png"}
+{
+  "lista_slides": [
+    { "img_src": "/1.jpg", "txt_alt": "Palo Alto Winery - Mendoza Vineyards" },
+    { "img_src": "/0001.JPEG", "txt_alt": "Palo Alto Winery - Mendoza" }
+  ],
+  "img_logo": "/logos/logo-f-mm-b.png",
+  "txt_titulo": "Bodega Palo Alto",
+  "txt_subtitulo": "Passion for the lands of Mendoza and the nobility of the vine gave rise to this formidable family business.",
+  "_configuracion": {
+    "variant": "default",
+    "layout": "default"
+  },
+  "_orden": 1
+}

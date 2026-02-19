@@ -32,7 +32,7 @@ export interface HomeHeroSlide {
 
 export interface HomeHeroData {
   slides: HomeHeroSlide[];
-  logoImage?: string;
+  img_logo?: string;
   logoAlt?: string;
   title: string;
   subtitle: string;
@@ -252,6 +252,8 @@ export interface DestileriaHeroData {
   ctaUrl: string;
   backgroundImage?: string;
   logoImage?: string;
+  /** Posición vertical del contenido (logo, título, subtítulo). Default: "top" */
+  position?: "top" | "center" | "bottom";
 }
 
 /** Destilería – Story split (texto + imagen); imagePosition define lado de la imagen en desktop */

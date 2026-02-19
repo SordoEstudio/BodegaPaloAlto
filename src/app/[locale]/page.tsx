@@ -1,14 +1,3 @@
-import {
-  getHomeHeroData,
-  getHomeCarouselLineasData,
-  getHomeBanner1Data,
-  getHomeBanner2Data,
-  getHomeProductosDestacadosData,
-} from "@/lib/data";
-import { HomeHero } from "@/components/home/HomeHero";
-import { HomeCarouselLineas } from "@/components/home/HomeCarouselLineas";
-import { HomeBanner } from "@/components/home/HomeBanner";
-import { HomeProductosDestacados } from "@/components/home/HomeProductosDestacados";
 import { HomePageWithCMS } from "@/components/home/HomePageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
@@ -25,29 +14,5 @@ export default async function HomePage({ params }: PageProps) {
     redirect(`/${DEFAULT_LOCALE}`);
   }
 
-  const heroData = getHomeHeroData(locale);
-  const carouselData = getHomeCarouselLineasData(locale);
-  const banner1Data = getHomeBanner1Data(locale);
-  const banner2Data = getHomeBanner2Data(locale);
-  const productosData = getHomeProductosDestacadosData(locale);
-
-  const staticContent = (
-    <>
-      <div className="relative min-h-[calc(100dvh-4.5rem)]">
-        <HomeHero data={heroData} />
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <HomeCarouselLineas data={carouselData} />
-        </div>
-      </div>
-      <HomeBanner data={banner1Data} />
-      <HomeBanner data={banner2Data} />
-      <HomeProductosDestacados data={productosData} />
-    </>
-  );
-
-  return (
-    <HomePageWithCMS useCmsLayout={useCmsLayout}>
-      {staticContent}
-    </HomePageWithCMS>
-  );
+  return <HomePageWithCMS useCmsLayout={useCmsLayout} />;
 }

@@ -18,6 +18,8 @@ type HeroFullScreenProps = {
   children: React.ReactNode;
   contentClassName?: string;
   dark?: boolean;
+  /** Posición vertical del contenido. Default: "top" */
+  contentPosition?: "top" | "center" | "bottom";
 };
 
 const ROTATE_INTERVAL_MS = 5000;
@@ -32,6 +34,7 @@ export function HeroFullScreen({
   children,
   contentClassName = "",
   dark = false,
+  contentPosition = "top",
 }: HeroFullScreenProps) {
   const hasCarousel = slides && slides.length > 1;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,7 +56,7 @@ export function HeroFullScreen({
 
   return (
     <section
-      className="relative flex min-h-screen w-full flex-col overflow-hidden md:pb-0"
+      className="relative flex min-h-screen w-full -mt-16 flex-col overflow-hidden md:pb-0"
       aria-label="Sección principal"
     >
       {/* Fondo: gradiente por defecto */}
@@ -103,7 +106,9 @@ export function HeroFullScreen({
 
       {/* Contenido centrado en el espacio entre header y carrusel */}
       <div
-        className={`relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-6 py-12 text-center ${contentClassName}`}
+        className={`relative z-10 flex min-h-0 flex-1 flex-col items-center px-6 py-22 text-center ${
+          contentPosition === "center" ? "justify-center" : contentPosition === "bottom" ? "justify-end" : "justify-start"
+        } ${contentClassName}`}
       >
         <div className="w-full max-w-2xl">{children}</div>
       </div>

@@ -1,8 +1,14 @@
 {
   "quienes_somos": {
     "txt_titulo": "Quiénes Somos",
-    "txt_parrafo_1": "Sobria, sencilla, austera; en un respetuoso rescate del pasado, con claros objetivos del futuro; con prácticamente un siglo de existencia, hoy funciona con un nombre que de alguna manera rinde homenaje a los altos y delgados pueblos originarios, Huarpes Milcaya, los grandes conductores del agua, que transformaron el desierto en vergel y que dejaron sus huellas en Cruz de Piedra.",
-    "txt_parrafo_2": "Un cálido lugar dedicado absolutamente al ámbito de la elaboración, al que se le ha incorporado tecnología de avanzada, en un todo acorde con el nivel buscado que nos permite alcanzar la óptima expresión varietal en vinos Premium; todo convive con serenidad sin altisonancias.",
+    "lista_parrafos": [
+      {
+        "txt_parrafo": "Sobria, sencilla, austera; en un respetuoso rescate del pasado, con claros objetivos del futuro; con prácticamente un siglo de existencia, hoy funciona con un nombre que de alguna manera rinde homenaje a los altos y delgados pueblos originarios, Huarpes Milcaya, los grandes conductores del agua, que transformaron el desierto en vergel y que dejaron sus huellas en Cruz de Piedra."
+      },
+      {
+        "txt_parrafo": "Un cálido lugar dedicado absolutamente al ámbito de la elaboración, al que se le ha incorporado tecnología de avanzada, en un todo acorde con el nivel buscado que nos permite alcanzar la óptima expresión varietal en vinos Premium; todo convive con serenidad sin altisonancias."
+      }
+    ],
     "txt_destacado": "LA CALIDAD ANTES QUE LA CANTIDAD",
     "img_izquierda_optional": "/bodega/02.JPG",
     "txt_alt_izquierda_optional": "Viñedos Alto Ugarteche",
@@ -31,24 +37,58 @@
   "fincas_seccion": {
     "txt_titulo": "Nuestras Fincas"
   },
-  "finca1":{
-    "title": "Finca Alto Ugarteche",
-    "imageSrc": "/bodega/fincas/0235.JPEG",
-    "imageAlt": "Finca Alto Ugarteche",
-    "imageSrc2": "/bodega/fincas/0282.JPEG",
-    "imageAlt2": "Finca Palo Alto",
-    "imagePosition": "right",
-    "paragraphs":["Finca Alto Ugarteche se encuentra en el corazón de Luján de Cuyo, Mendoza, Argentina, dentro del prestigioso distrito de Ugarteche. Con una superficie total de 25 hectáreas, de las cuales 22 hectáreas están plantadas con viñedos, la finca representa una expresión del terroir mendocino en cada una de sus parcelas.",
-"Los viñedos albergan una diversidad de variedades cuidadosamente seleccionadas, incluyendo Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés y Cabernet Franc, con una antigüedad promedio de 18 años, lo que garantiza la complejidad y profundidad de sus uvas. Cada hectárea produce en promedio 80 quintales, bajo un sistema de conducción Espaldero Alto que maximiza la exposición al sol y la calidad de los frutos.",
-"El riego es controlado y eficiente, implementado mediante riego por goteo con agua proveniente de una perforación de 180 metros de profundidad, mientras que la altitud de 1120 msnm y el tipo de suelo franco arcilloso contribuyen a la expresión única de cada varietal.",
-"Las cosechas se realizan entre febrero y abril, de manera manual, garantizando la selección de los mejores racimos. Cada uva es transportada con cuidado en cajas plásticas paletizadas de hasta 18 kg, preservando su integridad hasta llegar a la bodega. La finca cuenta con la dirección técnica del Ing. Agro. Hugo Martínez, quien supervisa todos los procesos para asegurar que cada vendimia refleje la esencia de Alto Ugarteche.",
-"En conjunto, la finca combina tradición, técnica y pasión, creando un espacio donde cada racimo refleja la identidad y riqueza del terroir mendocino. "]},
-"finca2":{
-  "title": "Finca Palo Alto",
-  "imageSrc": "/bodega/fincas/0237.JPEG",
-  "imageAlt": "Finca Palo Alto",
-  "imageSrc2": "/bodega/fincas/0244.JPEG",
-  "imageAlt2": "Finca Alto Ugarteche",
-  "imagePosition": "right",
-"paragraphs":["Finca Palo Alto se encuentra en Maipú, Mendoza, Argentina, específicamente en el distrito de Cruz de Piedra, en la dirección Videla Aranda 502. La finca cuenta con una superficie total de 16 hectáreas, de las cuales 5 hectáreas están dedicadas a viñedos, mostrando un enfoque en la calidad y selección de cada cultivo.","Los viñedos de Palo Alto están plantados con Malbec y Prosecco, y presentan una antigüedad promedio de 12 años, asegurando uvas maduras y bien desarrolladas. Cada hectárea produce alrededor de 90 quintales, cultivadas bajo un sistema de conducción espaldero que optimiza la exposición al sol y el desarrollo equilibrado de la planta.","El riego se realiza mediante sistema de goteo, utilizando agua proveniente de una perforación de 130 metros de profundidad, mientras que la finca se sitúa a 920 msnm, sobre suelos que favorecen la expresión de los varietales plantados.","Las cosechas se efectúan entre febrero y abril, siguiendo un método manual que permite seleccionar cuidadosamente los racimos más sanos y adecuados. Cada cosecha es transportada en cajas plásticas paletizadas de hasta 18 kg, garantizando que la fruta llegue en óptimas condiciones a la bodega. La finca opera bajo la dirección técnica del Ing. Agro. Hugo Martínez, quien supervisa todos los procesos para mantener los estándares de excelencia de Palo Alto.","En conjunto, la finca combina tradición y precisión técnica, ofreciendo uvas de calidad que reflejan el carácter único del terroir de Cruz de Piedra en Mendoza."]}
+  "finca1": {
+    "txt_titulo": "Finca Alto Ugarteche",
+    "lista_parrafos": [
+      {
+        "txt_parrafo": "Finca Alto Ugarteche se encuentra en el corazón de Luján de Cuyo, Mendoza, Argentina, dentro del prestigioso distrito de Ugarteche. Con una superficie total de 25 hectáreas, de las cuales 22 hectáreas están plantadas con viñedos, la finca representa una expresión del terroir mendocino en cada una de sus parcelas."
+      },
+      {
+        "txt_parrafo": "Los viñedos albergan una diversidad de variedades cuidadosamente seleccionadas, incluyendo Cabernet Sauvignon, Pinot Noir, Malbec, Moscato Bianco, Moscato Giallo, Ancelotta, Torrontés y Cabernet Franc, con una antigüedad promedio de 18 años, lo que garantiza la complejidad y profundidad de sus uvas. Cada hectárea produce en promedio 80 quintales, bajo un sistema de conducción Espaldero Alto que maximiza la exposición al sol y la calidad de los frutos."
+      },
+      {
+        "txt_parrafo": "El riego es controlado y eficiente, implementado mediante riego por goteo con agua proveniente de una perforación de 180 metros de profundidad, mientras que la altitud de 1120 msnm y el tipo de suelo franco arcilloso contribuyen a la expresión única de cada varietal."
+      },
+      {
+        "txt_parrafo": "Las cosechas se realizan entre febrero y abril, de manera manual, garantizando la selección de los mejores racimos. Cada uva es transportada con cuidado en cajas plásticas paletizadas de hasta 18 kg, preservando su integridad hasta llegar a la bodega. La finca cuenta con la dirección técnica del Ing. Agro. Hugo Martínez, quien supervisa todos los procesos para asegurar que cada vendimia refleje la esencia de Alto Ugarteche."
+      },
+      {
+        "txt_parrafo": "En conjunto, la finca combina tradición, técnica y pasión, creando un espacio donde cada racimo refleja la identidad y riqueza del terroir mendocino."
+      }
+    ],
+    "img_imagen_optional": "/bodega/fincas/0235.JPEG",
+    "txt_alt_imagen_optional": "Finca Alto Ugarteche",
+    "img_imagen_2_optional": "/bodega/fincas/0282.JPEG",
+    "txt_alt_imagen_2_optional": "Finca Palo Alto",
+    "_configuracion": {
+      "imagePosition": "right"
+    }
+  },
+  "finca2": {
+    "txt_titulo": "Finca Palo Alto",
+    "lista_parrafos": [
+      {
+        "txt_parrafo": "Finca Palo Alto se encuentra en Maipú, Mendoza, Argentina, específicamente en el distrito de Cruz de Piedra, en la dirección Videla Aranda 502. La finca cuenta con una superficie total de 16 hectáreas, de las cuales 5 hectáreas están dedicadas a viñedos, mostrando un enfoque en la calidad y selección de cada cultivo."
+      },
+      {
+        "txt_parrafo": "Los viñedos de Palo Alto están plantados con Malbec y Prosecco, y presentan una antigüedad promedio de 12 años, asegurando uvas maduras y bien desarrolladas. Cada hectárea produce alrededor de 90 quintales, cultivadas bajo un sistema de conducción espaldero que optimiza la exposición al sol y el desarrollo equilibrado de la planta."
+      },
+      {
+        "txt_parrafo": "El riego se realiza mediante sistema de goteo, utilizando agua proveniente de una perforación de 130 metros de profundidad, mientras que la finca se sitúa a 920 msnm, sobre suelos que favorecen la expresión de los varietales plantados."
+      },
+      {
+        "txt_parrafo": "Las cosechas se efectúan entre febrero y abril, siguiendo un método manual que permite seleccionar cuidadosamente los racimos más sanos y adecuados. Cada cosecha es transportada en cajas plásticas paletizadas de hasta 18 kg, garantizando que la fruta llegue en óptimas condiciones a la bodega. La finca opera bajo la dirección técnica del Ing. Agro. Hugo Martínez, quien supervisa todos los procesos para mantener los estándares de excelencia de Palo Alto."
+      },
+      {
+        "txt_parrafo": "En conjunto, la finca combina tradición y precisión técnica, ofreciendo uvas de calidad que reflejan el carácter único del terroir de Cruz de Piedra en Mendoza."
+      }
+    ],
+    "img_imagen_optional": "/bodega/fincas/0237.JPEG",
+    "txt_alt_imagen_optional": "Finca Palo Alto",
+    "img_imagen_2_optional": "/bodega/fincas/0244.JPEG",
+    "txt_alt_imagen_2_optional": "Finca Alto Ugarteche",
+    "_configuracion": {
+      "imagePosition": "right"
+    }
+  }
 }

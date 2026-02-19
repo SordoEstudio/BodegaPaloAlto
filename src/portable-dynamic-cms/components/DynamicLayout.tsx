@@ -26,6 +26,8 @@ export interface DynamicLayoutProps {
       pageCMS: ReturnType<typeof usePageCMS>;
     }
   ) => DynamicLayoutComponentProps;
+  /** Si se define, los dos primeros componentes con estos layoutName se renderizan en un bloque: el primero ocupa el alto y el segundo en absolute bottom (ej. hero + carousel overlay). */
+  overlayGroup?: { first: string; second: string };
   LoadingComponent?: ComponentType<{ type?: string }> | ReactNode;
   EmptyComponent?: ComponentType<{ pageType: string }> | ReactNode;
 }
@@ -52,6 +54,7 @@ export function DynamicLayout({
   cmsTypeToLayoutName,
   componentMap,
   getComponentProps = defaultGetComponentProps,
+  overlayGroup,
   LoadingComponent,
   EmptyComponent,
 }: DynamicLayoutProps) {
@@ -138,27 +141,74 @@ export function DynamicLayout({
 
   const getProps = getComponentProps ?? defaultGetComponentProps;
 
+  const useOverlay =
+    overlayGroup &&
+    layoutComponents.length >= 2 &&
+    (cmsTypeToLayoutName[layoutComponents[0].type] ?? layoutComponents[0].type) === overlayGroup.first &&
+    (cmsTypeToLayoutName[layoutComponents[1].type] ?? layoutComponents[1].type) === overlayGroup.second;
+
   return (
     <>
-      {layoutComponents.map((cmsComponent, index) => {
-        const layoutName =
-          cmsTypeToLayoutName[cmsComponent.type] ?? cmsComponent.type;
-        const Component = componentMap[layoutName];
-        if (!Component) return null;
-
-        const props = getProps(layoutName, cmsComponent, {
-          cmsLoading,
-          cmsError,
-          pageCMS,
-        });
-
-        return (
-          <Component
-            key={`${cmsComponent.type}-${cmsComponent._id ?? index}`}
-            {...props}
-          />
-        );
-      })}
+      {useOverlay ? (
+        <>
+          <div className="relative min-h-[calc(100dvh-4.5rem)]">
+            {(() => {
+              const cms0 = layoutComponents[0];
+              const cms1 = layoutComponents[1];
+              const name0 = cmsTypeToLayoutName[cms0.type] ?? cms0.type;
+              const name1 = cmsTypeToLayoutName[cms1.type] ?? cms1.type;
+              const Comp0 = componentMap[name0];
+              const Comp1 = componentMap[name1];
+              if (!Comp0 || !Comp1) return null;
+              const props0 = getProps(name0, cms0, { cmsLoading, cmsError, pageCMS });
+              const props1 = getProps(name1, cms1, { cmsLoading, cmsError, pageCMS });
+              return (
+                <>
+                  <Comp0 key={`${cms0.type}-${cms0._id ?? 0}`} {...props0} />
+                  <div className="absolute bottom-0 left-0 right-0 z-10">
+                    <Comp1 key={`${cms1.type}-${cms1._id ?? 1}`} {...props1} />
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+          {layoutComponents.slice(2).map((cmsComponent, index) => {
+            const layoutName =
+              cmsTypeToLayoutName[cmsComponent.type] ?? cmsComponent.type;
+            const Component = componentMap[layoutName];
+            if (!Component) return null;
+            const props = getProps(layoutName, cmsComponent, {
+              cmsLoading,
+              cmsError,
+              pageCMS,
+            });
+            return (
+              <Component
+                key={`${cmsComponent.type}-${cmsComponent._id ?? index + 2}`}
+                {...props}
+              />
+            );
+          })}
+        </>
+      ) : (
+        layoutComponents.map((cmsComponent, index) => {
+          const layoutName =
+            cmsTypeToLayoutName[cmsComponent.type] ?? cmsComponent.type;
+          const Component = componentMap[layoutName];
+          if (!Component) return null;
+          const props = getProps(layoutName, cmsComponent, {
+            cmsLoading,
+            cmsError,
+            pageCMS,
+          });
+          return (
+            <Component
+              key={`${cmsComponent.type}-${cmsComponent._id ?? index}`}
+              {...props}
+            />
+          );
+        })
+      )}
     </>
   );
 }

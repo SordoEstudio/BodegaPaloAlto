@@ -2,11 +2,7 @@
   "img_fondo": "/banners/34.jpg",
   "txt_alt_optional": "Bodega Palo Alto - Mendoza",
   "txt_titulo": "Nuestras raíces",
-  "link_destino": {
-    "url": "/bodega",
-    "label": "Ir a Bodega"
-  },
-  "_configuracion": {
-    "parallax": true
-  }
+  "link_destino": { "url": "/bodega", "label": "Ir a Bodega" },
+  "_configuracion": { "parallax": true, "variant": "default" },
+  "_orden": 3
 }

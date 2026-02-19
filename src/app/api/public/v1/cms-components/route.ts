@@ -15,13 +15,14 @@ function buildComponent(
   type: string,
   name: string,
   order: number,
-  data: Record<string, unknown>
+  data: Record<string, unknown>,
+  page = "Inicio"
 ): CMSComponent {
   return {
     _id: `mock-${type}-${order}`,
     name,
     type,
-    page: "Inicio",
+    page,
     data: { ...data, _orden: order },
     status: "published",
     isActive: true,
@@ -32,7 +33,18 @@ function buildComponent(
   };
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const requestInfo = {
+    url: request.url,
+    searchParams: Object.fromEntries(searchParams.entries()),
+    headers: {
+      "content-type": request.headers.get("content-type"),
+      "user-agent": request.headers.get("user-agent")?.slice(0, 50),
+    },
+  };
+  console.log("[cms-components API] Petición recibida:", requestInfo);
+
   const components: CMSComponent[] = [
     buildComponent("home_hero", "Hero inicio", 1, heroEs as Record<string, unknown>),
     buildComponent("home_carousel_lineas", "Carousel líneas", 2, carouselLineasEs as Record<string, unknown>),
@@ -41,8 +53,8 @@ export async function GET() {
     buildComponent("home_productos_destacados", "Productos destacados", 5, productosDestacadosEs as Record<string, unknown>),
   ];
 
-  return NextResponse.json({
-    success: true,
-    data: { components, client },
-  });
+  const payload = { success: true, data: { components, client } };
+  console.log("[cms-components API] Respuesta:", { componentsCount: components.length, client, componentTypes: components.map((c) => c.type) });
+
+  return NextResponse.json(payload);
 }

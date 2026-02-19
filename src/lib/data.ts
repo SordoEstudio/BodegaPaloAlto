@@ -18,6 +18,11 @@ import type {
   BodegaFincasSectionData,
   BodegaFincaData,
   DestileriaData,
+  DestileriaHeroData,
+  DestileriaStorySplitData,
+  DestileriaTextHighlightData,
+  DestileriaMissionVisionData,
+  DestileriaManifestoData,
   ContactPageData,
   Locale,
 } from "@/types/sections";
@@ -132,12 +137,22 @@ function mapHeaderFromCms(raw: Record<string, unknown>): HeaderData {
   };
 }
 
-export function mapHeroFromCms(raw: Record<string, unknown>): HomeHeroData {
+function mapHeroSlides(raw: Record<string, unknown>): { imageSrc: string; imageAlt: string }[] {
+  const gallery = (raw.gallery_slides as { url?: string; alt?: string }[]) ?? [];
+  if (gallery.length > 0) {
+    return gallery.map((s) => ({ imageSrc: s.url ?? "", imageAlt: s.alt ?? "" }));
+  }
   const lista = (raw.lista_slides as { img_src?: string; txt_alt?: string }[]) ?? [];
+  return lista.map((s) => ({ imageSrc: s.img_src ?? "", imageAlt: s.txt_alt ?? "" }));
+}
+
+export function mapHeroFromCms(raw: Record<string, unknown>): HomeHeroData {
+  const logoSrc = (raw.logoImage ?? raw.img_logo) as string | undefined;
+  const logoAlt = (raw.logoAlt ?? raw.txt_alt_logo_optional) as string | undefined;
   return {
-    slides: lista.map((s) => ({ imageSrc: s.img_src ?? "", imageAlt: s.txt_alt ?? "" })),
-    logoImage: (raw.logoImage as string) || undefined,
-    logoAlt: (raw.logoAlt as string) || undefined,
+    slides: mapHeroSlides(raw),
+    img_logo: logoSrc && logoSrc.trim() ? logoSrc : undefined,
+    logoAlt: logoAlt && logoAlt.trim() ? logoAlt : undefined,
     title: (raw.txt_titulo as string) ?? "",
     subtitle: (raw.txt_subtitulo as string) ?? "",
   };
@@ -313,13 +328,23 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
 
   const imgLeft = qs.img_izquierda_optional as string | undefined;
   const imgFondo = qs.img_fondo_optional as string | undefined;
+  const listaParrafos = (qs.lista_parrafos as unknown) ?? [];
+  const parrafosFromLista = Array.isArray(listaParrafos)
+    ? listaParrafos.map((p) =>
+        typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in p ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+      ).filter((s): s is string => typeof s === "string" && s.length > 0)
+    : [];
+  const parrafosLegacy =
+    parrafosFromLista.length > 0
+      ? parrafosFromLista
+      : [(qs.txt_parrafo_1 as string) ?? "", (qs.txt_parrafo_2 as string) ?? ""].filter(Boolean);
   const quienesSomos: BodegaQuienesSomosData = {
     title: (qs.txt_titulo as string) ?? "",
-    paragraphs: [(qs.txt_parrafo_1 as string) ?? "", (qs.txt_parrafo_2 as string) ?? ""].filter(Boolean),
+    paragraphs: parrafosLegacy,
     highlight: (qs.txt_destacado as string) || undefined,
     imageLeft: imgLeft ? { imageSrc: imgLeft, imageAlt: (qs.txt_alt_izquierda_optional as string) || undefined } : undefined,
     backgroundImage: imgFondo ? { imageSrc: imgFondo, imageAlt: (qs.txt_alt_fondo_optional as string) || undefined } : undefined,
-    showEquipo: (qs.mostrar_equipo_optional as boolean) ?? false,
+    showEquipo: (qs.mostrar_equipo_optional ?? (qs as Record<string, unknown>)._show_team_optional) as boolean ?? false,
   };
 
   const avatarLayoutRaw = (eq.avatar_layout_optional as string) ?? "";
@@ -374,27 +399,45 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
   return { quienesSomos, equipo, fincasSection, finca1, finca2 };
 }
 
+function toParagraphsFromRaw(raw: unknown[] | undefined): string[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((p) =>
+      typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in p ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+    )
+    .filter((s): s is string => typeof s === "string" && s.length > 0);
+}
+
 function normalizeFincaFromRaw(obj: unknown): BodegaFincaData | null {
   const r = obj as Record<string, unknown> | null;
   if (!r || typeof r !== "object") return null;
-  const title = (r.title as string) ?? "";
-  const paragraphs = Array.isArray(r.paragraphs)
-    ? (r.paragraphs as string[]).filter((s): s is string => typeof s === "string")
-    : [];
+  const isCmsFormat = "txt_titulo" in r || "lista_parrafos" in r;
+  const title = (r.txt_titulo ?? r.title ?? "") as string;
+  const paragraphs = isCmsFormat
+    ? toParagraphsFromRaw(r.lista_parrafos as unknown[])
+    : Array.isArray(r.paragraphs)
+      ? (r.paragraphs as string[]).filter((s): s is string => typeof s === "string")
+      : [];
+  const conf = (r._configuracion ?? {}) as Record<string, unknown>;
+  const imagePosition = (conf.imagePosition ?? r.imagePosition) === "left" ? "left" : "right";
+  const img1 = (r.img_imagen_optional ?? r.imageSrc) as string | undefined;
+  const img2 = (r.img_imagen_2_optional ?? r.imageSrc2) as string | undefined;
+  const alt1 = (r.txt_alt_imagen_optional ?? r.txt_alt_optional ?? r.imageAlt) as string | undefined;
+  const alt2 = (r.txt_alt_imagen_2_optional ?? r.imageAlt2) as string | undefined;
   return {
     id: (r.id as string) || undefined,
     title,
-    location: (r.location as string) || undefined,
-    description: (r.description as string) || undefined,
+    location: (r.txt_ubicacion_optional ?? r.location) as string | undefined,
+    description: (r.txt_descripcion_optional ?? r.description) as string | undefined,
     features: undefined,
-    imageSrc: (r.imageSrc as string) || undefined,
-    imageAlt: (r.imageAlt as string) || undefined,
-    imageSrc2: (r.imageSrc2 as string) || undefined,
-    imageAlt2: (r.imageAlt2 as string) || undefined,
+    imageSrc: img1 || undefined,
+    imageAlt: alt1 || undefined,
+    imageSrc2: img2 || undefined,
+    imageAlt2: alt2 || undefined,
     paragraphs,
-    imagePosition: r.imagePosition === "left" ? "left" : "right",
+    imagePosition,
     backgroundImage: undefined,
-    parallax: false,
+    parallax: (r.parallax_optional ?? r.parallax) as boolean ?? false,
   };
 }
 
@@ -414,9 +457,275 @@ export function getBodegaData(locale?: string): BodegaData {
   return base;
 }
 
+/** Formato CMS destilería: prefijos txt_, img_, lista_, _configuracion (ver MANUAL_JSON_COMPONENTES_CMS_FORMULARIO_DINAMICO.md) */
+function mapDestileriaFromCms(raw: Record<string, unknown>): DestileriaData {
+  const heroRaw = (raw.hero ?? {}) as Record<string, unknown>;
+  const btnCta = (heroRaw.btn_cta_optional ?? {}) as Record<string, unknown>;
+  const heroConf = (heroRaw._configuracion ?? {}) as Record<string, unknown>;
+  const position = heroConf.position as "top" | "center" | "bottom" | undefined;
+  const hero = {
+    title: String(heroRaw.txt_titulo ?? ""),
+    subtitle: String(heroRaw.txt_subtitulo ?? ""),
+    ctaLabel: String(btnCta.txt_label ?? ""),
+    ctaUrl: String(btnCta.link_url ?? ""),
+    backgroundImage: heroRaw.img_fondo_optional != null ? String(heroRaw.img_fondo_optional) : undefined,
+    logoImage: heroRaw.img_logo_optional != null ? String(heroRaw.img_logo_optional) : undefined,
+    position: position === "top" || position === "center" || position === "bottom" ? position : undefined,
+  };
+
+  const listaStorySplits = (raw.lista_story_splits ?? raw.story_splits ?? raw.storySplits ?? []) as unknown[];
+  const storySplits = listaStorySplits.map((item) => {
+    const r = (item ?? {}) as Record<string, unknown>;
+    const conf = (r._configuracion ?? {}) as Record<string, unknown>;
+    const rawParrafos = Array.isArray(r.lista_parrafos) ? r.lista_parrafos : Array.isArray(r.list_parrafos) ? r.list_parrafos : [];
+    const parrafos = rawParrafos.map((p) =>
+      typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in p ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+    ).filter(Boolean);
+    return {
+      title: r.txt_titulo != null ? String(r.txt_titulo) : undefined,
+      paragraphs: parrafos,
+      imageSrc: r.img_imagen_optional != null ? String(r.img_imagen_optional) : undefined,
+      imageAlt: r.txt_alt_optional != null ? String(r.txt_alt_optional) : undefined,
+      imagePosition: (conf.imagePosition as "left" | "right") ?? undefined,
+      paloalto: r.paloalto === true,
+    };
+  });
+
+  function bodyFromParrafos(r: Record<string, unknown>): string {
+    const raw = (r.lista_parrafos ?? r.list_parrafos ?? []) as unknown[];
+    if (!Array.isArray(raw) || raw.length === 0) return "";
+    return raw
+      .map((p) =>
+        typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in p ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+      )
+      .filter(Boolean)
+      .join("\n\n");
+  }
+  const listaHighlights = (raw.lista_text_highlights ?? raw.text_highlights ?? raw.textHighlights ?? []) as unknown[];
+  const textHighlights = listaHighlights.map((item) => {
+    const r = (item ?? {}) as Record<string, unknown>;
+    const conf = (r._configuracion ?? {}) as Record<string, unknown>;
+    const body = String(r.txt_body ?? "").trim() || bodyFromParrafos(r);
+    return {
+      title: r.txt_titulo != null ? String(r.txt_titulo) : undefined,
+      body,
+      highlightQuote: r.txt_quote_optional != null ? String(r.txt_quote_optional) : undefined,
+      backgroundImage: r.img_fondo_optional != null ? String(r.img_fondo_optional) : undefined,
+      backgroundImageAlt: r.txt_alt_fondo_optional != null ? String(r.txt_alt_fondo_optional) : undefined,
+      parallax: conf.parallax === true,
+      textAlign: (conf.textAlign as "left" | "center" | "right") ?? undefined,
+    };
+  });
+
+  const promisesRaw = (raw.text_promises ?? raw.textPromises ?? {}) as Record<string, unknown>;
+  const promisesConf = (promisesRaw._configuracion ?? {}) as Record<string, unknown>;
+  const promisesBody = String(promisesRaw.txt_body ?? "").trim() || bodyFromParrafos(promisesRaw);
+  const textPromises = {
+    title: promisesRaw.txt_titulo != null ? String(promisesRaw.txt_titulo) : undefined,
+    body: promisesBody,
+    highlightQuote: promisesRaw.txt_quote_optional != null ? String(promisesRaw.txt_quote_optional) : undefined,
+    backgroundImage: promisesRaw.img_fondo_optional != null ? String(promisesRaw.img_fondo_optional) : undefined,
+    backgroundImageAlt: promisesRaw.txt_alt_fondo_optional != null ? String(promisesRaw.txt_alt_fondo_optional) : undefined,
+    parallax: promisesConf.parallax === true,
+    textAlign: (promisesConf.textAlign as "left" | "center" | "right") ?? undefined,
+  };
+
+  const mvRaw = (raw.mission_vision ?? raw.missionVision ?? {}) as Record<string, unknown>;
+  const mvConf = (mvRaw._configuracion ?? {}) as Record<string, unknown>;
+  const listaValues = (mvRaw.lista_values ?? mvRaw.values ?? []) as unknown[];
+  const values = listaValues.map((v) => {
+    const r = (v ?? {}) as Record<string, unknown>;
+    return {
+      key: String(r.key ?? ""),
+      title: String(r.txt_titulo ?? r.title ?? ""),
+      description: String(r.txt_descripcion ?? r.description ?? ""),
+    };
+  });
+  const rawTabLabels = mvConf.tab_labels as { mission?: string; vision?: string; values?: string } | undefined;
+  const tabLabels =
+    rawTabLabels &&
+    rawTabLabels.mission != null &&
+    rawTabLabels.vision != null &&
+    rawTabLabels.values != null
+      ? {
+          mission: String(rawTabLabels.mission),
+          vision: String(rawTabLabels.vision),
+          values: String(rawTabLabels.values),
+        }
+      : undefined;
+  const missionVision = {
+    mission: String(mvRaw.txt_mission ?? mvRaw.mission ?? ""),
+    vision: String(mvRaw.txt_vision ?? mvRaw.vision ?? ""),
+    values,
+    tabLabels,
+    layout: (mvConf.layout as "tabs" | "blocks") ?? undefined,
+  };
+
+  const manifestoRaw = (raw.manifesto ?? {}) as Record<string, unknown>;
+  const listaLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as string[];
+  const galleryImgs = (manifestoRaw.gallery_imagenes ?? manifestoRaw.lista_imagenes ?? manifestoRaw.images ?? []) as unknown[];
+  const images = galleryImgs.map((img) => {
+    const r = (img ?? {}) as Record<string, unknown>;
+    return {
+      imageSrc: String(r.url ?? r.img_src ?? ""),
+      imageAlt: String(r.alt ?? r.txt_alt ?? ""),
+    };
+  }).filter((x) => x.imageSrc);
+
+  const manifesto = {
+    lines: listaLineas,
+    images: images.length > 0 ? images : undefined,
+  };
+
+  return {
+    hero,
+    storySplits,
+    textHighlights,
+    textPromises,
+    missionVision,
+    manifesto,
+  };
+}
+
+function isDestileriaCmsFormat(raw: Record<string, unknown>): boolean {
+  const hero = (raw.hero ?? {}) as Record<string, unknown>;
+  return "txt_titulo" in hero || "txt_subtitulo" in hero;
+}
+
 export function getDestileriaData(locale?: string): DestileriaData {
   const loc = normalizeLocale(locale);
-  return (loc === "en" ? destileriaEn : destileriaEs) as unknown as DestileriaData;
+  const raw = (loc === "en" ? destileriaEn : destileriaEs) as Record<string, unknown>;
+  if (isDestileriaCmsFormat(raw)) return mapDestileriaFromCms(raw);
+  return raw as unknown as DestileriaData;
+}
+
+/** Mapea data de portada_destileria (API) a DestileriaHeroData. Acepta { hero } o data directa. */
+export function mapPortadaDestileriaFromCms(raw: Record<string, unknown>): DestileriaHeroData {
+  const heroRaw = (raw.hero ?? raw) as Record<string, unknown>;
+  const btnCta = (heroRaw.btn_cta_optional ?? {}) as Record<string, unknown>;
+  const heroConf = (heroRaw._configuracion ?? {}) as Record<string, unknown>;
+  const position = heroConf.position as "top" | "center" | "bottom" | undefined;
+  return {
+    title: String(heroRaw.txt_titulo ?? ""),
+    subtitle: String(heroRaw.txt_subtitulo ?? ""),
+    ctaLabel: String(btnCta.txt_label ?? ""),
+    ctaUrl: String(btnCta.link_url ?? ""),
+    backgroundImage: heroRaw.img_fondo_optional != null ? String(heroRaw.img_fondo_optional) : undefined,
+    logoImage: heroRaw.img_logo_optional != null ? String(heroRaw.img_logo_optional) : undefined,
+    position: position === "top" || position === "center" || position === "bottom" ? position : undefined,
+  };
+}
+
+function mapSingleStorySplitFromCms(r: Record<string, unknown>): DestileriaStorySplitData {
+  const conf = (r._configuracion ?? {}) as Record<string, unknown>;
+  const rawParrafos = Array.isArray(r.lista_parrafos) ? r.lista_parrafos : Array.isArray(r.list_parrafos) ? r.list_parrafos : [];
+  const parrafos = rawParrafos
+    .map((p: unknown) =>
+      typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in (p as object) ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+    )
+    .filter((s): s is string => typeof s === "string" && s.length > 0);
+  return {
+    title: r.txt_titulo != null ? String(r.txt_titulo) : undefined,
+    paragraphs: parrafos,
+    imageSrc: r.img_imagen_optional != null ? String(r.img_imagen_optional) : undefined,
+    imageAlt: r.txt_alt_optional != null ? String(r.txt_alt_optional) : undefined,
+    imagePosition: (conf.imagePosition as "left" | "right") ?? "right",
+    paloalto: r.paloalto === true,
+  };
+}
+
+/** Mapea data de historia_destileria (API). Acepta story_splits[] o datos de un solo bloque. */
+export function mapHistoriaDestileriaFromCms(raw: Record<string, unknown>): DestileriaStorySplitData | { storySplits: DestileriaStorySplitData[] } {
+  const lista = (raw.story_splits ?? raw.lista_story_splits ?? []) as unknown[];
+  if (Array.isArray(lista) && lista.length > 0) {
+    return {
+      storySplits: lista.map((item) => mapSingleStorySplitFromCms((item ?? {}) as Record<string, unknown>)),
+    };
+  }
+  return mapSingleStorySplitFromCms(raw);
+}
+
+/** Mapea data de manifest (API) a DestileriaManifestoData. Acepta data bajo manifesto. */
+export function mapManifestFromCms(raw: Record<string, unknown>): DestileriaManifestoData {
+  const manifestoRaw = (raw.manifesto ?? raw) as Record<string, unknown>;
+  const listaLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as string[];
+  const galleryImgs = (manifestoRaw.gallery_imagenes ?? manifestoRaw.lista_imagenes ?? manifestoRaw.images ?? []) as unknown[];
+  const images = galleryImgs
+    .map((img) => {
+      const r = (img ?? {}) as Record<string, unknown>;
+      return {
+        imageSrc: String(r.url ?? r.img_src ?? ""),
+        imageAlt: String(r.alt ?? r.txt_alt ?? ""),
+      };
+    })
+    .filter((x) => x.imageSrc);
+  return {
+    lines: listaLineas,
+    images: images.length > 0 ? images : undefined,
+  };
+}
+
+/** Mapea data de mission_vision_values (API) a DestileriaMissionVisionData. Acepta data directa o bajo mission_vision. */
+export function mapMissionVisionValuesFromCms(raw: Record<string, unknown>): DestileriaMissionVisionData {
+  const mvRaw = (raw.mission_vision ?? raw.missionVision ?? raw) as Record<string, unknown>;
+  const mvConf = (mvRaw._configuracion ?? {}) as Record<string, unknown>;
+  const listaValues = (mvRaw.lista_values ?? mvRaw.values ?? []) as unknown[];
+  const values = listaValues.map((v) => {
+    const r = (v ?? {}) as Record<string, unknown>;
+    return {
+      key: String(r.key ?? ""),
+      title: String(r.txt_titulo ?? r.title ?? ""),
+      description: String(r.txt_descripcion ?? r.description ?? ""),
+    };
+  });
+  const rawTabLabels = mvConf.tab_labels as { mission?: string; vision?: string; values?: string } | undefined;
+  const tabLabels =
+    rawTabLabels &&
+    rawTabLabels.mission != null &&
+    rawTabLabels.vision != null &&
+    rawTabLabels.values != null
+      ? {
+          mission: String(rawTabLabels.mission),
+          vision: String(rawTabLabels.vision),
+          values: String(rawTabLabels.values),
+        }
+      : undefined;
+  const layoutVal = mvConf.layout as string | undefined;
+  const layout = layoutVal === "blocks" || layoutVal === "tabs" ? layoutVal : layoutVal === "default" ? "blocks" : undefined;
+  return {
+    mission: String(mvRaw.txt_mission ?? mvRaw.mission ?? ""),
+    vision: String(mvRaw.txt_vision ?? mvRaw.vision ?? ""),
+    values,
+    tabLabels,
+    layout: layout ?? undefined,
+  };
+}
+
+/** Mapea data de banner_full (highlights individuales, API) a DestileriaTextHighlightData. Busca highlights_1, highlights_2, highlights_3... */
+export function mapBannerFullToHighlightFromCms(raw: Record<string, unknown>): DestileriaTextHighlightData {
+  const highlightKey = Object.keys(raw).find((k) => k.startsWith("highlights_") && typeof (raw[k] as unknown) === "object");
+  const r = (highlightKey ? (raw[highlightKey] as Record<string, unknown>) : raw) as Record<string, unknown>;
+  const conf = (r._configuracion ?? {}) as Record<string, unknown>;
+  const rawParrafos = (r.lista_parrafos ?? r.list_parrafos ?? []) as unknown[];
+  const bodyFromParrafos =
+    Array.isArray(rawParrafos) && rawParrafos.length > 0
+      ? rawParrafos
+          .map((p) =>
+            typeof p === "string" ? p : (p && typeof p === "object" && "txt_parrafo" in (p as object) ? String((p as { txt_parrafo?: unknown }).txt_parrafo ?? "") : "")
+          )
+          .filter(Boolean)
+          .join("\n\n")
+      : "";
+  const body = String(r.txt_body ?? "").trim() || bodyFromParrafos;
+  return {
+    title: r.txt_titulo != null ? String(r.txt_titulo) : undefined,
+    body,
+    highlightQuote: r.txt_quote_optional != null ? String(r.txt_quote_optional) : undefined,
+    backgroundImage: r.img_fondo_optional != null ? String(r.img_fondo_optional) : undefined,
+    backgroundImageAlt: r.txt_alt_fondo_optional != null ? String(r.txt_alt_fondo_optional) : undefined,
+    parallax: conf.parallax === true,
+    textAlign: (conf.textAlign as "left" | "center" | "right") ?? "left",
+  };
 }
 
 export function getContactPageData(locale?: string): ContactPageData {

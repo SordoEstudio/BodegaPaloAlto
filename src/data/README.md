@@ -22,3 +22,15 @@ La capa de datos está en **`src/lib/data.ts`**: expone `getWelcomeData(locale)`
 ## Imágenes
 
 Las URLs en los JSON (`imageSrc`) apuntan a rutas públicas (ej. `/1.jpg`, `/lineas/benito-a.jpg`). Esas imágenes deben existir en **`public/`** o llegar vía CMS. Al conectar el CMS, `imageSrc` serán las URLs que devuelva la API.
+
+## Compatibilidad con la API / CMS
+
+Los JSON de la home siguen las mismas reglas que el manual de componentes CMS (`portable-dynamic-cms/MANUAL_JSON_COMPONENTES_CMS_FORMULARIO_DINAMICO.md`):
+
+- **Prefijos de campo:** `txt_` (texto), `img_` (imagen/URL), `link_` (enlace con `url` y `label`), `lista_` (arrays).
+- **Opcionales:** claves que terminan en `_optional` (ej. `txt_alt_optional`).
+- **No editables en formulario pero guardados:** claves que empiezan por `_`:
+  - **`_configuracion`**: variante, layout, parallax, etc. (por tipo).
+  - **`_orden`**: orden del componente en la página (1, 2, 3…).
+
+Así el mismo `data` sirve para los JSON locales y para lo que devuelve la API de componentes.
