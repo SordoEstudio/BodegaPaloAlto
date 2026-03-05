@@ -1,11 +1,8 @@
-import { getDestileriaData } from "@/lib/data";
-import { DestileriaHero } from "@/components/destileria/DestileriaHero";
-import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySplit";
-import { DestileriaTextHighlight } from "@/components/destileria/DestileriaTextHighlight";
-import { DestileriaMissionVision } from "@/components/destileria/DestileriaMissionVision";
-import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto";
+import { DestileriaPageWithCMS } from "@/components/destileria/DestileriaPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
+
+const useCmsLayout = process.env.NEXT_PUBLIC_USE_CMS_LAYOUT === "true";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -31,20 +28,5 @@ export default async function DestileriaPage({ params }: PageProps) {
     redirect(`/${DEFAULT_LOCALE}/destileria`);
   }
 
-  const data = getDestileriaData(locale);
-
-  return (
-    <>
-      <DestileriaHero data={data.hero} />
-      {data.storySplits.map((section) => (
-        <DestileriaStorySplit key={section.title} data={section} />
-      ))}
-      {data.textHighlights.map((section, i) => (
-        <DestileriaTextHighlight key={section.title ?? i} data={section} />
-      ))}
-      <DestileriaMissionVision data={data.missionVision} />
-      <DestileriaTextHighlight data={data.textPromises} />
-      <DestileriaManifesto data={data.manifesto} />
-    </>
-  );
+  return <DestileriaPageWithCMS useCmsLayout={useCmsLayout} />;
 }

@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { API_CONFIG, buildApiUrl } from "../config/api-config";
 import type {
   CMSComponent,
-  CMSComponentsResponse,
   CMSComponentFilters,
   UseCMSComponentsReturn,
 } from "../types/cms-components";
@@ -17,27 +16,37 @@ export function useCMSComponents(
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { getFromCache, setCacheData, getCacheStats } = useCMSCache();
+  const filtersRef = useRef(filters);
+  filtersRef.current = filters;
 
   const cacheKey = `cms_${JSON.stringify(filters ?? {})}`;
 
   const fetchComponents = useCallback(async () => {
+    const currentFilters = filtersRef.current;
     try {
       setLoading(true);
       setError(null);
 
       const cached = getFromCache(cacheKey);
-      if (cached) {
+      if (cached && Array.isArray(cached) && cached.length > 0) {
         setComponents(cached);
         setLoading(false);
         return;
       }
 
       const params: Record<string, string> = {};
-      if (filters?.type) params.type = filters.type;
-      if (filters?.page_filter) params.page_filter = filters.page_filter;
-      if (filters?.status) params.status = filters.status;
+      if (currentFilters?.type) params.type = currentFilters.type;
+      if (currentFilters?.page_filter) params.page_filter = currentFilters.page_filter;
+      if (currentFilters?.status) params.status = currentFilters.status;
 
       const url = buildApiUrl(API_CONFIG.ENDPOINTS.CMS_COMPONENTS, params);
+
+      console.log("[useCMSComponents] Llamada API:", {
+        url,
+        method: "GET",
+        params,
+        filters: currentFilters,
+      });
 
       const response = await fetch(url, {
         method: "GET",
@@ -48,8 +57,20 @@ export function useCMSComponents(
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
 
-      const json: CMSComponentsResponse = await response.json();
-      const list = json?.data?.components ?? [];
+      const json = await response.json();
+
+      const data = json?.data;
+      const inner = data?.data ?? data;
+      const list: CMSComponent[] = Array.isArray(inner?.components) ? inner.components : (json?.data?.components ?? []);
+
+      console.log("[useCMSComponents] Respuesta API:", {
+        ok: response.ok,
+        status: response.status,
+        data: json,
+        componentsCount: list.length,
+        extractedFrom: inner === data ? "data.components" : "data.data.components",
+      });
+
       const visible = list.filter((c) => c.isVisible !== false);
       setCacheData(cacheKey, visible);
       setComponents(visible);
@@ -59,7 +80,7 @@ export function useCMSComponents(
     } finally {
       setLoading(false);
     }
-  }, [cacheKey, filters, getFromCache, setCacheData]);
+  }, [cacheKey, getFromCache, setCacheData]);
 
   useEffect(() => {
     fetchComponents();
@@ -76,7 +97,10 @@ export function useCMSComponents(
   const getComponentsByPage = useCallback(
     (page: string) => {
       if (!components) return [];
-      return components.filter((c) => c.page === page);
+      const pageLower = (page ?? "").trim().toLowerCase();
+      return components.filter(
+        (c) => (c.page ?? "").toString().trim().toLowerCase() === pageLower
+      );
     },
     [components]
   );

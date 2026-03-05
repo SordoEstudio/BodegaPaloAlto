@@ -32,7 +32,7 @@ export interface HomeHeroSlide {
 
 export interface HomeHeroData {
   slides: HomeHeroSlide[];
-  logoImage?: string;
+  img_logo?: string;
   logoAlt?: string;
   title: string;
   subtitle: string;
@@ -75,6 +75,42 @@ export interface ProductoDestacado {
 export interface HomeProductosDestacadosData {
   sectionTitle: string;
   products: ProductoDestacado[];
+}
+
+/** Carrusel promociones – slide solo imagen (imagen + URL, todo el slide es link) */
+export interface PromoSlideSoloImagen {
+  tipo_slide: "solo_imagen";
+  imageSrc: string;
+  imageAlt: string;
+  /** Si existe, todo el slide es clickeable hacia esta URL */
+  url?: string;
+  linkLabel?: string;
+}
+
+/** Carrusel promociones – slide imagen con texto (overlay con título, subtítulo, detalle, botón) */
+export interface PromoSlideImagenConTexto {
+  tipo_slide: "imagen_con_texto";
+  imageSrc?: string;
+  imageAlt?: string;
+  title?: string;
+  subtitle?: string;
+  detail?: string;
+  buttonLabel?: string;
+  buttonUrl?: string;
+  /** Si true, usa colores y tipografía Magic Stone (destilería); si false, Palo Alto (bodega). */
+  esDestileria?: boolean;
+}
+
+export type PromoCarouselSlide = PromoSlideSoloImagen | PromoSlideImagenConTexto;
+
+export interface PromoCarouselConfig {
+  autoplay?: boolean;
+  intervalo_segundos?: number;
+}
+
+export interface PromoCarouselData {
+  slides: PromoCarouselSlide[];
+  config: PromoCarouselConfig;
 }
 
 /** Home - Contacto */
@@ -125,7 +161,12 @@ export interface ContactFormData {
     email: string;
     phone: string;
     message: string;
+    /** Texto completo del consentimiento (si no se usan privacyPrefix/Link/suffix) */
     privacy: string;
+    /** Si están definidos, se muestra: prefix + enlace(privacyLinkText) + suffix */
+    privacyPrefix?: string;
+    privacyLinkText?: string;
+    privacySuffix?: string;
     submit: string;
   };
   successMessage: string;
@@ -136,9 +177,29 @@ export interface ContactFormData {
 export interface ContactBlockData {
   title: string;
   facebookUrl?: string;
+  facebookValue?: string;
   instagramUrl?: string;
+  instagramValue?: string;
   address?: string;
   addressUrl?: string;
+}
+
+/** Política de Privacidad – sección */
+export interface PrivacyPolicySection {
+  id: string;
+  title?: string;
+  content: string;
+}
+
+/** Página Política de Privacidad */
+export interface PrivacyPolicyData {
+  title: string;
+  lastUpdated: string;
+  companyName: string;
+  address: string;
+  contactEmail: string;
+  metaDescription: string;
+  sections: PrivacyPolicySection[];
 }
 
 /** Página Contacto – datos completos */
@@ -232,13 +293,13 @@ export interface FooterData {
     href: string;
   };
   address: string;
-  lista_contacto: { label: string; href: string; ariaLabel: string }[];
-  lista_contacto_destileria: { label: string; href: string; ariaLabel: string }[];
+  lista_contacto: { label: string; href: string; ariaLabel: string; value?: string }[];
+  lista_contacto_destileria: { label: string; href: string; ariaLabel: string; value?: string }[];
   addressUrl?: string;
   phone?: string;
   email?: string;
   whatsapp?: string;
-  socialLinks: { label: string; href: string; ariaLabel: string }[];
+  socialLinks: { label: string; href: string; ariaLabel: string; value?: string }[];
   disclaimer: string;
   developedBy: string;
   developedByUrl?: string;
@@ -252,6 +313,8 @@ export interface DestileriaHeroData {
   ctaUrl: string;
   backgroundImage?: string;
   logoImage?: string;
+  /** Posición vertical del contenido (logo, título, subtítulo). Default: "top" */
+  position?: "top" | "center" | "bottom";
 }
 
 /** Destilería – Story split (texto + imagen); imagePosition define lado de la imagen en desktop */

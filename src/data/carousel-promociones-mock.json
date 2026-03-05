@@ -1,0 +1,68 @@
+{
+  "name": "Carrusel promociones inicio",
+  "description": "Promociones y ofertas - mock con ambos tipos de slide",
+  "type": "carousel_promociones",
+  "page": "inicio",
+  "data": {
+    "lista_slides": [
+      {
+        "tipo_slide": "solo_imagen",
+        "img_imagen": "/1.jpg",
+        "txt_alt_imagen": "Promo verano - Vinos seleccionados",
+        "link_destino_optional": {
+          "url": "/es/bodega",
+          "label": "Ver bodega"
+        },
+        "boolean_destileria":false
+      },
+      {
+        "tipo_slide": "imagen_con_texto",
+        "img_imagen": "/18.JPEG",
+        "txt_alt_imagen": "Fondo contacto Bodega Palo Alto",
+        "txt_titulo_optional": "Visitanos en Mendoza",
+        "txt_subtitulo_optional": "Videla Aranda 502, Cruz de Piedra, Maipú",
+        "txt_detalle_optional": "Conocé nuestra bodega y degustá los mejores vinos de la región. Reservá tu visita.",
+        "txt_label_boton_optional": "Reservar visita",
+        "link_boton_optional": {
+          "url": "/es/contacto",
+          "label": "Reservar visita"
+        },
+        "boolean_destileria":false
+      },
+      {
+        "tipo_slide": "solo_imagen",
+        "img_imagen": "/0001.JPEG",
+        "txt_alt_imagen": "Viñedos Mendoza - Oferta especial",
+        "link_destino_optional": {
+          "url": "https://bodegapaloalto.com",
+          "label": "Ver oferta"
+        },
+        "boolean_destileria":false
+      },
+      {
+        "tipo_slide": "imagen_con_texto",
+        "img_imagen": "/destileria/3.jpg",
+        "txt_alt_imagen": "",
+        "txt_titulo_optional": "Destilería Magic Stone",
+        "txt_subtitulo_optional": "Destilados con identidad mendocina",
+        "txt_detalle_optional": "Descubrí nuestra línea de destilados artesanales.",
+        "txt_label_boton_optional": "Conocer destilería",
+        "link_boton_optional": {
+          "url": "/es/destileria",
+          "label": "Conocer destilería"
+        },
+        "boolean_destileria":true
+      }
+    ],
+    "_configuracion": {
+      "autoplay": true,
+      "intervalo_segundos": 5    }
+  },
+  "thumbnail": null,
+  "isVisible": true,
+  "isActive": true,
+  "createdAt": "2026-03-05T18:00:00.000Z",
+  "updatedAt": "2026-03-05T18:00:00.000Z",
+  "clientName": "Bodega Palo Alto",
+  "_id": "promo-carousel-mock-01"
+}

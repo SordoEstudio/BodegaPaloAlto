@@ -3,7 +3,12 @@
     { "img_src": "/1.jpg", "txt_alt": "Bodega Palo Alto - Viñedos Mendoza" },
     { "img_src": "/0001.JPEG", "txt_alt": "Bodega Palo Alto - Mendoza" }
   ],
-  "logoImage": "/logos/logo-f-mm-b.png",
+  "img_logo": "/logos/logo-f-mm-b.png",
   "txt_titulo": "",
-  "txt_subtitulo": "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta empresa familiar."
+  "txt_subtitulo": "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta empresa familiar.",
+  "_configuracion": {
+    "variant": "default",
+    "layout": "default"
+  },
+  "_orden": 1
 }

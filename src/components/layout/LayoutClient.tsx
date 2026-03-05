@@ -35,7 +35,12 @@ export function LayoutClient({
       {!isWelcome && (
         <Header dataEs={headerEs} dataEn={headerEn} />
       )}
-      <main id="main-content">{children}</main>
+      <main
+        id="main-content"
+        className={isWelcome ? "min-h-screen h-screen flex flex-col" : ""}
+      >
+        {children}
+      </main>
       {!isWelcome && (
         <Footer dataEs={footerEs} dataEn={footerEn} />
       )}

@@ -50,10 +50,10 @@ body {
   font-family: var(--font-heading), Georgia, serif;
 }
 
-/* Destilería Magic Stone – título hero: Biennale Heavy (archivo en public/fonts/Biennale-Heavy.woff2) */
+/* Destilería Magic Stone – título hero: Biennale Heavy (public/fonts/Biennale-Heavy.otf) */
 @font-face {
   font-family: "Biennale Heavy";
-  src: url("/fonts/Biennale-Heavy.woff2") format("woff2");
+  src: url("/fonts/Biennale-Heavy.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
   font-display: swap;

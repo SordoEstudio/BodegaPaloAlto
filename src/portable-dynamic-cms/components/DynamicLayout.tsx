@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, type ReactNode, type ComponentType } from "react";
+import { useMemo, useCallback, type ReactNode, type ComponentType } from "react";
 import { useClientConfig } from "../contexts/ClientConfigProvider";
-import { useCMSComponents } from "../hooks/useCMSComponents";
-import { usePageCMS } from "../hooks/usePageCMS";
+import { useCMSComponentsFromContext } from "../contexts/CMSComponentsProvider";
 import type { CMSComponent } from "../types/cms-components";
 
 export interface DynamicLayoutComponentProps {
@@ -23,9 +22,15 @@ export interface DynamicLayoutProps {
     context: {
       cmsLoading: boolean;
       cmsError: string | null;
-      pageCMS: ReturnType<typeof usePageCMS>;
+      pageCMS: { getComponentsByPage: (page: string) => CMSComponent[]; getComponentByType: (type: string) => CMSComponent | null; components: CMSComponent[] | null; loading: boolean; error: string | null };
+      /** Componentes de la página (sin filtrar por layout). Permite fusionar datos entre componentes (ej. team → quienes_somos). */
+      pageComponents?: CMSComponent[];
     }
   ) => DynamicLayoutComponentProps;
+  /** Si se define, los dos primeros componentes con estos layoutName se renderizan en un bloque: el primero ocupa el alto y el segundo en absolute bottom (ej. hero + carousel overlay). */
+  overlayGroup?: { first: string; second: string };
+  /** Layout names a no renderizar (ej. team-bodega cuando el equipo va integrado en about-bodega). */
+  excludeLayoutNames?: string[];
   LoadingComponent?: ComponentType<{ type?: string }> | ReactNode;
   EmptyComponent?: ComponentType<{ pageType: string }> | ReactNode;
 }
@@ -52,6 +57,8 @@ export function DynamicLayout({
   cmsTypeToLayoutName,
   componentMap,
   getComponentProps = defaultGetComponentProps,
+  overlayGroup,
+  excludeLayoutNames,
   LoadingComponent,
   EmptyComponent,
 }: DynamicLayoutProps) {
@@ -61,8 +68,31 @@ export function DynamicLayout({
     loading: cmsLoading,
     error: cmsError,
     getComponentsByPage,
-  } = useCMSComponents();
-  const pageCMS = usePageCMS();
+    getComponentByType,
+  } = useCMSComponentsFromContext();
+
+  const pageCMS = useMemo(
+    () => ({
+      getComponentsByPage,
+      getComponentByType,
+      components,
+      loading: cmsLoading,
+      error: cmsError,
+    }),
+    [getComponentsByPage, getComponentByType, components, cmsLoading, cmsError]
+  );
+
+  const getLayoutName = useCallback(
+    (cmsType: string): string | undefined => {
+      const t = (cmsType ?? "").toString().trim();
+      if (!t) return undefined;
+      return (
+        cmsTypeToLayoutName[cmsType] ??
+        cmsTypeToLayoutName[t.toLowerCase()]
+      );
+    },
+    [cmsTypeToLayoutName]
+  );
 
   const pageComponents = useMemo(() => {
     if (!components) return [];
@@ -84,11 +114,19 @@ export function DynamicLayout({
       return 0;
     });
 
-    return sorted.filter((c) => {
-      const name = cmsTypeToLayoutName[c.type];
+    const filtered = sorted.filter((c) => {
+      const name = getLayoutName(c.type);
       return name !== undefined && componentMap[name] != null;
     });
-  }, [pageComponents, cmsLoading, components, cmsTypeToLayoutName, componentMap]);
+    if (excludeLayoutNames?.length) {
+      const excludeSet = new Set(excludeLayoutNames);
+      return filtered.filter((c) => {
+        const name = getLayoutName(c.type);
+        return name == null || !excludeSet.has(name);
+      });
+    }
+    return filtered;
+  }, [pageComponents, cmsLoading, components, getLayoutName, componentMap, excludeLayoutNames]);
 
   if (configLoading && !config) {
     if (LoadingComponent) {
@@ -138,27 +176,76 @@ export function DynamicLayout({
 
   const getProps = getComponentProps ?? defaultGetComponentProps;
 
+  const useOverlay =
+    overlayGroup &&
+    layoutComponents.length >= 2 &&
+    (getLayoutName(layoutComponents[0].type) ?? layoutComponents[0].type) === overlayGroup.first &&
+    (getLayoutName(layoutComponents[1].type) ?? layoutComponents[1].type) === overlayGroup.second;
+
   return (
     <>
-      {layoutComponents.map((cmsComponent, index) => {
-        const layoutName =
-          cmsTypeToLayoutName[cmsComponent.type] ?? cmsComponent.type;
-        const Component = componentMap[layoutName];
-        if (!Component) return null;
-
-        const props = getProps(layoutName, cmsComponent, {
-          cmsLoading,
-          cmsError,
-          pageCMS,
-        });
-
-        return (
-          <Component
-            key={`${cmsComponent.type}-${cmsComponent._id ?? index}`}
-            {...props}
-          />
-        );
-      })}
+      {useOverlay ? (
+        <>
+          <div className="relative min-h-[calc(100dvh-4.5rem)]">
+            {(() => {
+              const cms0 = layoutComponents[0];
+              const cms1 = layoutComponents[1];
+              const name0 = getLayoutName(cms0.type) ?? cms0.type;
+              const name1 = getLayoutName(cms1.type) ?? cms1.type;
+              const Comp0 = componentMap[name0];
+              const Comp1 = componentMap[name1];
+              if (!Comp0 || !Comp1) return null;
+              const props0 = getProps(name0, cms0, { cmsLoading, cmsError, pageCMS, pageComponents });
+              const props1 = getProps(name1, cms1, { cmsLoading, cmsError, pageCMS, pageComponents });
+              return (
+                <>
+                  <Comp0 key={`${cms0.type}-${cms0._id ?? 0}`} {...props0} />
+                  <div className="absolute bottom-0 left-0 right-0 z-10">
+                    <Comp1 key={`${cms1.type}-${cms1._id ?? 1}`} {...props1} />
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+          {layoutComponents.slice(2).map((cmsComponent, index) => {
+            const layoutName =
+              getLayoutName(cmsComponent.type) ?? cmsComponent.type;
+            const Component = componentMap[layoutName];
+            if (!Component) return null;
+            const props = getProps(layoutName, cmsComponent, {
+              cmsLoading,
+              cmsError,
+              pageCMS,
+              pageComponents,
+            });
+            return (
+              <Component
+                key={`${cmsComponent.type}-${cmsComponent._id ?? index + 2}`}
+                {...props}
+              />
+            );
+          })}
+        </>
+      ) : (
+        layoutComponents.map((cmsComponent, index) => {
+          const layoutName =
+            getLayoutName(cmsComponent.type) ?? cmsComponent.type;
+          const Component = componentMap[layoutName];
+          if (!Component) return null;
+          const props = getProps(layoutName, cmsComponent, {
+            cmsLoading,
+            cmsError,
+            pageCMS,
+            pageComponents,
+          });
+          return (
+            <Component
+              key={`${cmsComponent.type}-${cmsComponent._id ?? index}`}
+              {...props}
+            />
+          );
+        })
+      )}
     </>
   );
 }

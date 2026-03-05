@@ -1,9 +1,8 @@
-import { getBodegaData } from "@/lib/data";
-import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
-import { BodegaEquipoFichas } from "@/components/bodega/BodegaEquipoFichas";
-import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
+import { BodegaPageWithCMS } from "@/components/bodega/BodegaPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
+
+const useCmsLayout = process.env.NEXT_PUBLIC_USE_CMS_LAYOUT === "true";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -27,17 +26,5 @@ export default async function BodegaPage({ params }: PageProps) {
     redirect(`/${DEFAULT_LOCALE}/bodega`);
   }
 
-  const data = getBodegaData(locale);
-
-  return (
-    <>
-      <BodegaQuienesSomos data={data.quienesSomos} equipo={data.equipo} />
-      {!data.quienesSomos.showEquipo && <BodegaEquipoFichas data={data.equipo} />}
-      <BodegaFincasSection
-        data={data.fincasSection}
-        finca1={data.finca1}
-        finca2={data.finca2}
-      />
-    </>
-  );
+  return <BodegaPageWithCMS useCmsLayout={useCmsLayout} />;
 }

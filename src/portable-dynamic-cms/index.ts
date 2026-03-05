@@ -23,6 +23,10 @@ export {
   ClientConfigProvider,
   useClientConfig,
 } from "./contexts/ClientConfigProvider";
+export {
+  CMSComponentsProvider,
+  useCMSComponentsFromContext,
+} from "./contexts/CMSComponentsProvider";
 
 export { useCMSCache } from "./hooks/useCMSCache";
 export { useCMSComponents } from "./hooks/useCMSComponents";

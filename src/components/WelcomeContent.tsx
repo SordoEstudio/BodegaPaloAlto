@@ -30,6 +30,7 @@ export function WelcomeContent({ data, locale = "es" }: WelcomeContentProps) {
       imageSrc={hero.imageSrc || undefined}
       imageAlt={hero.imageAlt}
       contentClassName="text-white"
+      fullViewport
     >
 <div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-white/35 px-8 py-10 ">
   {logoImage && (

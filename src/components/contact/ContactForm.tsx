@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import type { ContactFormData } from "@/types/sections";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -232,6 +233,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
               id="contact-message"
               required
               minLength={10}
+              maxLength={2000}
               rows={4}
               disabled={isDisabled}
               value={state.message}
@@ -240,6 +242,9 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
               aria-describedby={fieldErrors.message ? "contact-message-err" : undefined}
               className={inputClass + " resize-y"}
             />
+            <p className={`mt-1 text-xs ${onDark ? "text-white/60" : "text-foreground/60"}`} aria-live="polite">
+              {state.message.length} / 2000
+            </p>
             {fieldErrors.message && (
               <p id="contact-message-err" className="mt-1 text-sm text-red-400">
                 {fieldErrors.message}
@@ -252,6 +257,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
               <input
                 type="checkbox"
                 required
+                name="privacyConsent"
                 checked={state.privacy}
                 disabled={isDisabled}
                 onChange={(e) => update("privacy", e.target.checked)}
@@ -259,7 +265,22 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
                 className="mt-1 h-4 w-4 rounded border-zinc-300 bg-zinc-900 text-palo-alto-primary focus:ring-palo-alto-primary"
               />
               <span className={`text-sm ${onDark ? "text-white/95" : "text-foreground"}`}>
-                {labels.privacy}
+                {labels.privacyPrefix != null && labels.privacyLinkText != null && labels.privacySuffix != null ? (
+                  <>
+                    {labels.privacyPrefix}
+                    <Link
+                      href={`/${locale}/politica-de-privacidad`}
+                      className="underline transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-1 rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {labels.privacyLinkText}
+                    </Link>
+                    {labels.privacySuffix}
+                  </>
+                ) : (
+                  labels.privacy
+                )}
               </span>
             </label>
             {fieldErrors.privacy && (

@@ -69,7 +69,7 @@ app/
 
 - En **cada** `page.tsx` bajo `[locale]`, recibir `params: { locale: string }` y:
   - Validar con `isValidLocale(params.locale)`; si no es válido, redirigir a `/${DEFAULT_LOCALE}` o a la ruta equivalente en español.
-  - Llamar a los getters con el locale: `getContactPageData(params.locale)`, `getDestileriaData(params.locale)`, etc.
+  - Pasar el locale a los componentes (contacto obtiene datos vía API CMS con `page_filter=contacto`; bodega/destilería usan getters o CMS según configuración).
 - **Eliminar** después de la migración:
   - `app/contacto/`, `app/bodega/`, `app/destileria/`
   - `app/en/` (toda la carpeta)

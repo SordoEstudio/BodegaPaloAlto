@@ -7,5 +7,7 @@
     { "txt_nombre": "Amadores", "img_linea": "/lineas/amadores.jpg", "txt_alt_optional": "Línea Amadores", "link_url": "/vinos/amadores" },
     { "txt_nombre": "Cumbres del Plata", "img_linea": "/lineas/cumbres-del-plata.jpg", "txt_alt_optional": "Línea Cumbres del Plata", "link_url": "/vinos/cumbres-del-plata" },
     { "txt_nombre": "Efigenia", "img_linea": "/lineas/efigenia.jpg", "txt_alt_optional": "Línea Efigenia - Espumantes", "link_url": "/espumantes/efigenia" }
-  ]
+  ],
+  "_configuracion": { "variant": "default" },
+  "_orden": 2
 }

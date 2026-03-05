@@ -4,7 +4,7 @@ import { Ubuntu, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { LayoutClient } from "@/components/layout/LayoutClient";
 import { getHeaderData, getFooterData } from "@/lib/data";
-import { ClientConfigProvider } from "@/portable-dynamic-cms";
+import { ClientConfigProvider, CMSComponentsProvider } from "@/portable-dynamic-cms";
 import { getClientConfig } from "@/portable-dynamic-cms/config/client-config-loader";
 
 /** Tipografía secundaria (textos): Ubuntu – Manual de marca */
@@ -50,6 +50,7 @@ export default async function RootLayout({
     <html lang="es" className={`${ubuntu.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
         <ClientConfigProvider initialConfig={initialConfig}>
+          <CMSComponentsProvider>
           <LayoutClient
             headerEs={headerEs}
             headerEn={headerEn}
@@ -58,6 +59,7 @@ export default async function RootLayout({
           >
             {children}
           </LayoutClient>
+          </CMSComponentsProvider>
         </ClientConfigProvider>
       </body>
     </html>

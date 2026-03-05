@@ -9,7 +9,7 @@ interface DestileriaHeroProps {
 
 /** Hero destilería: misma lógica que HeroFullScreen del sitio, con overlay oscuro y acento Magic Stone. */
 export function DestileriaHero({ data }: DestileriaHeroProps) {
-  const { title, subtitle, ctaLabel, ctaUrl, backgroundImage, logoImage } = data;
+  const { title, subtitle, ctaLabel, ctaUrl, backgroundImage, logoImage, position } = data;
   const hasImage = Boolean(backgroundImage?.trim());
   const hasLogo = Boolean(logoImage?.trim());
 
@@ -19,6 +19,7 @@ export function DestileriaHero({ data }: DestileriaHeroProps) {
       imageAlt="Magic Stone Destilería"
       contentClassName="text-black"
       dark={false}
+      contentPosition={position ?? "top"}
     >
       <div className="flex flex-col items-center gap-8">
         {hasLogo && (
@@ -34,7 +35,7 @@ export function DestileriaHero({ data }: DestileriaHeroProps) {
           </div>
         )}
         <div className="text-center">
-          <h1 className="font-destileria-hero text-3xl uppercase tracking-tight text-magic-stone-primary sm:text-4xl md:text-5xl">
+          <h1 className="font-destileria-hero text-3xl uppercase tracking-tight  sm:text-4xl md:text-5xl">
             {title}
           </h1>
         <p className="mt-4 text-lg font-light opacity-95 sm:text-xl">

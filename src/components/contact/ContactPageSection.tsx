@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 import { ContactForm } from "@/components/contact/ContactForm";
-import type { ContactPageData } from "@/types/sections";
+import type { ContactPageData, ContactBlockData } from "@/types/sections";
 
 interface ContactPageSectionProps {
   data: ContactPageData;
@@ -12,12 +12,12 @@ interface ContactPageSectionProps {
   sourcePage?: string;
 }
 
-/** Bloque de datos: título y enlaces/dirección uno debajo del otro */
+/** Bloque de datos: título y enlaces/dirección uno debajo del otro (se muestra txt_valor) */
 function ContactBlockStack({
   block,
   onDark,
 }: {
-  block: { title: string; facebookUrl?: string; instagramUrl?: string; address?: string; addressUrl?: string };
+  block: ContactBlockData;
   onDark: boolean;
 }) {
   const titleClass = onDark
@@ -35,17 +35,19 @@ function ContactBlockStack({
       <ul className={`mt-3 space-y-2 text-sm ${textClass}`} role="list">
         {block.facebookUrl && (
           <li>
-            <Link href={block.facebookUrl} target="_blank" rel="noopener noreferrer" className={linkClass} aria-label="Facebook">
+            <Link href={block.facebookUrl} target="_blank" rel="noopener noreferrer" className={linkClass} aria-label={block.facebookValue || "Facebook"}
+            >
               <FaFacebookF className="h-4 w-4 shrink-0" />
-              <span>Facebook</span>
+              <span>{block.facebookValue || "Facebook"}</span>
             </Link>
           </li>
         )}
         {block.instagramUrl && (
           <li>
-            <Link href={block.instagramUrl} target="_blank" rel="noopener noreferrer" className={linkClass} aria-label="Instagram">
+            <Link href={block.instagramUrl} target="_blank" rel="noopener noreferrer" className={linkClass} aria-label={block.instagramValue || "Instagram"}
+            >
               <FaInstagram className="h-4 w-4 shrink-0" />
-              <span>Instagram</span>
+              <span>{block.instagramValue || "Instagram"}</span>
             </Link>
           </li>
         )}
