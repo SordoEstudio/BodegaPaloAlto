@@ -104,9 +104,26 @@ Front:
 
 ---
 
-## 8. Próximos pasos (cuando se implemente)
+## 8. Requisitos en el CMS para que el carrusel se muestre
 
-1. Definir tipo en CMS: `carousel_promociones` (o `promo_carousel`).
+Para que el carrusel aparezca en **Inicio**, **Bodega** o **Destilería**, cada componente en la API debe cumplir:
+
+| Campo (top-level) | Valor esperado | Notas |
+|-------------------|----------------|--------|
+| **type** | `carrusel_promocional` \| `carrusel_bodega` \| `carrusel_destileria` | El front mapea los tres al mismo componente carrusel. Inicio suele usar `carrusel_promocional`; bodega y destilería pueden usar `carrusel_bodega` y `carrusel_destileria` si en el CMS se configuran tipos/claves distintas por página. |
+| **page** | `Inicio` \| `bodega` \| `destileria` | Debe coincidir con la página donde debe mostrarse. La comparación en front es **case-insensitive** (`bodega` = `Bodega`). |
+| **data.lista_slides** | Array de slides | Ver sección 4. Cada ítem con `tipo_slide`, `img_imagen`, etc. |
+| **data._configuracion** | `{ autoplay?, intervalo_segundos? }` | Opcional. |
+| **data._orden** | Número | Opcional; define el orden respecto a otros componentes de la misma página. |
+| **isVisible** | `true` | Los componentes con `isVisible: false` se filtran y no se muestran. |
+
+No hace falta cambiar nada en el CMS si ya envía `type: "carrusel_promocional"` y `page: "bodega"` / `"destileria"` para cada instancia. Si aun así no se ve, revisar que la respuesta de la API (sin `page_filter`) incluya todos los componentes y que cada uno tenga `type` y `page` correctos.
+
+---
+
+## 9. Próximos pasos (cuando se implemente)
+
+1. ~~Definir tipo en CMS: `carrusel_promocional`.~~
 2. En el CMS: formulario por slide según `tipo_slide` (mostrar/ocultar campos).
-3. En front: componente React del carrusel, mapper `data` → props, estilos para flechas/indicadores solo en hover.
-4. Registrar en `cms-layout-map` y asignar a la(s) página(s) que correspondan (un carrusel por página).
+3. ~~En front: componente React del carrusel, mapper `data` → props, estilos para flechas/indicadores solo en hover.~~
+4. ~~Registrar en `cms-layout-map` y asignar a la(s) página(s) que correspondan (un carrusel por página).~~

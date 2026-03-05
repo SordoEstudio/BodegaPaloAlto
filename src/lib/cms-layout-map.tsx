@@ -17,6 +17,7 @@ import {
   mapAboutBodegaFromCms,
   mapTeamBodegaFromCms,
   mapFincasBodegaFromCms,
+  mapPromoCarouselFromCms,
 } from "@/lib/data";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCarouselLineas } from "@/components/home/HomeCarouselLineas";
@@ -30,15 +31,21 @@ import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto
 import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
 import { BodegaEquipoFichas } from "@/components/bodega/BodegaEquipoFichas";
 import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
+import { PromoCarousel } from "@/components/promo/PromoCarousel";
 import type { HomeHeroData, HomeCarouselLineasData, HomeBannerData, HomeProductosDestacadosData } from "@/types/sections";
 import type { DestileriaHeroData, DestileriaStorySplitData, DestileriaTextHighlightData, DestileriaMissionVisionData, DestileriaManifestoData } from "@/types/sections";
 import type { BodegaQuienesSomosData, BodegaEquipoData } from "@/types/sections";
+import type { PromoCarouselData } from "@/types/sections";
 
 export const cmsTypeToLayoutName: Record<string, string> = {
   home_hero: "home-hero",
   home_carrousel_lineas: "home-carousel-lineas",
   home_banner: "home-banner",
   home_productos_destacados: "home-productos-destacados",
+  carrusel_promocional: "promo-carousel",
+  carrusel_bodega: "promo-carousel",
+  carrusel_destileria: "promo-carousel",
+  carrusel_contacto: "promo-carousel",
   portada_destileria: "portada-destileria",
   historia_destileria: "historia-destileria",
   destileria_historia: "historia-destileria",
@@ -53,6 +60,7 @@ export const cmsTypeToLayoutName: Record<string, string> = {
   manifiesto: "manifest-destileria",
   hero_banner: "home-banner",
   about: "about-bodega",
+  quienes_somos: "about-bodega",
   team: "team-bodega",
   fincas: "fincas-bodega",
 };
@@ -145,6 +153,12 @@ function FincasBodegaWrapper(props: DynamicLayoutComponentProps) {
   );
 }
 
+function PromoCarouselWrapper(props: DynamicLayoutComponentProps) {
+  const data = props.data as PromoCarouselData | undefined;
+  if (!data?.slides?.length) return null;
+  return <PromoCarousel data={data} minHeight="50vh" />;
+}
+
 export const componentMap: Record<string, ComponentType<DynamicLayoutComponentProps>> = {
   "home-hero": HomeHeroWrapper,
   "home-carousel-lineas": HomeCarouselLineasWrapper,
@@ -158,6 +172,7 @@ export const componentMap: Record<string, ComponentType<DynamicLayoutComponentPr
   "about-bodega": AboutBodegaWrapper,
   "team-bodega": TeamBodegaWrapper,
   "fincas-bodega": FincasBodegaWrapper,
+  "promo-carousel": PromoCarouselWrapper,
 };
 
 type GetComponentPropsContext = {
@@ -212,6 +227,12 @@ export function getDestileriaComponentProps(
         error: cmsError,
         data: mapBannerFromCms(raw) as unknown as Record<string, unknown>,
       };
+    case "promo-carousel":
+      return {
+        loading: cmsLoading,
+        error: cmsError,
+        data: mapPromoCarouselFromCms(raw) as unknown as Record<string, unknown>,
+      };
     default:
       return {
         loading: cmsLoading,
@@ -243,6 +264,12 @@ export function getBodegaComponentProps(
       return { loading: cmsLoading, error: cmsError, data: mapTeamBodegaFromCms(raw) as unknown as Record<string, unknown> };
     case "fincas-bodega":
       return { loading: cmsLoading, error: cmsError, data: mapFincasBodegaFromCms(raw) as unknown as Record<string, unknown> };
+    case "promo-carousel":
+      return {
+        loading: cmsLoading,
+        error: cmsError,
+        data: mapPromoCarouselFromCms(raw) as unknown as Record<string, unknown>,
+      };
     default:
       return { loading: cmsLoading, error: cmsError, data: raw };
   }
@@ -280,6 +307,12 @@ export function getHomeComponentProps(
         loading: cmsLoading,
         error: cmsError,
         data: mapProductosDestacadosFromCms(raw) as unknown as Record<string, unknown>,
+      };
+    case "promo-carousel":
+      return {
+        loading: cmsLoading,
+        error: cmsError,
+        data: mapPromoCarouselFromCms(raw) as unknown as Record<string, unknown>,
       };
     default:
       return {

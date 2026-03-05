@@ -97,7 +97,10 @@ export function useCMSComponents(
   const getComponentsByPage = useCallback(
     (page: string) => {
       if (!components) return [];
-      return components.filter((c) => c.page === page);
+      const pageLower = (page ?? "").trim().toLowerCase();
+      return components.filter(
+        (c) => (c.page ?? "").toString().trim().toLowerCase() === pageLower
+      );
     },
     [components]
   );

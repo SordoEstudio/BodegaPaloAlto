@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
-import { useCMSComponents } from "@/portable-dynamic-cms";
+import { useCMSComponentsFromContext } from "@/portable-dynamic-cms";
 import { mapContactoRedesToFooterLinks } from "@/lib/data";
 import { Tooltip } from "@/components/ui/Tooltip";
 import type { FooterData } from "@/types/sections";
@@ -67,7 +67,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
   const pathname = usePathname() ?? "/";
   const locale = getLocaleFromPathname(pathname);
   const data = locale === "en" ? dataEn : dataEs;
-  const { components, getComponentByType } = useCMSComponents({ page_filter: "contacto" });
+  const { components, getComponentByType } = useCMSComponentsFromContext();
 
   const contactoRedes = components ? getComponentByType("contacto_redes") : null;
   const redesFromContacto =

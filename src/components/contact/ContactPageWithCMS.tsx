@@ -1,8 +1,9 @@
 "use client";
 
-import { useCMSComponents } from "@/portable-dynamic-cms";
+import { useCMSComponentsFromContext } from "@/portable-dynamic-cms";
 import { ContactPageSection } from "@/components/contact/ContactPageSection";
-import { mapFormularioContactoFromCms, mapContactoRedesFromCms } from "@/lib/data";
+import { PromoCarousel } from "@/components/promo/PromoCarousel";
+import { mapFormularioContactoFromCms, mapContactoRedesFromCms, mapPromoCarouselFromCms } from "@/lib/data";
 import type { ContactPageData } from "@/types/sections";
 
 interface ContactPageWithCMSProps {
@@ -39,9 +40,7 @@ function ContactMissingData() {
 }
 
 export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactPageWithCMSProps) {
-  const { components, loading, error, getComponentByType } = useCMSComponents({
-    page_filter: "contacto",
-  });
+  const { components, loading, error, getComponentByType } = useCMSComponentsFromContext();
 
   if (loading && !components) {
     return <ContactLoading />;
@@ -53,6 +52,7 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
 
   const formComp = getComponentByType("formulario_contacto");
   const redesComp = getComponentByType("contacto_redes");
+  const carruselComp = getComponentByType("carrusel_contacto");
 
   if (!formComp?.data || !redesComp?.data) {
     return <ContactMissingData />;
@@ -66,11 +66,24 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
     ...redesData,
   };
 
+  const carouselData =
+    carruselComp?.data != null
+      ? mapPromoCarouselFromCms(carruselComp.data as Record<string, unknown>)
+      : null;
+
   return (
-    <ContactPageSection
-      data={data}
-      locale={locale}
-      sourcePage={sourcePage}
-    />
+    <>
+      <ContactPageSection
+        data={data}
+        locale={locale}
+        sourcePage={sourcePage}
+      />
+      {carouselData?.slides?.length ? (
+        <PromoCarousel
+          data={carouselData}
+          minHeight="50vh"
+        />
+      ) : null}
+    </>
   );
 }

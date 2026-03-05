@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { DynamicLayout } from "@/portable-dynamic-cms";
 import {
+  cmsTypeToLayoutName,
   componentMap,
   getBodegaComponentProps,
 } from "@/lib/cms-layout-map";
@@ -51,18 +52,13 @@ export function BodegaPageWithCMS({ useCmsLayout }: BodegaPageWithCMSProps) {
     return <BodegaStaticContent />;
   }
 
-  const bodegaTypeMap: Record<string, string> = {
-    about: "about-bodega",
-    quienes_somos: "about-bodega",
-    fincas: "fincas-bodega",
-  };
-
   return (
     <DynamicLayout
       pageType="bodega"
-      cmsTypeToLayoutName={bodegaTypeMap}
+      cmsTypeToLayoutName={cmsTypeToLayoutName}
       componentMap={componentMap}
       getComponentProps={getBodegaComponentProps}
+      excludeLayoutNames={["team-bodega"]}
       EmptyComponent={BodegaEmptyFallback}
     />
   );

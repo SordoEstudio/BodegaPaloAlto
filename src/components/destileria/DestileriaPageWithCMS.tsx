@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { DynamicLayout } from "@/portable-dynamic-cms";
 import {
+  cmsTypeToLayoutName,
   componentMap,
   getDestileriaComponentProps,
 } from "@/lib/cms-layout-map";
@@ -58,26 +59,10 @@ export function DestileriaPageWithCMS({ useCmsLayout }: DestileriaPageWithCMSPro
     return <DestileriaStaticContent />;
   }
 
-  const destileriaTypeMap: Record<string, string> = {
-    portada_destileria: "portada-destileria",
-    historia_destileria: "historia-destileria",
-    destileria_historia: "historia-destileria",
-    banner_full: "highlight-destileria",
-    banner_1: "highlight-destileria",
-    banner_2: "highlight-destileria",
-    banner_3: "highlight-destileria",
-    mission_vision_values: "mission-vision-values",
-    mision_vision_values: "mission-vision-values",
-    mision_vision_valores: "mission-vision-values",
-    manifest: "manifest-destileria",
-    manifiesto: "manifest-destileria",
-    hero_banner: "home-banner",
-  };
-
   return (
     <DynamicLayout
       pageType="destileria"
-      cmsTypeToLayoutName={destileriaTypeMap}
+      cmsTypeToLayoutName={cmsTypeToLayoutName}
       componentMap={componentMap}
       getComponentProps={getDestileriaComponentProps}
       EmptyComponent={DestileriaEmptyFallback}

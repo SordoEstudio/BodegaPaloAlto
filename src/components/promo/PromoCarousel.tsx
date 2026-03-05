@@ -139,7 +139,7 @@ export function PromoCarousel({ data, minHeight = "400px", className = "" }: Pro
 
   return (
     <section
-      className={`group/carousel relative w-full overflow-hidden rounded-xl ${className}`}
+      className={`group/carousel relative w-full overflow-hidden ${className}`}
       aria-label="Carrusel de promociones"
       style={{ minHeight, height: minHeight }}
     >
