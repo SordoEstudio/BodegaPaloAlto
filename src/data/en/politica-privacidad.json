@@ -1,0 +1,74 @@
+{
+  "title": "Privacy Policy",
+  "lastUpdated": "2026-03-05",
+  "companyName": "Bodega Palo Alto",
+  "address": "Videla Aranda 502, Cruz de Piedra, Maipú, Mendoza, Argentina",
+  "contactEmail": "info@bodegapaloalto.com",
+  "metaDescription": "Information about the processing of personal data on the Bodega Palo Alto website.",
+  "sections": [
+    {
+      "id": "intro",
+      "content": "This Privacy Policy describes how we collect, use and protect the personal information of users who visit this website.\n\nBy using this website or completing any form available on it, the user accepts the practices described in this policy."
+    },
+    {
+      "id": "responsible",
+      "title": "1. Data controller",
+      "content": "The controller of the personal data collected through this site is the company indicated above (name, address and contact email).\n\nFor any queries related to privacy or the processing of personal data, users may contact us at the email address indicated."
+    },
+    {
+      "id": "info",
+      "title": "2. Information we collect",
+      "content": "We may collect personal information when users interact with our website, especially when completing contact forms.\n\nData that may be collected includes: first and last name, email address, phone number (optional), type of inquiry, message sent, IP address, technical information about device and browser, date and time of the request.\n\nThis information is collected only when the user provides it voluntarily."
+    },
+    {
+      "id": "purpose",
+      "title": "3. Purpose of processing",
+      "content": "The personal data collected will be used exclusively to: respond to user inquiries or requests; maintain communications related to the inquiry made; improve the quality of service and user experience on the site; prevent misuse or fraudulent use of the form.\n\nWe do not use personal data for automated decision-making or for commercial profiling."
+    },
+    {
+      "id": "legal-basis",
+      "title": "4. Legal basis for processing",
+      "content": "The processing of personal data is based on the user's free, express and informed consent, given by accepting this Privacy Policy when submitting the form.\n\nIn jurisdictions where the General Data Protection Regulation (GDPR) or similar regulations apply, the user's consent constitutes the legal basis for processing."
+    },
+    {
+      "id": "retention",
+      "title": "5. Data retention",
+      "content": "Personal data will be retained only for as long as necessary to fulfil the purposes for which it was collected.\n\nOnce that purpose has been fulfilled, the data may be deleted or anonymised, unless there is a legal obligation to retain it for a longer period."
+    },
+    {
+      "id": "sharing",
+      "title": "6. Sharing data with third parties",
+      "content": "We do not sell, rent or trade personal data.\n\nHowever, some data may be processed by technology providers that provide us with services necessary for the operation of the website (web hosting, technology infrastructure, security or spam prevention systems). These providers act only as processors, following our instructions and under confidentiality obligations."
+    },
+    {
+      "id": "transfers",
+      "title": "7. International data transfers",
+      "content": "Due to the global nature of the Internet and the use of international technology infrastructure, data may be processed or stored on servers located outside the user's country of residence. In all cases, reasonable measures will be taken to ensure an adequate level of protection of personal data."
+    },
+    {
+      "id": "security",
+      "title": "8. Information security",
+      "content": "We adopt reasonable technical and organisational measures to protect personal data against unauthorised access, loss or destruction, alteration or improper disclosure. These measures include access controls, use of secure connections (HTTPS) and secure development practices.\n\nHowever, no system for transmitting or storing data over the Internet can guarantee absolute security."
+    },
+    {
+      "id": "rights",
+      "title": "9. User rights",
+      "content": "Users have the right to: access their personal data; request rectification of incorrect data; request updating of information; request deletion of their personal data; object to the processing of their data.\n\nTo exercise any of these rights, the user may send a request to the contact email indicated. The request must include sufficient information to verify the identity of the applicant."
+    },
+    {
+      "id": "authority",
+      "title": "10. Supervisory authority",
+      "content": "In the Argentine Republic, the Agency for Access to Public Information (AAIP) is the supervisory authority responsible for the application of Law 25.326 on the Protection of Personal Data. Data subjects may lodge complaints with this authority if they consider that their rights have been violated."
+    },
+    {
+      "id": "cookies",
+      "title": "11. Use of cookies",
+      "content": "This website may use technical cookies necessary for its operation. If analytics or marketing tools that use additional cookies are implemented, users will be informed in due course through the corresponding cookie notice."
+    },
+    {
+      "id": "changes",
+      "title": "12. Changes to the privacy policy",
+      "content": "We may update this Privacy Policy periodically to reflect legal, technical or operational changes. The current version will always be the one published on this page, together with the date of last update."
+    }
+  ]
+}

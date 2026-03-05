@@ -20,6 +20,8 @@ type HeroFullScreenProps = {
   dark?: boolean;
   /** Posición vertical del contenido. Default: "top" */
   contentPosition?: "top" | "center" | "bottom";
+  /** Si true, ocupa todo el viewport sin margen para navbar (p. ej. página de bienvenida). */
+  fullViewport?: boolean;
 };
 
 const ROTATE_INTERVAL_MS = 5000;
@@ -35,6 +37,7 @@ export function HeroFullScreen({
   contentClassName = "",
   dark = false,
   contentPosition = "top",
+  fullViewport = false,
 }: HeroFullScreenProps) {
   const hasCarousel = slides && slides.length > 1;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,7 +59,9 @@ export function HeroFullScreen({
 
   return (
     <section
-      className="relative flex min-h-screen w-full -mt-16 flex-col overflow-hidden md:pb-0"
+      className={`relative flex w-full flex-col overflow-hidden md:pb-0 ${
+        fullViewport ? "min-h-full h-full" : "min-h-screen -mt-16"
+      }`}
       aria-label="Sección principal"
     >
       {/* Fondo: gradiente por defecto */}

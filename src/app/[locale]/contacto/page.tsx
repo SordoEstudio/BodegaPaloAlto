@@ -1,6 +1,4 @@
-import { getContactPageData } from "@/lib/data";
-import { ContactPageSection } from "@/components/contact/ContactPageSection";
-import { ContactSplit } from "@/components/contact/ContactSplit";
+import { ContactPageWithCMS } from "@/components/contact/ContactPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
 
@@ -26,11 +24,5 @@ export default async function ContactoPage({ params }: PageProps) {
     redirect(`/${DEFAULT_LOCALE}/contacto`);
   }
 
-  const data = getContactPageData(locale);
-
-  return (
-    <>
-      <ContactPageSection data={data} locale={locale} sourcePage="contacto" />
-    </>
-  );
+  return <ContactPageWithCMS locale={locale} sourcePage="contacto" />;
 }

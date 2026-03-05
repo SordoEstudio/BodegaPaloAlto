@@ -24,7 +24,7 @@ Referencia: **portable-dynamic-cms** (INSTRUCTIVO_IA.md, MANUAL_JSON_COMPONENTES
 | `/[locale]` | Home | getHomeHeroData, getHomeCarouselLineasData, getHomeBanner1/2, getHomeProductosDestacadosData |
 | `/[locale]/bodega` | Quiénes somos, Equipo, Fincas | getBodegaData |
 | `/[locale]/destileria` | Hero, StorySplits, TextHighlights, MissionVision, Manifesto | getDestileriaData |
-| `/[locale]/contacto` | ContactSplit + ContactPageSection | getContactPageData |
+| `/[locale]/contacto` | ContactPageWithCMS (API) | useCMSComponents page_filter=contacto (formulario_contacto + contacto_redes) |
 | `/[locale]/bienvenida` | Verificación de edad | getWelcomeData |
 
 Todas las páginas son **Server Components** que cargan datos desde **JSON locales** (`src/data/es/*`, `src/data/en/*`) vía `src/lib/data.ts`.

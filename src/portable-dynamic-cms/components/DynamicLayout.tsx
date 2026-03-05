@@ -24,6 +24,8 @@ export interface DynamicLayoutProps {
       cmsLoading: boolean;
       cmsError: string | null;
       pageCMS: ReturnType<typeof usePageCMS>;
+      /** Componentes de la página (sin filtrar por layout). Permite fusionar datos entre componentes (ej. team → quienes_somos). */
+      pageComponents?: CMSComponent[];
     }
   ) => DynamicLayoutComponentProps;
   /** Si se define, los dos primeros componentes con estos layoutName se renderizan en un bloque: el primero ocupa el alto y el segundo en absolute bottom (ej. hero + carousel overlay). */
@@ -160,8 +162,8 @@ export function DynamicLayout({
               const Comp0 = componentMap[name0];
               const Comp1 = componentMap[name1];
               if (!Comp0 || !Comp1) return null;
-              const props0 = getProps(name0, cms0, { cmsLoading, cmsError, pageCMS });
-              const props1 = getProps(name1, cms1, { cmsLoading, cmsError, pageCMS });
+              const props0 = getProps(name0, cms0, { cmsLoading, cmsError, pageCMS, pageComponents });
+              const props1 = getProps(name1, cms1, { cmsLoading, cmsError, pageCMS, pageComponents });
               return (
                 <>
                   <Comp0 key={`${cms0.type}-${cms0._id ?? 0}`} {...props0} />
@@ -181,6 +183,7 @@ export function DynamicLayout({
               cmsLoading,
               cmsError,
               pageCMS,
+              pageComponents,
             });
             return (
               <Component
@@ -200,6 +203,7 @@ export function DynamicLayout({
             cmsLoading,
             cmsError,
             pageCMS,
+            pageComponents,
           });
           return (
             <Component

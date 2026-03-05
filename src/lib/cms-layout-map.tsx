@@ -14,6 +14,9 @@ import {
   mapBannerFullToHighlightFromCms,
   mapMissionVisionValuesFromCms,
   mapManifestFromCms,
+  mapAboutBodegaFromCms,
+  mapTeamBodegaFromCms,
+  mapFincasBodegaFromCms,
 } from "@/lib/data";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCarouselLineas } from "@/components/home/HomeCarouselLineas";
@@ -24,8 +27,12 @@ import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySpl
 import { DestileriaTextHighlight } from "@/components/destileria/DestileriaTextHighlight";
 import { DestileriaMissionVision } from "@/components/destileria/DestileriaMissionVision";
 import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto";
+import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
+import { BodegaEquipoFichas } from "@/components/bodega/BodegaEquipoFichas";
+import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
 import type { HomeHeroData, HomeCarouselLineasData, HomeBannerData, HomeProductosDestacadosData } from "@/types/sections";
 import type { DestileriaHeroData, DestileriaStorySplitData, DestileriaTextHighlightData, DestileriaMissionVisionData, DestileriaManifestoData } from "@/types/sections";
+import type { BodegaQuienesSomosData, BodegaEquipoData } from "@/types/sections";
 
 export const cmsTypeToLayoutName: Record<string, string> = {
   home_hero: "home-hero",
@@ -45,6 +52,9 @@ export const cmsTypeToLayoutName: Record<string, string> = {
   manifest: "manifest-destileria",
   manifiesto: "manifest-destileria",
   hero_banner: "home-banner",
+  about: "about-bodega",
+  team: "team-bodega",
+  fincas: "fincas-bodega",
 };
 
 function HomeHeroWrapper(props: DynamicLayoutComponentProps) {
@@ -110,6 +120,31 @@ function ManifestDestileriaWrapper(props: DynamicLayoutComponentProps) {
   return <DestileriaManifesto data={data} />;
 }
 
+function AboutBodegaWrapper(props: DynamicLayoutComponentProps) {
+  const mapped = props.data as (BodegaQuienesSomosData & { equipo?: BodegaEquipoData }) | undefined;
+  if (!mapped) return null;
+  const { equipo, ...quienesSomosData } = mapped;
+  return <BodegaQuienesSomos data={quienesSomosData} equipo={equipo ?? null} />;
+}
+
+function TeamBodegaWrapper(props: DynamicLayoutComponentProps) {
+  const data = props.data as BodegaEquipoData | undefined;
+  if (!data) return null;
+  return <BodegaEquipoFichas data={data} />;
+}
+
+function FincasBodegaWrapper(props: DynamicLayoutComponentProps) {
+  const mapped = props.data as { section: { title: string; backgroundImage?: { imageSrc: string; imageAlt?: string } }; finca1: import("@/types/sections").BodegaFincaData; finca2: import("@/types/sections").BodegaFincaData } | undefined;
+  if (!mapped) return null;
+  return (
+    <BodegaFincasSection
+      data={mapped.section}
+      finca1={mapped.finca1}
+      finca2={mapped.finca2}
+    />
+  );
+}
+
 export const componentMap: Record<string, ComponentType<DynamicLayoutComponentProps>> = {
   "home-hero": HomeHeroWrapper,
   "home-carousel-lineas": HomeCarouselLineasWrapper,
@@ -120,12 +155,16 @@ export const componentMap: Record<string, ComponentType<DynamicLayoutComponentPr
   "highlight-destileria": HighlightDestileriaWrapper,
   "mission-vision-values": MissionVisionValuesWrapper,
   "manifest-destileria": ManifestDestileriaWrapper,
+  "about-bodega": AboutBodegaWrapper,
+  "team-bodega": TeamBodegaWrapper,
+  "fincas-bodega": FincasBodegaWrapper,
 };
 
 type GetComponentPropsContext = {
   cmsLoading: boolean;
   cmsError: string | null;
   pageCMS: ReturnType<typeof usePageCMS>;
+  pageComponents?: import("@/portable-dynamic-cms/types/cms-components").CMSComponent[];
 };
 
 export function getDestileriaComponentProps(
@@ -179,6 +218,33 @@ export function getDestileriaComponentProps(
         error: cmsError,
         data: raw,
       };
+  }
+}
+
+export function getBodegaComponentProps(
+  layoutName: string,
+  cmsComponent: CMSComponent,
+  context: GetComponentPropsContext
+): DynamicLayoutComponentProps {
+  const raw = (cmsComponent?.data ?? {}) as Record<string, unknown>;
+  const { cmsLoading, cmsError, pageComponents } = context;
+  switch (layoutName) {
+    case "about-bodega": {
+      const mapped = mapAboutBodegaFromCms(raw) as BodegaQuienesSomosData & { equipo?: BodegaEquipoData };
+      if (!mapped.equipo?.members?.length && pageComponents) {
+        const teamComp = pageComponents.find((c) => c.type === "team");
+        if (teamComp?.data) {
+          mapped.equipo = mapTeamBodegaFromCms(teamComp.data as Record<string, unknown>);
+        }
+      }
+      return { loading: cmsLoading, error: cmsError, data: mapped as unknown as Record<string, unknown> };
+    }
+    case "team-bodega":
+      return { loading: cmsLoading, error: cmsError, data: mapTeamBodegaFromCms(raw) as unknown as Record<string, unknown> };
+    case "fincas-bodega":
+      return { loading: cmsLoading, error: cmsError, data: mapFincasBodegaFromCms(raw) as unknown as Record<string, unknown> };
+    default:
+      return { loading: cmsLoading, error: cmsError, data: raw };
   }
 }
 

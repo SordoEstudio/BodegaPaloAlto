@@ -18,7 +18,7 @@
   },
   "equipo": {
     "txt_titulo_seccion": "Nuestro equipo",
-    "avatar_layout_optional": "top",
+    "_configuracion":{"avatar_layout_optional": "top"},
     "lista_equipo": [
       {
         "txt_nombre": "Luis Martinez",
@@ -37,7 +37,8 @@
   "fincas_seccion": {
     "txt_titulo": "Nuestras Fincas"
   },
-  "finca1": {
+  "lista_fincas": [
+    {
     "txt_titulo": "Finca Alto Ugarteche",
     "lista_parrafos": [
       {
@@ -64,7 +65,7 @@
       "imagePosition": "right"
     }
   },
-  "finca2": {
+  {
     "txt_titulo": "Finca Palo Alto",
     "lista_parrafos": [
       {
@@ -90,5 +91,5 @@
     "_configuracion": {
       "imagePosition": "right"
     }
-  }
+  }]
 }
