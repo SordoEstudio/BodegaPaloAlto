@@ -1,8 +1,9 @@
 /**
  * Capa de datos por sección. Origen actual: JSON en src/data.
- * En producción: reemplazar por fetch a API del CMS manteniendo los mismos tipos.
+ * Bienvenida: se obtiene desde la API del CMS cuando está disponible.
  */
 
+import { buildApiUrl, API_CONFIG } from "@/portable-dynamic-cms/config/api-config";
 import type {
   WelcomeData,
   HomeHeroData,
@@ -88,8 +89,8 @@ function mapWelcomeFromCms(raw: Record<string, unknown>): WelcomeData {
       imageSrc: (raw.img_hero_optional as string) || undefined,
       imageAlt: (raw.txt_alt_hero_optional as string) ?? "",
     },
-    logoImage: (raw.logoImage as string) || undefined,
-    logoAlt: (raw.logoAlt as string) || undefined,
+    logoImage: ((raw.img_logo ?? raw.logoImage) as string) || undefined,
+    logoAlt: ((raw.txt_alt_logo ?? raw.logoAlt) as string) || undefined,
     title: (raw.txt_titulo as string) ?? "",
     message: (raw.txt_mensaje as string) ?? "",
     legalNotice: (raw.txt_aviso_legal as string) ?? "",
@@ -103,10 +104,43 @@ function mapWelcomeFromCms(raw: Record<string, unknown>): WelcomeData {
   };
 }
 
-export function getWelcomeData(locale?: string): WelcomeData {
+/** Tipos de bienvenida aceptados por la API (incluye typo "bienevenida") */
+const BIENVENIDA_TYPES = ["bienvenida", "bienevenida"];
+
+/** Obtiene datos de bienvenida desde la API del CMS. Fallback a JSON local si falla. */
+export async function getWelcomeData(locale?: string): Promise<WelcomeData> {
   const loc = normalizeLocale(locale);
-  const raw = (loc === "en" ? welcomeEn : welcomeEs) as Record<string, unknown>;
-  return raw.title != null && typeof raw.hero === "object" ? (raw as unknown as WelcomeData) : mapWelcomeFromCms(raw);
+  const fallbackRaw = (loc === "en" ? welcomeEn : welcomeEs) as Record<string, unknown>;
+  const fallback = fallbackRaw.title != null && typeof fallbackRaw.hero === "object"
+    ? (fallbackRaw as unknown as WelcomeData)
+    : mapWelcomeFromCms(fallbackRaw);
+
+  try {
+    const params: Record<string, string> = {
+      locale: loc,
+      type: "bienvenida",
+      page_filter: "bienvenida",
+    };
+    const clientSlug = process.env.NEXT_PUBLIC_CLIENT_SLUG;
+    if (clientSlug) params.clientSlug = clientSlug;
+    const url = buildApiUrl(API_CONFIG.ENDPOINTS.CMS_COMPONENTS, params);
+    const res = await fetch(url, { next: { revalidate: 60 } });
+    if (!res.ok) return fallback;
+
+    const json = (await res.json()) as { success?: boolean; data?: { components?: { type?: string; page?: string; data?: unknown; content?: unknown }[] } };
+    const components = json?.data?.components ?? [];
+    const component = Array.isArray(components)
+      ? components.find(
+          (c) => c?.type && (BIENVENIDA_TYPES.includes(c.type) || c.page === "bienvenida")
+        )
+      : null;
+
+    const raw = (component?.data ?? component?.content ?? null) as Record<string, unknown> | null;
+    if (raw && typeof raw === "object") return mapWelcomeFromCms(raw);
+  } catch {
+    // Fallback silencioso a JSON local
+  }
+  return fallback;
 }
 
 /** Mapea header en formato CMS (txt_logo, lista_nav, btn_shop, _configuracion) a HeaderData */
