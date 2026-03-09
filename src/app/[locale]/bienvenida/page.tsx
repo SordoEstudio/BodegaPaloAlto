@@ -13,6 +13,6 @@ export default async function BienvenidaPage({ params }: PageProps) {
     redirect(`/${DEFAULT_LOCALE}/bienvenida`);
   }
 
-  const data = getWelcomeData(locale);
+  const data = await getWelcomeData(locale);
   return <WelcomeContent data={data} locale={locale} />;
 }

@@ -1,8 +1,8 @@
 {
   "img_hero_optional": "/6.jpg",
-  "logoImage": "/logos/logo-full.png",
-  "logoAlt": "Logo Palo Alto",
   "txt_alt_hero_optional": "Bodega Palo Alto - Bienvenida",
+  "img_logo": "/logos/logo-full.png",
+  "txt_alt_logo": "Logo Palo Alto",
   "txt_titulo": "",
   "txt_mensaje": "Para ingresar debes ser mayor de 18 años. ¿Confirmas que eres mayor de edad?",
   "txt_aviso_legal": "Prohibida la venta a menores de 18 años.",
