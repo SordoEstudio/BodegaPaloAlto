@@ -1,0 +1,514 @@
+{
+  "data": [
+    {
+      "id": "benitoa-ancellotta",
+      "linea": "Benito A.",
+      "varietal": ["Ancellotta"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Gran Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo violáceo intenso.",
+        "nariz": "Ofrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.",
+        "boca": "Tiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino cálido, elegante, y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de la complejidad aportada por su crianza en barricas."
+      }
+    },
+    {
+      "id": "benitoa-blend",
+      "linea": "Benito A.",
+      "varietal": ["Malbec","Cabernet Franc","Cabernet Sauvignon","Ancellotta"],
+      "corte": true,
+      "color": "tinto",
+      "crianza": "Gran Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo rubí intenso con reflejos violáceos.",
+        "nariz": "Ofrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.",
+        "boca": "Tiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino franco, elegante, con taninos firmes y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de su paso por barricas."
+      }
+    },
+    {
+      "id": "benitoa-cabernet-franc",
+      "linea": "Benito A.",
+      "varietal": ["Cabernet Franc"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Gran Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "De imponente color rojo rubí intenso y reflejos violáceos brillantes.",
+        "nariz": "Aromas de frutas rojas en mermelada aparecen en una primera nariz, acompañadas de dejos especiados. Las notas de cacao, vainilla, café y cuero, producto de su crianza en barricas, se integran para dar como resultado una complejidad atrapante.",
+        "boca": "Con una entrada de boca amable y delicada, se percibe en su recorrido por boca como un vino de buen cuerpo, taninos maduros en perfecto balance con una acidez vibrante, elegante y complejo."
+      }
+    },
+    {
+      "id": "paloalto-cabernet-sauvignon-reserva",
+      "linea": "Palo Alto",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo granate con reflejos violáceos.",
+        "nariz": "Ofrece intensos aromas a frutas rojas maduras, que recuerdan al casís y la cereza, marcadas notas de pimiento verde, vainilla, cacao y café, con dejos ahumados producto de su paso por barricas.",
+        "boca": "Tiene un ataque dulce, amable y robusto en su paso por boca. Con taninos presentes pero redondeados que aportan una gran estructura y una acidez en perfecto balance que realza la fruta. Evoluciona hacia un final de persistente recuerdo pleno de notas ahumadas."
+      }
+    },
+    {
+      "id": "paloalto-chardonnay-reserva",
+      "linea": "Palo Alto",
+      "varietal": ["Chardonnay"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "De color amarillo pálido con reflejos dorados.",
+        "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.",
+        "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado."
+      }
+    },
+    {
+      "id": "paloalto-chardonnay",
+      "linea": "Palo Alto",
+      "varietal": ["Chardonnay"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "De color amarillo pálido con reflejos dorados.",
+        "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.",
+        "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado."
+      }
+    },
+    {
+      "id": "paloalto-malbec-reserva",
+      "linea": "Palo Alto",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+        "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+        "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+      }
+    },
+    {
+      "id": "paloalto-pinot-noir-reserva",
+      "linea": "Palo Alto",
+      "varietal": ["Pinot Noir"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo rubí límpido y brillante.",
+        "nariz": "Ofrece intensos aromas a frutas rojas maduras que recuerdan a la fresa, marcadas notas de vainilla y café con dejos a hongos y tierra húmeda.",
+        "boca": "Tiene un ataque propio de la cepa, frutado y armonioso en su paso por boca. Acidez presente que aporta frescura. Evoluciona hacia un final persistente y pleno de notas ahumadas."
+      }
+    },
+    {
+      "id": "paloalto-roble-malbec",
+      "linea": "Palo Alto",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Roble",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.",
+        "boca": "Tiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo."
+      }
+    },
+    {
+      "id": "paloalto-cabernet-sauvignon-joven",
+      "linea": "Palo Alto",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+        "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+        "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal."
+      }
+    },
+    {
+      "id": "paloalto-malbec-joven",
+      "linea": "Palo Alto",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+        "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final."
+      }
+    },
+    {
+      "id": "paloalto-satomi",
+      "linea": "Palo Alto",
+      "varietal": ["Pinot Noir"],
+      "corte": false,
+      "color": "rose",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo cereza claro y brillante.",
+        "nariz": "Desprende aromas a frutas rojas frescas que recuerdan a la cereza.",
+        "boca": "Tiene un ataque dulce que se mantiene en todo su recorrido, muy bien combinada la acidez y la fruta, de manera que redondean un vino fresco y muy agradable, con excelente cuerpo para un rosado."
+      }
+    },
+    {
+      "id": "paloalto-sauvignon-blanc",
+      "linea": "Palo Alto",
+      "varietal": ["Sauvignon Blanc"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color amarillo muy pálido con reflejos verdosos.",
+        "nariz": "Aromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.",
+        "boca": "Es fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado."
+      }
+    },
+    {
+      "id": "paloalto-torrontes",
+      "linea": "Palo Alto",
+      "varietal": ["Torrontés"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+        "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+        "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+      }
+    },
+    {
+      "id": "yllum-blend-gran-reserva",
+      "linea": "Yllum",
+      "varietal": ["Malbec","Cabernet Sauvignon","Cabernet Franc","Ancellotta"],
+      "corte": true,
+      "color": "tinto",
+      "crianza": "Gran Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo rubí claro y brillante.",
+        "nariz": "Presenta aromas que recuerdan a la fruta blanca fresca, notas cítricas que nos recuerdan al pomelo rosado y delicadas notas florales de la familia de la acacia.",
+        "boca": "En boca se percibe refrescante, con una buena acidez que realza todo el sabor de la fruta blanca fresca. Equilibrado, vibrante, posee una fina y persistente burbuja. Se sugiere decantar antes de consumir."
+      }
+    },
+    {
+      "id": "yllum-cabernet-sauvignon-reserva",
+      "linea": "Yllum",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo granate intenso.",
+        "nariz": "Ofrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.",
+        "boca": "En boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final."
+      }
+    },
+    {
+      "id": "yllum-chardonnay-reserva",
+      "linea": "Yllum",
+      "varietal": ["Chardonnay"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color amarillo pálido y reflejos dorados.",
+        "nariz": "Ofrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.",
+        "boca": "Es untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado."
+      }
+    },
+    {
+      "id": "yllum-malbec-reserva",
+      "linea": "Yllum",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+        "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+        "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+      }
+    },
+    {
+      "id": "yllum-pinot-noir-reserva",
+      "linea": "Yllum",
+      "varietal": ["Pinot Noir"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo rubí claro y brillante.",
+        "nariz": "Aromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.",
+        "boca": "Tiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final."
+      }
+    },
+    {
+      "id": "yllum-malbec-roble",
+      "linea": "Yllum",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Roble",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.",
+        "boca": "Tiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo."
+      }
+    },
+    {
+      "id": "yllum-cabernet-sauvignon-joven",
+      "linea": "Yllum",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+        "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+        "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal."
+      }
+    },
+    {
+      "id": "yllum-malbec-joven",
+      "linea": "Yllum",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+        "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final."
+      }
+    },
+    {
+      "id": "yllum-sauvignon-blanc",
+      "linea": "Yllum",
+      "varietal": ["Sauvignon Blanc"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Joven",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color amarillo muy pálido con reflejos verdosos.",
+        "nariz": "Aromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.",
+        "boca": "Es fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado."
+      }
+    },
+    {
+      "id": "yllum-torrontes",
+      "linea": "Yllum",
+      "varietal": ["Torrontés"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+        "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+        "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+      }
+    },
+    {
+      "id": "amadores-cabernet-sauvignon",
+      "linea": "Amadores",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo granate intenso.",
+        "nariz": "Ofrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.",
+        "boca": "En boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final."
+      }
+    },
+    {
+      "id": "amadores-chardonnay",
+      "linea": "Amadores",
+      "varietal": ["Chardonnay"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color amarillo pálido y reflejos dorados.",
+        "nariz": "Ofrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.",
+        "boca": "Es untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado."
+      }
+    },
+    {
+      "id": "amadores-malbec",
+      "linea": "Amadores",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+        "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+        "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+      }
+    },
+    {
+      "id": "amadores-pinot-noir",
+      "linea": "Amadores",
+      "varietal": ["Pinot Noir"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "Reserva",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Presenta un color rojo rubí claro y brillante.",
+        "nariz": "Aromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.",
+        "boca": "Tiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final."
+      }
+    },
+    {
+      "id": "cumbres-cabernet-sauvignon",
+      "linea": "Cumbres del Plata",
+      "varietal": ["Cabernet Sauvignon"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+        "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+        "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamada. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente y agradable. Resulta un vino elegante sin perder su carácter varietal."
+      }
+    },
+    {
+      "id": "cumbres-malbec",
+      "linea": "Cumbres del Plata",
+      "varietal": ["Malbec"],
+      "corte": false,
+      "color": "tinto",
+      "crianza": "",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color rojo rubí intenso con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+        "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable recuerdo en su final."
+      }
+    },
+    {
+      "id": "cumbres-torrontes",
+      "linea": "Cumbres del Plata",
+      "varietal": ["Torrontés"],
+      "corte": false,
+      "color": "blanco",
+      "crianza": "",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+        "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+        "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+      }
+    },
+    {
+      "id": "cumbres-blanco-seleccion",
+      "linea": "Cumbres del Plata",
+      "varietal": ["Seleccion"],
+      "corte": true,
+      "color": "blanco",
+      "crianza": "Selección",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+        "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+        "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+      }
+    },
+    {
+      "id": "cumbres-tinto-seleccion",
+      "linea": "Cumbres del Plata",
+      "varietal": ["Seleccion"],
+      "corte": true,
+      "color": "tinto",
+      "crianza": "Selección",
+      "dosaje": "",
+      "metodo_elaboracion": "",
+      "notas_de_cata": {
+        "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+        "nariz": "Ofrece aromas a frutos rojos frescos que recuerdan al casis, la fresa y la ciruela.",
+        "boca": "Su ataque es levemente dulce, de cuerpo ligero, equilibrado, fresco y frutado en su paso por boca, cierra con un final agradable, cálido y de persistencia media."
+      }
+    },
+    {
+      "id": "efigenia-espumante",
+      "linea": "Efigenia",
+      "varietal": ["Pinot Noir", "Chardonnay"],
+      "corte": true,
+      "color": "",
+      "crianza": "",
+      "dosaje": "Extra Brut",
+      "metodo_elaboracion": "Champenoise",
+      "notas_de_cata": {
+        "vista": "De color amarillo pálido con reflejos plateados.",
+        "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y sutiles notas de frutos secos y levadura.",
+        "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en su equilibrio que aporta frescura. Burbujas finas y persistentes. Posee un final largo y agradable."
+      }
+    }
+  ]
+}
