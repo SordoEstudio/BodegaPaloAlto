@@ -29,6 +29,7 @@ export const API_CONFIG = {
   ENDPOINTS: {
     CLIENT_CONFIG: "/client-config",
     CMS_COMPONENTS: "/cms-components",
+    PRODUCTS: "/products",
   },
 } as const;
 
