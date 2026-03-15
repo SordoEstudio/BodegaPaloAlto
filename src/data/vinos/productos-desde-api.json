@@ -1,0 +1,1263 @@
+[
+    {
+        "_id": "69b0752b00cf7d97cabbe8d1",
+        "slug": "benitoa-ancellotta",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Benito A. Ancellotta",
+            "summary": "Benito A. - Ancellotta",
+            "description": "Presenta un color rojo violáceo intenso.\n\nOfrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.\n\nTiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino cálido, elegante, y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de la complejidad aportada por su crianza en barricas.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Benito A.",
+            "color": "tinto",
+            "varietal": "Ancellotta",
+            "crianza": "Gran Reserva",
+            "corte": "No",
+            "vista": "Presenta un color rojo violáceo intenso.",
+            "nariz": "Ofrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.",
+            "boca": "Tiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino cálido, elegante, y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de la complejidad aportada por su crianza en barricas."
+        },
+        "status": "published",
+        "order": 0,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:51.697Z",
+        "updatedAt": "2026-03-11T15:53:40.498Z"
+    },
+    {
+        "_id": "69b0752b00cf7d97cabbe8d2",
+        "slug": "benitoa-blend",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Benito A. Malbec, Cabernet Franc, Cabernet Sauvignon, Ancellotta",
+            "summary": "Benito A. - Malbec, Cabernet Franc, Cabernet Sauvignon, Ancellotta",
+            "description": "Presenta un color rojo rubí intenso con reflejos violáceos.\n\nOfrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.\n\nTiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino franco, elegante, con taninos firmes y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de su paso por barricas.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Benito A.",
+            "color": "tinto",
+            "varietal": "Malbec, Cabernet Franc, Cabernet Sauvignon, Ancellotta",
+            "crianza": "Gran Reserva",
+            "corte": "Sí",
+            "vista": "Presenta un color rojo rubí intenso con reflejos violáceos.",
+            "nariz": "Ofrece intensos aromas a frutas rojas y negras maduras que recuerdan a la ciruela y a la cereza, marcadas notas de especias, vainilla y cacao con dejos ahumados.",
+            "boca": "Tiene una ataque dulce, robusto y frutado su paso por boca. Se percibe como un vino franco, elegante, con taninos firmes y una acidez refrescante. Evoluciona hacia un final persistente donde muestra sus aromas de boca torrados producto de su paso por barricas."
+        },
+        "status": "published",
+        "order": 1,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:51.820Z",
+        "updatedAt": "2026-03-11T15:55:17.212Z"
+    },
+    {
+        "_id": "69b0752b00cf7d97cabbe8d3",
+        "slug": "benitoa-cabernet-franc",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Benito A. Cabernet Franc",
+            "summary": "Benito A. - Cabernet Franc",
+            "description": "De imponente color rojo rubí intenso y reflejos violáceos brillantes.\n\nAromas de frutas rojas en mermelada aparecen en una primera nariz, acompañadas de dejos especiados. Las notas de cacao, vainilla, café y cuero, producto de su crianza en barricas, se integran para dar como resultado una complejidad atrapante.\n\nCon una entrada de boca amable y delicada, se percibe en su recorrido por boca como un vino de buen cuerpo, taninos maduros en perfecto balance con una acidez vibrante, elegante y complejo.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Benito A.",
+            "color": "tinto",
+            "varietal": "Cabernet Franc",
+            "crianza": "Gran Reserva",
+            "corte": "No",
+            "vista": "De imponente color rojo rubí intenso y reflejos violáceos brillantes.",
+            "nariz": "Aromas de frutas rojas en mermelada aparecen en una primera nariz, acompañadas de dejos especiados. Las notas de cacao, vainilla, café y cuero, producto de su crianza en barricas, se integran para dar como resultado una complejidad atrapante.",
+            "boca": "Con una entrada de boca amable y delicada, se percibe en su recorrido por boca como un vino de buen cuerpo, taninos maduros en perfecto balance con una acidez vibrante, elegante y complejo."
+        },
+        "status": "published",
+        "order": 2,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:51.923Z",
+        "updatedAt": "2026-03-11T15:59:00.952Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d4",
+        "slug": "paloalto-cabernet-sauvignon-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Cabernet Sauvignon",
+            "summary": "Palo Alto - Cabernet Sauvignon",
+            "description": "Presenta un color rojo granate con reflejos violáceos.\n\nOfrece intensos aromas a frutas rojas maduras, que recuerdan al casís y la cereza, marcadas notas de pimiento verde, vainilla, cacao y café, con dejos ahumados producto de su paso por barricas.\n\nTiene un ataque dulce, amable y robusto en su paso por boca. Con taninos presentes pero redondeados que aportan una gran estructura y una acidez en perfecto balance que realza la fruta. Evoluciona hacia un final de persistente recuerdo pleno de notas ahumadas.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Presenta un color rojo granate con reflejos violáceos.",
+            "nariz": "Ofrece intensos aromas a frutas rojas maduras, que recuerdan al casís y la cereza, marcadas notas de pimiento verde, vainilla, cacao y café, con dejos ahumados producto de su paso por barricas.",
+            "boca": "Tiene un ataque dulce, amable y robusto en su paso por boca. Con taninos presentes pero redondeados que aportan una gran estructura y una acidez en perfecto balance que realza la fruta. Evoluciona hacia un final de persistente recuerdo pleno de notas ahumadas."
+        },
+        "status": "published",
+        "order": 3,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.023Z",
+        "updatedAt": "2026-03-11T15:58:44.684Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d5",
+        "slug": "paloalto-chardonnay-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Chardonnay",
+            "summary": "Palo Alto - Chardonnay",
+            "description": "De color amarillo pálido con reflejos dorados.\n\nOfrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.\n\nDe entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "blanco",
+            "varietal": "Chardonnay",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "De color amarillo pálido con reflejos dorados.",
+            "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.",
+            "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado."
+        },
+        "status": "published",
+        "order": 4,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.152Z",
+        "updatedAt": "2026-03-11T15:49:27.014Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d6",
+        "slug": "paloalto-chardonnay",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Chardonnay",
+            "summary": "Palo Alto - Chardonnay",
+            "description": "De color amarillo pálido con reflejos dorados.\n\nOfrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.\n\nDe entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "blanco",
+            "varietal": "Chardonnay",
+            "corte": "No",
+            "vista": "De color amarillo pálido con reflejos dorados.",
+            "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y un marcado dejo de vainilla y miel.",
+            "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en equilibrio que aporta frescura, evoluciona hacia un final persistente y acaramelado."
+        },
+        "status": "published",
+        "order": 5,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.257Z",
+        "updatedAt": "2026-03-11T15:58:29.383Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d7",
+        "slug": "paloalto-malbec-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Malbec",
+            "summary": "Palo Alto - Malbec",
+            "description": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.\n\nOfrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.\n\nSe presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+            "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+            "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+        },
+        "status": "published",
+        "order": 6,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.359Z",
+        "updatedAt": "2026-03-11T15:58:14.771Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d8",
+        "slug": "paloalto-pinot-noir-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Pinot Noir",
+            "summary": "Palo Alto - Pinot Noir",
+            "description": "Presenta un color rojo rubí límpido y brillante.\n\nOfrece intensos aromas a frutas rojas maduras que recuerdan a la fresa, marcadas notas de vainilla y café con dejos a hongos y tierra húmeda.\n\nTiene un ataque propio de la cepa, frutado y armonioso en su paso por boca. Acidez presente que aporta frescura. Evoluciona hacia un final persistente y pleno de notas ahumadas.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Pinot Noir",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Presenta un color rojo rubí límpido y brillante.",
+            "nariz": "Ofrece intensos aromas a frutas rojas maduras que recuerdan a la fresa, marcadas notas de vainilla y café con dejos a hongos y tierra húmeda.",
+            "boca": "Tiene un ataque propio de la cepa, frutado y armonioso en su paso por boca. Acidez presente que aporta frescura. Evoluciona hacia un final persistente y pleno de notas ahumadas."
+        },
+        "status": "published",
+        "order": 7,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.462Z",
+        "updatedAt": "2026-03-11T15:49:42.813Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8d9",
+        "slug": "paloalto-roble-malbec",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Malbec",
+            "summary": "Palo Alto - Malbec",
+            "description": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.\n\nOfrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.\n\nTiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Roble",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.",
+            "boca": "Tiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo."
+        },
+        "status": "published",
+        "order": 8,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.678Z",
+        "updatedAt": "2026-03-11T15:57:56.769Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8da",
+        "slug": "paloalto-cabernet-sauvignon-joven",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Cabernet Sauvignon",
+            "summary": "Palo Alto - Cabernet Sauvignon",
+            "description": "Muestra un color rojo rubí brillante con reflejos violáceos.\n\nPresenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.\n\nTiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+            "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+            "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal."
+        },
+        "status": "published",
+        "order": 9,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.777Z",
+        "updatedAt": "2026-03-11T15:57:22.245Z"
+    },
+    {
+        "_id": "69b0752c00cf7d97cabbe8db",
+        "slug": "paloalto-malbec-joven",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Malbec",
+            "summary": "Palo Alto - Malbec",
+            "description": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.\n\nOfrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.\n\nTiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+            "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final."
+        },
+        "status": "published",
+        "order": 10,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.877Z",
+        "updatedAt": "2026-03-11T15:56:47.915Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8dc",
+        "slug": "paloalto-satomi",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Pinot Noir",
+            "summary": "Palo Alto - Pinot Noir",
+            "description": "Se muestra con un color rojo cereza claro y brillante.\n\nDesprende aromas a frutas rojas frescas que recuerdan a la cereza.\n\nTiene un ataque dulce que se mantiene en todo su recorrido, muy bien combinada la acidez y la fruta, de manera que redondean un vino fresco y muy agradable, con excelente cuerpo para un rosado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "rose",
+            "varietal": "Pinot Noir",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo cereza claro y brillante.",
+            "nariz": "Desprende aromas a frutas rojas frescas que recuerdan a la cereza.",
+            "boca": "Tiene un ataque dulce que se mantiene en todo su recorrido, muy bien combinada la acidez y la fruta, de manera que redondean un vino fresco y muy agradable, con excelente cuerpo para un rosado."
+        },
+        "status": "published",
+        "order": 11,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:52.977Z",
+        "updatedAt": "2026-03-11T15:56:28.350Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8dd",
+        "slug": "paloalto-sauvignon-blanc",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Sauvignon Blanc",
+            "summary": "Palo Alto - Sauvignon Blanc",
+            "description": "Se muestra con un color amarillo muy pálido con reflejos verdosos.\n\nAromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.\n\nEs fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "blanco",
+            "varietal": "Sauvignon Blanc",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Se muestra con un color amarillo muy pálido con reflejos verdosos.",
+            "nariz": "Aromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.",
+            "boca": "Es fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado."
+        },
+        "status": "published",
+        "order": 12,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.077Z",
+        "updatedAt": "2026-03-11T15:56:07.260Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8de",
+        "slug": "paloalto-torrontes",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Palo Alto Torrontés",
+            "summary": "Palo Alto - Torrontés",
+            "description": "Muestra un color amarillo muy pálido con reflejos dorados.\n\nSugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.\n\nDe entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Palo Alto",
+            "color": "blanco",
+            "varietal": "Torrontés",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+            "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+            "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+        },
+        "status": "published",
+        "order": 13,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.179Z",
+        "updatedAt": "2026-03-11T15:53:21.041Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8df",
+        "slug": "yllum-blend-gran-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Malbec, Cabernet Sauvignon, Cabernet Franc, Ancellotta",
+            "summary": "Yllum - Malbec, Cabernet Sauvignon, Cabernet Franc, Ancellotta",
+            "description": "Presenta un color rojo rubí claro y brillante.\n\nPresenta aromas que recuerdan a la fruta blanca fresca, notas cítricas que nos recuerdan al pomelo rosado y delicadas notas florales de la familia de la acacia.\n\nEn boca se percibe refrescante, con una buena acidez que realza todo el sabor de la fruta blanca fresca. Equilibrado, vibrante, posee una fina y persistente burbuja. Se sugiere decantar antes de consumir.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Malbec, Cabernet Sauvignon, Cabernet Franc, Ancellotta",
+            "crianza": "Gran Reserva",
+            "corte": "Sí",
+            "vista": "Presenta un color rojo rubí claro y brillante.",
+            "nariz": "Presenta aromas que recuerdan a la fruta blanca fresca, notas cítricas que nos recuerdan al pomelo rosado y delicadas notas florales de la familia de la acacia.",
+            "boca": "En boca se percibe refrescante, con una buena acidez que realza todo el sabor de la fruta blanca fresca. Equilibrado, vibrante, posee una fina y persistente burbuja. Se sugiere decantar antes de consumir."
+        },
+        "status": "published",
+        "order": 14,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.281Z",
+        "updatedAt": "2026-03-11T15:55:39.870Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8e0",
+        "slug": "yllum-cabernet-sauvignon-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Cabernet Sauvignon",
+            "summary": "Yllum - Cabernet Sauvignon",
+            "description": "Se muestra con un color rojo granate intenso.\n\nOfrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.\n\nEn boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo granate intenso.",
+            "nariz": "Ofrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.",
+            "boca": "En boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final."
+        },
+        "status": "published",
+        "order": 15,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.383Z",
+        "updatedAt": "2026-03-11T15:54:52.278Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8e1",
+        "slug": "yllum-chardonnay-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Chardonnay",
+            "summary": "Yllum - Chardonnay",
+            "description": "Se muestra con un color amarillo pálido y reflejos dorados.\n\nOfrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.\n\nEs untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "blanco",
+            "varietal": "Chardonnay",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color amarillo pálido y reflejos dorados.",
+            "nariz": "Ofrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.",
+            "boca": "Es untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado."
+        },
+        "status": "published",
+        "order": 16,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.485Z",
+        "updatedAt": "2026-03-11T15:54:32.319Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8e2",
+        "slug": "yllum-malbec-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Malbec",
+            "summary": "Yllum - Malbec",
+            "description": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.\n\nOfrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.\n\nSe presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+            "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+            "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+        },
+        "status": "published",
+        "order": 17,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.626Z",
+        "updatedAt": "2026-03-11T15:54:02.239Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8e3",
+        "slug": "yllum-pinot-noir-reserva",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Pinot Noir",
+            "summary": "Yllum - Pinot Noir",
+            "description": "Presenta un color rojo rubí claro y brillante.\n\nAromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.\n\nTiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Pinot Noir",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Presenta un color rojo rubí claro y brillante.",
+            "nariz": "Aromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.",
+            "boca": "Tiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final."
+        },
+        "status": "published",
+        "order": 18,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.729Z",
+        "updatedAt": "2026-03-11T15:53:07.439Z"
+    },
+    {
+        "_id": "69b0752d00cf7d97cabbe8e4",
+        "slug": "yllum-malbec-roble",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Malbec",
+            "summary": "Yllum - Malbec",
+            "description": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.\n\nOfrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.\n\nTiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Roble",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza. Notas de coco y vainilla y un sutil dejo especiado.",
+            "boca": "Tiene un ataque dulce buen cuerpo y estructura, de gran equilibrio entre la fruta y la madera y taninos redondos. Evoluciona hacia un final tostado de persistente y agradable recuerdo."
+        },
+        "status": "published",
+        "order": 19,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.830Z",
+        "updatedAt": "2026-03-11T15:52:49.472Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8e5",
+        "slug": "yllum-cabernet-sauvignon-joven",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Cabernet Sauvignon",
+            "summary": "Yllum - Cabernet Sauvignon",
+            "description": "Muestra un color rojo rubí brillante con reflejos violáceos.\n\nPresenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.\n\nTiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+            "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+            "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamadas. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente resulta un vino elegante sin perder su carácter varietal."
+        },
+        "status": "published",
+        "order": 20,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:53.940Z",
+        "updatedAt": "2026-03-11T15:52:32.638Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8e6",
+        "slug": "yllum-malbec-joven",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Malbec",
+            "summary": "Yllum - Malbec",
+            "description": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.\n\nOfrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.\n\nTiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo rubí intenso, con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+            "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable en su final."
+        },
+        "status": "published",
+        "order": 21,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.057Z",
+        "updatedAt": "2026-03-11T15:52:18.814Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8e7",
+        "slug": "yllum-sauvignon-blanc",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Sauvignon Blanc",
+            "summary": "Yllum - Sauvignon Blanc",
+            "description": "Se muestra con un color amarillo muy pálido con reflejos verdosos.\n\nAromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.\n\nEs fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "blanco",
+            "varietal": "Sauvignon Blanc",
+            "crianza": "Joven",
+            "corte": "No",
+            "vista": "Se muestra con un color amarillo muy pálido con reflejos verdosos.",
+            "nariz": "Aromas a frutas tropicales y de pulpa blanca, manzana verde y notas cítricas que recuerdan al pomelo rosado.",
+            "boca": "Es fresco, con la acidez justa, de buen volumen en su paso por boca, deja una sensación de ser un vino intenso, frutado y equilibrado."
+        },
+        "status": "published",
+        "order": 22,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.233Z",
+        "updatedAt": "2026-03-11T15:52:00.638Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8e8",
+        "slug": "yllum-torrontes",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Yllum Torrontés",
+            "summary": "Yllum - Torrontés",
+            "description": "Muestra un color amarillo muy pálido con reflejos dorados.\n\nSugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.\n\nDe entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Yllum",
+            "color": "blanco",
+            "varietal": "Torrontés",
+            "corte": "No",
+            "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+            "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+            "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+        },
+        "status": "published",
+        "order": 23,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.343Z",
+        "updatedAt": "2026-03-11T15:51:44.288Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8e9",
+        "slug": "amadores-cabernet-sauvignon",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Amadores Cabernet Sauvignon",
+            "summary": "Amadores - Cabernet Sauvignon",
+            "description": "Se muestra con un color rojo granate intenso.\n\nOfrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.\n\nEn boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Amadores",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo granate intenso.",
+            "nariz": "Ofrece aroma a frutas rojas maduras y pimiento verde, posee notas de vainilla, cacao y toques de café, producto de su larga estadía en barricas de roble.",
+            "boca": "En boca tiene un ataque agradable muy buen cuerpo y estructura, corre amable, equilibrado con taninos importantes pero redondeados, de persistente y agradable final."
+        },
+        "status": "published",
+        "order": 24,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.443Z",
+        "updatedAt": "2026-03-11T15:51:14.594Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8ea",
+        "slug": "amadores-chardonnay",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Amadores Chardonnay",
+            "summary": "Amadores - Chardonnay",
+            "description": "Se muestra con un color amarillo pálido y reflejos dorados.\n\nOfrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.\n\nEs untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Amadores",
+            "color": "blanco",
+            "varietal": "Chardonnay",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color amarillo pálido y reflejos dorados.",
+            "nariz": "Ofrece intensas notas de frutas maduras de pulpa blanca, cítricos y un dejo marcado de vainilla y de miel.",
+            "boca": "Es untuoso, envolvente, elegante, con buena acidez y un final persistente y acaramelado."
+        },
+        "status": "published",
+        "order": 25,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.542Z",
+        "updatedAt": "2026-03-11T15:49:12.268Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8eb",
+        "slug": "amadores-malbec",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Amadores Malbec",
+            "summary": "Amadores - Malbec",
+            "description": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.\n\nOfrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.\n\nSe presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Amadores",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Se muestra con un color rojo cereza muy intenso y reflejos atejados en el borde de la copa.",
+            "nariz": "Ofrece aromas a frutas rojas maduras como en mermelada, notas de vainilla, cacao, algo de especias y dejos ahumados.",
+            "boca": "Se presenta como un vino que tiene una entrada agradable y luego corre imponente, con personalidad pero muy amable, con taninos redondos y un agradable y persistente final, donde predominan las notas tostadas. Debido a su crianza pueden aparecer sedimentos naturales."
+        },
+        "status": "published",
+        "order": 26,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.641Z",
+        "updatedAt": "2026-03-11T15:48:10.648Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8ec",
+        "slug": "amadores-pinot-noir",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Amadores Pinot Noir",
+            "summary": "Amadores - Pinot Noir",
+            "description": "Presenta un color rojo rubí claro y brillante.\n\nAromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.\n\nTiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Amadores",
+            "color": "tinto",
+            "varietal": "Pinot Noir",
+            "crianza": "Reserva",
+            "corte": "No",
+            "vista": "Presenta un color rojo rubí claro y brillante.",
+            "nariz": "Aromas a frutas rojas que recuerdan a la fresa y marcadas notas de vainilla y café con un dejo de hongos y tierra húmeda.",
+            "boca": "Tiene un ataque propio de la cepa, con mucha personalidad, frutado, armonioso y de buena acidez y estructura. Sus taninos son suaves y las notas ahumadas se destacan en la persistencia de su final."
+        },
+        "status": "published",
+        "order": 27,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.750Z",
+        "updatedAt": "2026-03-11T15:48:22.828Z"
+    },
+    {
+        "_id": "69b0752e00cf7d97cabbe8ed",
+        "slug": "cumbres-cabernet-sauvignon",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Cumbres del Plata Cabernet Sauvignon",
+            "summary": "Cumbres del Plata - Cabernet Sauvignon",
+            "description": "Muestra un color rojo rubí brillante con reflejos violáceos.\n\nPresenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.\n\nTiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamada. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente y agradable. Resulta un vino elegante sin perder su carácter varietal.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Cumbres del Plata",
+            "color": "tinto",
+            "varietal": "Cabernet Sauvignon",
+            "corte": "No",
+            "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+            "nariz": "Presenta aromas característicos de la variedad tales como el casis, la pimienta negra y el pimiento verde maduro.",
+            "boca": "Tiene una entrada dulce y hacia el medio de boca manifiesta su fruta y su acidez bien amalgamada. Sus taninos firmes le otorgan cuerpo y estructura, de final persistente y agradable. Resulta un vino elegante sin perder su carácter varietal."
+        },
+        "status": "published",
+        "order": 28,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.853Z",
+        "updatedAt": "2026-03-11T15:47:55.963Z"
+    },
+    {
+        "_id": "69b0752f00cf7d97cabbe8ee",
+        "slug": "cumbres-malbec",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Cumbres del Plata Malbec",
+            "summary": "Cumbres del Plata - Malbec",
+            "description": "Muestra un color rojo rubí intenso con reflejos violáceos.\n\nOfrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.\n\nTiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable recuerdo en su final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Cumbres del Plata",
+            "color": "tinto",
+            "varietal": "Malbec",
+            "corte": "No",
+            "vista": "Muestra un color rojo rubí intenso con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutas negras y rojas frescas, entre las que se destacan la ciruela y la cereza.",
+            "boca": "Tiene un ataque dulce, frutado y sedoso en el medio de boca, de gran equilibrio, con una acidez justa. Sus taninos son redondos y deja un agradable recuerdo en su final."
+        },
+        "status": "published",
+        "order": 29,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:54.953Z",
+        "updatedAt": "2026-03-11T15:48:51.930Z"
+    },
+    {
+        "_id": "69b0752f00cf7d97cabbe8ef",
+        "slug": "cumbres-torrontes",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Cumbres del Plata Torrontés",
+            "summary": "Cumbres del Plata - Torrontés",
+            "description": "Muestra un color amarillo muy pálido con reflejos dorados.\n\nSugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.\n\nDe entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Cumbres del Plata",
+            "color": "blanco",
+            "varietal": "Torrontés",
+            "corte": "No",
+            "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+            "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+            "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+        },
+        "status": "published",
+        "order": 30,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:55.052Z",
+        "updatedAt": "2026-03-11T15:50:54.988Z"
+    },
+    {
+        "_id": "69b0752f00cf7d97cabbe8f0",
+        "slug": "cumbres-blanco-seleccion",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Cumbres del Plata Seleccion",
+            "summary": "Cumbres del Plata - Seleccion",
+            "description": "Muestra un color amarillo muy pálido con reflejos dorados.\n\nSugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.\n\nDe entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Cumbres del Plata",
+            "color": "blanco",
+            "varietal": "Seleccion",
+            "crianza": "Selección",
+            "corte": "Sí",
+            "vista": "Muestra un color amarillo muy pálido con reflejos dorados.",
+            "nariz": "Sugerente despliegue de aromas que remiten a frutas cítricas y flores blancas con un toque de miel.",
+            "boca": "De entrada amable, es delicado y untuoso en su paso por boca, es dueño de una equilibrada acidez que aporta frescura a la fruta. Posee un persistente y cálido final."
+        },
+        "status": "published",
+        "order": 31,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:55.152Z",
+        "updatedAt": "2026-03-11T15:50:23.368Z"
+    },
+    {
+        "_id": "69b0752f00cf7d97cabbe8f1",
+        "slug": "cumbres-tinto-seleccion",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Cumbres del Plata Seleccion",
+            "summary": "Cumbres del Plata - Seleccion",
+            "description": "Muestra un color rojo rubí brillante con reflejos violáceos.\n\nOfrece aromas a frutos rojos frescos que recuerdan al casis, la fresa y la ciruela.\n\nSu ataque es levemente dulce, de cuerpo ligero, equilibrado, fresco y frutado en su paso por boca, cierra con un final agradable, cálido y de persistencia media.",
+            "seo": {
+                "meta_title": "",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [],
+        "attributes": {
+            "linea": "Cumbres del Plata",
+            "color": "tinto",
+            "varietal": "Seleccion",
+            "crianza": "Selección",
+            "corte": "Sí",
+            "vista": "Muestra un color rojo rubí brillante con reflejos violáceos.",
+            "nariz": "Ofrece aromas a frutos rojos frescos que recuerdan al casis, la fresa y la ciruela.",
+            "boca": "Su ataque es levemente dulce, de cuerpo ligero, equilibrado, fresco y frutado en su paso por boca, cierra con un final agradable, cálido y de persistencia media."
+        },
+        "status": "published",
+        "order": 32,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:55.251Z",
+        "updatedAt": "2026-03-11T15:47:41.583Z"
+    },
+    {
+        "_id": "69b0752f00cf7d97cabbe8f2",
+        "slug": "efigenia-espumante",
+        "visible": true,
+        "is_for_sale": false,
+        "productType": "wine",
+        "locale": {
+            "title": "Efigenia Pinot Noir, Chardonnay",
+            "summary": "Efigenia - Pinot Noir, Chardonnay",
+            "description": "De color amarillo pálido con reflejos plateados.\n\nOfrece intensos aromas a frutas blancas maduras, cítricos y sutiles notas de frutos secos y levadura.\n\nDe entrada amable, untuoso y elegante en su paso por boca. Acidez en su equilibrio que aporta frescura. Burbujas finas y persistentes. Posee un final largo y agradable.",
+            "seo": {
+                "meta_title": "Efigenia - Extra Brut - Palo Alto",
+                "meta_description": ""
+            }
+        },
+        "categories": [],
+        "tags": [],
+        "images": [],
+        "attachments": [
+            {
+                "label": "Ficha Técnica",
+                "attachment_type": "file",
+                "external_url": null,
+                "media_id": "69b09612cdb651fe0d6b9afc",
+                "file_url": "https://yi4v6kde7clqp3do.public.blob.vercel-storage.com/media/document/2026/03/1773180378756-PaloAlto-Efigenia-extrabrut.pdf"
+            }
+        ],
+        "attributes": {
+            "linea": "Efigenia",
+            "varietal": "Pinot Noir, Chardonnay",
+            "corte": "Sí",
+            "dosaje": "Extra Brut",
+            "metodo": "Champenoise",
+            "vista": "De color amarillo pálido con reflejos plateados.",
+            "nariz": "Ofrece intensos aromas a frutas blancas maduras, cítricos y sutiles notas de frutos secos y levadura.",
+            "boca": "De entrada amable, untuoso y elegante en su paso por boca. Acidez en su equilibrio que aporta frescura. Burbujas finas y persistentes. Posee un final largo y agradable."
+        },
+        "status": "published",
+        "order": 33,
+        "featured": false,
+        "price": 0,
+        "priceWholesale": 0,
+        "createdAt": "2026-03-10T19:46:55.352Z",
+        "updatedAt": "2026-03-11T15:46:53.598Z"
+    }
+]
