@@ -46,7 +46,7 @@ export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
                   className="object-cover transition group-hover:scale-105"
                 />
               </span>
-              <span className="mt-3 text-center font-semibold">
+              <span className="mt-3 hidden text-center font-semibold sm:inline">
                 {linea.name}
               </span>
             </Link>

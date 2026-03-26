@@ -72,7 +72,7 @@ export function DestileriaManifesto({ data }: DestileriaManifestoProps) {
             </div>
           )}
 
-          <div className="flex min-w-0 flex-1 flex-col justify-center text-center md:order-2 md:text-left border-l-2 border-magic-stone-primary pl-6">
+          <div className="flex min-w-0 flex-1 flex-col justify-center text-center md:order-2 md:border-l-2 md:border-magic-stone-primary md:pl-6 md:text-left">
             <ul className="space-y-4" role="list">
               {lines.map((line, i) => (
                 <li
