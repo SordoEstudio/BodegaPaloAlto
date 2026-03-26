@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FaShoppingBag } from "react-icons/fa";
 import type { PublicProduct } from "@/hooks/usePublicProducts";
 import { isBlend, isEspumante } from "@/lib/product-utils";
 
@@ -15,6 +16,7 @@ interface ProductCardProps {
 const PLACEHOLDER_IMAGE = "/placeholder-wine.svg";
 
 export function ProductCard({ product, locale, featuredLabel = "Destacado", blendLabel = "Blend" }: ProductCardProps) {
+  const isForSale = product.is_for_sale === true;
   const img = product.images?.[0];
   const src = img?.url || PLACEHOLDER_IMAGE;
   const alt = img?.alt || product.locale?.title || "";
@@ -50,26 +52,37 @@ export function ProductCard({ product, locale, featuredLabel = "Destacado", blen
           </span>
         )}
       </span>
-      <div className="flex min-h-[88px] flex-col justify-end p-3">
-        {linea && (
-          <p className="mt-1 text-base font-semibold text-white/95">
-            {linea}
-          </p>
-        )}
-        {varietal && (
-          <p className="mt-0.5 text-sm text-white/80">
-            {varietal}
-          </p>
-        )}
-        {espumante && dosaje && (
-          <p className="mt-0.5 text-xs text-white/70">
-            {dosaje}
-          </p>
-        )}
-        {crianza && (
-          <p className="mt-0.5 text-xs text-white/60">
-            {crianza}
-          </p>
+      <div className="flex min-h-[88px] items-start justify-between gap-2 p-3">
+        <div className="min-w-0">
+          {linea && (
+            <p className="mt-1 truncate text-base font-semibold text-white/95">
+              {linea}
+            </p>
+          )}
+          {varietal && (
+            <p className="mt-0.5 truncate text-sm text-white/80">
+              {varietal}
+            </p>
+          )}
+          {espumante && dosaje && (
+            <p className="mt-0.5 truncate text-xs text-white/70">
+              {dosaje}
+            </p>
+          )}
+          {crianza && (
+            <p className="mt-0.5 truncate text-xs text-white/60">
+              {crianza}
+            </p>
+          )}
+        </div>
+        {isForSale && (
+          <span
+            aria-label={locale === "en" ? "Available for purchase" : "Disponible para compra"}
+            className="inline-flex shrink-0 items-center justify-center pt-0.5 text-palo-alto-primary"
+            title={locale === "en" ? "Available for purchase" : "Disponible para compra"}
+          >
+            <FaShoppingBag className="h-4.5 w-4.5" />
+          </span>
         )}
       </div>
     </Link>

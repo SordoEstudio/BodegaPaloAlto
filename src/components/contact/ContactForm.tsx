@@ -119,16 +119,29 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
 
   useEffect(() => {
     const url = `/api/public/forms/${encodeURIComponent(formSlug)}?locale=${encodeURIComponent(locale)}`;
+    const cacheKey = `form_schema_${formSlug}_${locale}`;
 
     const fetchFormSchema = async () => {
       try {
         setSchemaLoading(true);
-        console.log("[ContactForm] GET form schema request", {
-          method: "GET",
-          url,
-          locale,
-          formSlug,
-        });
+
+        // Intentar leer del cache de sesión
+        if (typeof window !== "undefined") {
+          try {
+            const cached = sessionStorage.getItem(cacheKey);
+            if (cached) {
+              const parsed: FormSchema = JSON.parse(cached);
+              if (parsed?.fields) {
+                setSchema(parsed);
+                setValues(getInitialValues(parsed.fields));
+                setSchemaLoading(false);
+                return;
+              }
+            }
+          } catch {
+            // ignore cache errors
+          }
+        }
 
         const res = await fetch(url, {
           method: "GET",
@@ -136,15 +149,11 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
         });
         const json = await res.json().catch(() => null);
 
-        console.log("[ContactForm] GET form schema response", {
-          ok: res.ok,
-          status: res.status,
-          body: json,
-        });
         const fetchedSchema = json?.success ? (json.data as FormSchema) : null;
         if (fetchedSchema?.fields) {
           setSchema(fetchedSchema);
           setValues(getInitialValues(fetchedSchema.fields));
+          try { sessionStorage.setItem(cacheKey, JSON.stringify(fetchedSchema)); } catch { /* ignore */ }
         } else {
           setSchema(null);
         }
@@ -161,7 +170,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
 
   useEffect(() => {
     if (!successNotice) return;
-    const timeoutId = setTimeout(() => setSuccessNotice(null), 3500);
+    const timeoutId = setTimeout(() => setSuccessNotice(null), 6000);
     return () => clearTimeout(timeoutId);
   }, [successNotice]);
 
@@ -400,9 +409,18 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
           </div>
 
           {schemaLoading ? (
-            <p className={`text-sm ${onDark ? "text-white/80" : "text-foreground/80"}`}>
-              {locale === "en" ? "Loading form..." : "Cargando formulario..."}
-            </p>
+            <div className="animate-pulse grid grid-cols-1 gap-4 md:grid-cols-2">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className={i % 3 === 2 ? "md:col-span-2" : ""}>
+                  <div className={`mb-1 h-3 w-24 rounded ${onDark ? "bg-white/20" : "bg-zinc-300/50"}`} />
+                  <div className={`h-10 w-full rounded-lg ${onDark ? "bg-white/10" : "bg-zinc-200/60"}`} />
+                </div>
+              ))}
+              <div className="md:col-span-2">
+                <div className={`mb-1 h-3 w-24 rounded ${onDark ? "bg-white/20" : "bg-zinc-300/50"}`} />
+                <div className={`h-24 w-full rounded-lg ${onDark ? "bg-white/10" : "bg-zinc-200/60"}`} />
+              </div>
+            </div>
           ) : (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {fields.map(renderField)}
@@ -412,7 +430,20 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
           <div>
             <label className="flex items-start gap-3">
               <span className={`text-sm ${onDark ? "text-white/95" : "text-foreground"}`}>
-                {labels.privacyPrefix != null && labels.privacyLinkText != null && labels.privacySuffix != null ? (
+                {locale === "en" ? (
+                  <>
+                    By clicking Send, I accept the{" "}
+                    <Link
+                      href={`/${locale}/politica-de-privacidad`}
+                      className="underline transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-1 rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Privacy Policy
+                    </Link>{" "}
+                    and authorize the processing of my personal data as set out therein.
+                  </>
+                ) : labels.privacyPrefix != null && labels.privacyLinkText != null && labels.privacySuffix != null ? (
                   <>
                     {privacyLead}
                     {labels.privacyPrefix}
@@ -435,7 +466,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {locale === "en" ? "privacy policy" : "politica de privacidad"}
+                      {locale === "en" ? "Privacy Policy" : "politica de privacidad"}
                     </Link>
                     {" "}{labels.privacy?.trim() || privacyDefault}
                   </>

@@ -3,6 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { buildApiUrl, API_CONFIG } from "@/portable-dynamic-cms/config/api-config";
 
+// Cache en-memoria para la sesión. Evita re-fetching al navegar entre páginas.
+const PRODUCTS_CACHE_TTL = 2 * 60 * 1000; // 2 minutos
+interface CacheEntry { data: { products: PublicProduct[]; pagination: Pagination | null }; ts: number }
+const productsCache = new Map<string, CacheEntry>();
+
 export const DEFAULT_CLIENT_SLUG =
   process.env.NEXT_PUBLIC_CLIENT_SLUG ?? "bodega-palo-alto";
 
@@ -95,30 +100,33 @@ export function usePublicProducts(
       if (category) params.category = category;
       if (productType) params.productType = productType;
 
-      const url = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS, params);
-      const headers = { "Content-Type": "application/json" };
-      console.log("[usePublicProducts] API request", {
-        method: "GET",
-        url,
-        params,
-      });
+      const cacheKey = JSON.stringify(params);
+      const cached = productsCache.get(cacheKey);
+      if (cached && Date.now() - cached.ts < PRODUCTS_CACHE_TTL) {
+        setProducts(cached.data.products);
+        setPagination(cached.data.pagination);
+        setLoading(false);
+        return;
+      }
 
-      const res = await fetch(url, { headers });
+      const url = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS, params);
+      console.log("[usePublicProducts] API request", { method: "GET", url, params });
+
+      const res = await fetch(url, { headers: { "Content-Type": "application/json" } });
       const json = await res.json().catch(() => null);
-      console.log("[usePublicProducts] API response", {
-        ok: res.ok,
-        status: res.status,
-        body: json,
-      });
+      console.log("[usePublicProducts] API response", { ok: res.ok, status: res.status });
 
       if (!res.ok) {
         throw new Error(`Error ${res.status}: ${res.statusText}`);
       }
 
       const data = json?.data;
+      const products = data?.products ?? [];
+      const pagination = data?.pagination ?? null;
 
-      setProducts(data?.products ?? []);
-      setPagination(data?.pagination ?? null);
+      productsCache.set(cacheKey, { data: { products, pagination }, ts: Date.now() });
+      setProducts(products);
+      setPagination(pagination);
     } catch (err) {
       console.error("[usePublicProducts] API error", err);
       setError(err instanceof Error ? err.message : "Error al cargar productos");

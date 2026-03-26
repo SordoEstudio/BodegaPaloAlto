@@ -17,6 +17,7 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
   const attrs = product.attributes ?? {};
+  const isForSale = product.is_for_sale === true;
   const images = (product.images ?? []).sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0)
   );
@@ -48,6 +49,33 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
   };
 
   const attributeKeys = ["linea", "color", "varietal", "crianza", "corte", "dosaje", "metodo", "metodo_elaboracion"] as const;
+  const fallbackContactUrl = `/${locale}/contacto`;
+  const rawSaleUrl = String(product.sale_link_url ?? "").trim();
+  const saleUrl = rawSaleUrl
+    ? rawSaleUrl.startsWith("http://") || rawSaleUrl.startsWith("https://")
+      ? rawSaleUrl
+      : rawSaleUrl.startsWith(`/${locale}/`) || rawSaleUrl.startsWith("/es/") || rawSaleUrl.startsWith("/en/")
+        ? rawSaleUrl
+        : rawSaleUrl.startsWith("/")
+          ? `/${locale}${rawSaleUrl}`
+          : `/${locale}/${rawSaleUrl}`
+    : fallbackContactUrl;
+  const rawSaleLabel = String(product.sale_link_label ?? "").trim();
+  const normalizeLabel = (value: string) =>
+    value
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  const normalizedSaleLabel = normalizeLabel(rawSaleLabel);
+  const saleLabel =
+    locale === "en"
+      ? normalizedSaleLabel.includes("compr")
+        ? "Buy"
+        : normalizedSaleLabel.includes("consult")
+          ? "Contact"
+          : rawSaleLabel || (isForSale ? "Shop" : "Contact")
+      : rawSaleLabel || (isForSale ? "Comprar" : "Consultar");
+  const exportLegend = locale === "en" ? "Export wine" : "Vino de exportacion";
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
@@ -143,6 +171,21 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
                     </button>
                   </>
                 )}
+              </div>
+              <div className="flex max-w-md items-center justify-between gap-4 pt-1">
+                {!isForSale && (
+                  <p className="text-xs font-medium uppercase tracking-[0.08em] text-palo-alto-primary">
+                    {exportLegend}
+                  </p>
+                )}
+                <Link
+                  href={saleUrl}
+                  className={`inline-flex items-center justify-center rounded-full bg-palo-alto-primary px-5 py-2.5 text-sm font-semibold text-palo-alto-secondary transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-2 focus:ring-offset-zinc-900 ${isForSale ? "ml-auto" : ""}`}
+                  target={saleUrl.startsWith("http") ? "_blank" : undefined}
+                  rel={saleUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  {saleLabel}
+                </Link>
               </div>
             </div>
           ) : (

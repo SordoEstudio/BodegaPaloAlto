@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { PublicProduct } from "@/hooks/usePublicProducts";
 import type { ProductFiltersState } from "@/lib/product-utils";
 import { getUniqueAttributeValues, getUniqueSingleVarietals } from "@/lib/product-utils";
@@ -14,6 +15,7 @@ interface ProductFiltersProps {
 }
 
 export function ProductFilters({ products, locale, ui, filters, onFiltersChange }: ProductFiltersProps) {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const colors = getUniqueAttributeValues(products, "color");
   const varietals = getUniqueSingleVarietals(products);
   const crianzas = getUniqueAttributeValues(products, "crianza");
@@ -42,7 +44,24 @@ export function ProductFilters({ products, locale, ui, filters, onFiltersChange 
       role="search"
       aria-label="Filtros de productos"
     >
-      <div className="mx-auto flex max-w-6xl flex-wrap items-end gap-4">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-3 flex items-center justify-between md:hidden">
+          <span className="text-sm font-semibold text-white/90">{ui.filters.title}</span>
+          <button
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm"
+            aria-expanded={mobileOpen}
+            aria-controls="productos-filters-content"
+          >
+            {mobileOpen ? (locale === "en" ? "Hide" : "Ocultar") : (locale === "en" ? "Show" : "Mostrar")}
+          </button>
+        </div>
+
+        <div
+          id="productos-filters-content"
+          className={`${mobileOpen ? "flex" : "hidden"} flex-wrap items-end gap-4 md:flex`}
+        >
         <div className="flex flex-wrap items-center gap-2">
           <span className="mr-1 text-xs font-medium text-white/70">
             {ui.filters.productType}:
@@ -167,6 +186,7 @@ export function ProductFilters({ products, locale, ui, filters, onFiltersChange 
             {ui.filters.clearAll}
           </button>
         )}
+        </div>
       </div>
     </div>
   );

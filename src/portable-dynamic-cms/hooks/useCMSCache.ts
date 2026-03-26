@@ -20,7 +20,7 @@ export function useCMSCache() {
     (key: string): CMSComponent[] | null => {
       if (typeof window === "undefined") return null;
       try {
-        const raw = localStorage.getItem(key);
+        const raw = sessionStorage.getItem(key);
         if (!raw) return null;
         const entry: CacheEntry = JSON.parse(raw);
         if (Date.now() - entry.timestamp > TTL_MS) return null;
@@ -36,7 +36,7 @@ export function useCMSCache() {
     if (typeof window === "undefined") return;
     try {
       const entry: CacheEntry = { data, timestamp: Date.now() };
-      localStorage.setItem(key, JSON.stringify(entry));
+      sessionStorage.setItem(key, JSON.stringify(entry));
     } catch {
       // ignore
     }
@@ -49,11 +49,11 @@ export function useCMSCache() {
     if (typeof window === "undefined")
       return { total: 0, valid: 0, expired: 0, hitRate: 0 };
     try {
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const k = sessionStorage.key(i);
         if (!k?.startsWith(CACHE_KEY_PREFIX)) continue;
         total++;
-        const raw = localStorage.getItem(k);
+        const raw = sessionStorage.getItem(k);
         if (!raw) continue;
         const entry: CacheEntry = JSON.parse(raw);
         if (Date.now() - entry.timestamp <= TTL_MS) valid++;

@@ -41,13 +41,18 @@ export default async function RootLayout({
     (host ? `http${process.env.NODE_ENV === "development" ? "" : "s"}://${host}` : "");
   const initialConfig = await getClientConfig(host, serverOrigin || undefined);
 
+  // Detectar locale desde la URL para el atributo lang del <html>
+  const nextUrl = headersList.get("next-url") ?? headersList.get("x-pathname") ?? "/";
+  const pathLocale = nextUrl.split("/")[1];
+  const htmlLang = pathLocale === "en" ? "en" : "es";
+
   const headerEs = getHeaderData("es");
   const headerEn = getHeaderData("en");
   const footerEs = getFooterData("es");
   const footerEn = getFooterData("en");
 
   return (
-    <html lang="es" className={`${ubuntu.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} className={`${ubuntu.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
         <ClientConfigProvider initialConfig={initialConfig}>
           <CMSComponentsProvider>
