@@ -3,9 +3,9 @@
 import { DynamicLayout } from "@/portable-dynamic-cms";
 import {
   cmsTypeToLayoutName,
-  componentMap,
+  homeComponentMap as componentMap,
   getHomeComponentProps,
-} from "@/lib/cms-layout-map";
+} from "@/lib/cms-home-map";
 
 interface HomePageWithCMSProps {
   useCmsLayout: boolean;

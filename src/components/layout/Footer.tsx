@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { MapPin } from "lucide-react";
 import { useCMSComponentsFromContext } from "@/portable-dynamic-cms";
 import { mapContactoRedesToFooterLinks } from "@/lib/data";
 import { Tooltip } from "@/components/ui/Tooltip";
@@ -19,7 +20,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Facebook: FaFacebookF,
   Instagram: FaInstagram,
   WhatsApp: FaWhatsapp,
-  Ubicación: FaMapMarkerAlt,
+  Ubicación: MapPin,
 };
 
 function getLocaleFromPathname(pathname: string): "es" | "en" {

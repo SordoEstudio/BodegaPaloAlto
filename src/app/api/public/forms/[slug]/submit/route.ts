@@ -5,7 +5,8 @@ function getFormsBaseUrl(): string {
     process.env.NEXT_PUBLIC_API_DEV ??
     process.env.NEXT_PUBLIC_API_URL ??
     "";
-  return raw.replace(/\/$/, "");
+  const cleaned = raw.replace(/\/$/, "");
+  return cleaned.replace(/\/forms\/?$/i, "");
 }
 
 export async function POST(
@@ -24,7 +25,18 @@ export async function POST(
     }
 
     const body = await request.json();
-    const target = `${baseUrl}/forms/${encodeURIComponent(slug)}/submit`;
+    const incomingHost =
+      request.headers.get("host") ?? request.headers.get("x-forwarded-host") ?? "localhost";
+    const cleanHost = incomingHost.split(":")[0];
+    const forwardedProto = request.headers.get("x-forwarded-proto") ?? "http";
+    const constructedOrigin = `${forwardedProto}://${incomingHost}`;
+
+    const url = `${baseUrl}/forms/${encodeURIComponent(slug)}/submit`;
+    const target = new URL(url);
+    // Host identification para el backend multi-cliente
+    target.searchParams.set("host", cleanHost);
+    const locale = request.nextUrl?.searchParams?.get("locale");
+    if (locale) target.searchParams.set("locale", locale);
 
     console.log("[/api/public/forms/[slug]/submit] Proxy request", {
       target,
@@ -32,9 +44,17 @@ export async function POST(
       payload: body,
     });
 
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "X-Original-Host": cleanHost,
+      Origin: constructedOrigin,
+      Referer: constructedOrigin,
+    };
+
     const res = await fetch(target, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers,
       body: JSON.stringify(body),
       cache: "no-store",
     });

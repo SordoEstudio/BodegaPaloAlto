@@ -81,7 +81,7 @@ export function ProductCard({ product, locale, featuredLabel = "Destacado", blen
             className="inline-flex shrink-0 items-center justify-center pt-0.5 text-palo-alto-primary"
             title={locale === "en" ? "Available for purchase" : "Disponible para compra"}
           >
-            <FaShoppingBag className="h-4.5 w-4.5" />
+            <FaShoppingBag className="h-4 w-4" />
           </span>
         )}
       </div>

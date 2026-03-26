@@ -97,9 +97,19 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={`font-medium transition focus:outline-none focus:ring-0 rounded ${
                     isActive(item.href)
-                      ? "text-palo-alto-primary underline underline-offset-4"
+                      ? "text-palo-alto-primary"
                       : "text-white hover:text-palo-alto-primary"
                   }`}
+                  target={
+                    item.label.toLowerCase() === "shop" || item.href.startsWith("http")
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    item.label.toLowerCase() === "shop" || item.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                 >
                   {item.label}
                 </Link>
@@ -116,7 +126,7 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
                   href={lang.code === locale ? pathname : switchPath}
                   className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded px-2 text-sm font-bold transition focus:outline-none focus:ring-0 ${
                     lang.code === locale
-                      ? "text-palo-alto-primary underline"
+                      ? "text-palo-alto-primary"
                       : "text-white/90 hover:text-white"
                   }`}
                   aria-current={lang.code === locale ? "true" : undefined}

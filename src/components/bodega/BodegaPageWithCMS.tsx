@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import { DynamicLayout } from "@/portable-dynamic-cms";
 import {
   cmsTypeToLayoutName,
-  componentMap,
+  bodegaComponentMap as componentMap,
   getBodegaComponentProps,
-} from "@/lib/cms-layout-map";
+} from "@/lib/cms-bodega-map";
 import { getBodegaData } from "@/lib/data";
 import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
 import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
