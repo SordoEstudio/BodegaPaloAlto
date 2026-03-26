@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
 import type { ContactPageData, ContactBlockData } from "@/types/sections";
 
@@ -55,7 +56,7 @@ function ContactBlockStack({
           <li>
             {block.addressUrl ? (
               <Link href={block.addressUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                <FaMapMarkerAlt className="h-4 w-4 shrink-0" />
+                <MapPin className="h-4 w-4 shrink-0" />
                 {block.address}
               </Link>
             ) : (

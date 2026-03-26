@@ -5,7 +5,12 @@ function getFormsBaseUrl(): string {
     process.env.NEXT_PUBLIC_API_DEV ??
     process.env.NEXT_PUBLIC_API_URL ??
     "";
-  return raw.replace(/\/$/, "");
+
+  // Soportar ambos formatos:
+  // - https://.../api/public/v1
+  // - https://.../api/public/v1/forms
+  const cleaned = raw.replace(/\/$/, "");
+  return cleaned.replace(/\/forms\/?$/i, "");
 }
 
 export async function GET(
@@ -23,17 +28,32 @@ export async function GET(
       );
     }
 
+    const incomingHost =
+      request.headers.get("host") ?? request.headers.get("x-forwarded-host") ?? "localhost";
+    const cleanHost = incomingHost.split(":")[0];
+    const forwardedProto = request.headers.get("x-forwarded-proto") ?? "http";
+    const constructedOrigin = `${forwardedProto}://${incomingHost}`;
+
     const target = new URL(`${baseUrl}/forms/${encodeURIComponent(slug)}`);
 
     const locale = request.nextUrl.searchParams.get("locale");
     if (locale) target.searchParams.set("locale", locale);
 
+    // Backend puede identificar al cliente por Host o por query param ?host=
     const host = request.nextUrl.searchParams.get("host");
-    if (host) target.searchParams.set("host", host);
+    target.searchParams.set("host", (host ?? cleanHost).split(":")[0]);
+
+    // Mimic: /api/public/v1/products proxy (reenvío del original host)
+    const headers: Record<string, string> = {
+      Accept: "application/json",
+      "X-Original-Host": cleanHost,
+      Origin: constructedOrigin,
+      Referer: constructedOrigin,
+    };
 
     const res = await fetch(target.toString(), {
       method: "GET",
-      headers: { Accept: "application/json" },
+      headers,
       cache: "no-store",
     });
 

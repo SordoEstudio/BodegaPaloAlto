@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import { DynamicLayout } from "@/portable-dynamic-cms";
 import {
   cmsTypeToLayoutName,
-  componentMap,
+  destileriaComponentMap as componentMap,
   getDestileriaComponentProps,
-} from "@/lib/cms-layout-map";
+} from "@/lib/cms-destileria-map";
 import { getDestileriaData } from "@/lib/data";
 import { DestileriaHero } from "@/components/destileria/DestileriaHero";
 import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySplit";
