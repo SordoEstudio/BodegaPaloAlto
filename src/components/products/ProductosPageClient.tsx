@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { usePublicProducts, DEFAULT_CLIENT_SLUG } from "@/hooks/usePublicProducts";
 import { getUITranslations } from "@/lib/ui-translations";
 import { getHomeCarouselLineasData } from "@/lib/data";
@@ -21,6 +22,9 @@ const initialFilters: ProductFiltersState = {};
 
 export function ProductosPageClient({ locale }: { locale: string }) {
   const loc = isValidLocale(locale) ? locale : "es";
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [filters, setFilters] = useState<ProductFiltersState>(initialFilters);
   const [page, setPage] = useState(1);
 
@@ -63,6 +67,30 @@ export function ProductosPageClient({ locale }: { locale: string }) {
 
   const lineasData = getHomeCarouselLineasData(loc);
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    const lineaFromUrl = params.get("linea")?.trim() || undefined;
+    setFilters((prev) => {
+      if (prev.linea === lineaFromUrl) return prev;
+      return { ...prev, linea: lineaFromUrl };
+    });
+    setPage(1);
+  }, [searchParams]);
+
+  const handleLineaClick = useCallback(
+    (slug: string | null) => {
+      const nextLinea = slug ?? undefined;
+      updateFilters({ linea: nextLinea });
+      if (!pathname) return;
+      const params = new URLSearchParams(searchParams.toString());
+      if (nextLinea) params.set("linea", nextLinea);
+      else params.delete("linea");
+      const nextQuery = params.toString();
+      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, { scroll: false });
+    },
+    [updateFilters, pathname, router, searchParams]
+  );
+
   return (
     <div className="min-h-screen bg-header-bg">
       <ProductosLineasSection
@@ -70,7 +98,7 @@ export function ProductosPageClient({ locale }: { locale: string }) {
         pageSubtitle={ui.productos.pageSubtitle}
         lineas={lineasData.lineas}
         currentLinea={filters.linea}
-        onLineaClick={(slug) => updateFilters({ linea: slug ?? undefined })}
+        onLineaClick={handleLineaClick}
       />
 
       <ProductFilters

@@ -58,6 +58,13 @@ function localize(text: LocalizedText | undefined, locale: string, fallback: str
   return text[locale] ?? text.es ?? fallback;
 }
 
+function shouldUseAutoTextarea(field: DynamicField, locale: string): boolean {
+  if (field.type === "textarea") return true;
+  if (field.type !== "text") return false;
+  const label = localize(field.label, locale, "").toLowerCase();
+  return label.includes("consulta") || label.includes("consultation") || label.includes("message");
+}
+
 function getInitialValues(fields: DynamicField[]): FormValues {
   return fields.reduce<FormValues>((acc, field) => {
     acc[field.id] = field.type === "multiselect" ? [] : "";
@@ -181,7 +188,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
           acc[field.id] = typeof raw === "string" ? raw.trim() : raw ?? "";
           return acc;
         }, {});
-        const payload = { ...normalizedValues, _hp: "" };
+        const payload = { ...normalizedValues, _hp: "", locale };
         const submitUrl = `/api/public/forms/${encodeURIComponent(formSlug)}/submit`;
 
         console.log("[ContactForm] POST form submit request", {
@@ -244,7 +251,14 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
     : "font-heading text-2xl font-bold text-palo-alto-secondary sm:text-3xl";
   const schemaTitle = localize(schema?.name, locale, data.sectionTitle);
   const schemaDescription = localize(schema?.description, locale, data.sectionDescription ?? "");
-  const successMessage = localize(schema?.settings?.success_message, locale, data.successMessage);
+  const privacyLead = locale === "en" ? "By clicking Send, " : "Al hacer click en Enviar, ";
+  const privacyDefault = locale === "en" ? "you accept the privacy policy." : "aceptas la politica de privacidad.";
+  const submitLabel =
+    locale === "en"
+      ? "Send"
+      : labels.submit?.trim()
+        ? labels.submit
+        : "Enviar";
 
   const renderField = (field: DynamicField) => {
     const fieldLabel = localize(field.label, locale, field.id);
@@ -255,7 +269,7 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
     const wrapperClass = isHalf ? "md:col-span-1" : "md:col-span-2";
     const requiredFlag = field.required ? " *" : "";
 
-    if (field.type === "textarea") {
+    if (shouldUseAutoTextarea(field, locale)) {
       return (
         <div key={field.id} className={wrapperClass}>
           <label htmlFor={field.id} className={labelClass}>
@@ -270,8 +284,13 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
             placeholder={placeholder}
             value={typeof value === "string" ? value : ""}
             onChange={(e) => update(field.id, e.target.value)}
+            onInput={(e) => {
+              const target = e.currentTarget;
+              target.style.height = "auto";
+              target.style.height = `${target.scrollHeight}px`;
+            }}
             aria-invalid={!!fieldError}
-            className={inputClass + " resize-y"}
+            className={inputClass + " min-h-[44px] resize-none overflow-hidden"}
           />
           {fieldError && <p className="mt-1 text-sm text-red-400">{fieldError}</p>}
         </div>
@@ -390,30 +409,40 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
             </div>
           )}
 
-          {labels.privacy && (
-            <div>
-              <label className="flex items-start gap-3">
-                <span className={`text-sm ${onDark ? "text-white/95" : "text-foreground"}`}>
-                  {labels.privacyPrefix != null && labels.privacyLinkText != null && labels.privacySuffix != null ? (
-                    <>
-                      {labels.privacyPrefix}
-                      <Link
-                        href={`/${locale}/politica-de-privacidad`}
-                        className="underline transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-1 rounded"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {labels.privacyLinkText}
-                      </Link>
-                      {labels.privacySuffix}
-                    </>
-                  ) : (
-                    labels.privacy
-                  )}
-                </span>
-              </label>
-            </div>
-          )}
+          <div>
+            <label className="flex items-start gap-3">
+              <span className={`text-sm ${onDark ? "text-white/95" : "text-foreground"}`}>
+                {labels.privacyPrefix != null && labels.privacyLinkText != null && labels.privacySuffix != null ? (
+                  <>
+                    {privacyLead}
+                    {labels.privacyPrefix}
+                    <Link
+                      href={`/${locale}/politica-de-privacidad`}
+                      className="underline transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-1 rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {labels.privacyLinkText}
+                    </Link>
+                    {labels.privacySuffix}
+                  </>
+                ) : (
+                  <>
+                    {privacyLead}
+                    <Link
+                      href={`/${locale}/politica-de-privacidad`}
+                      className="underline transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-palo-alto-primary focus:ring-offset-1 rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {locale === "en" ? "privacy policy" : "politica de privacidad"}
+                    </Link>
+                    {" "}{labels.privacy?.trim() || privacyDefault}
+                  </>
+                )}
+              </span>
+            </label>
+          </div>
 
           <div>
             <button
@@ -424,10 +453,10 @@ export function ContactForm({ data, locale, sourcePage = "contacto", onDark = fa
               {status === "loading" ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-palo-alto-secondary border-t-transparent" />
-                  {labels.submit}
+                  {submitLabel}
                 </>
               ) : (
-                labels.submit
+                submitLabel
               )}
             </button>
           </div>

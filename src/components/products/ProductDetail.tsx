@@ -244,9 +244,6 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
 
           {product.attachments?.length ? (
             <div>
-              <h2 className="mb-2 font-heading text-lg font-semibold text-white">
-                {ui.detail.fichaTecnica}
-              </h2>
               <div className="flex flex-wrap gap-2">
                 {(product.attachments as { label?: string; external_url?: string; file_url?: string }[]).map(
                   (a, i) => {
