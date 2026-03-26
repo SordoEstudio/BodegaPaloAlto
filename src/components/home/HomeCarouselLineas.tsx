@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { HomeCarouselLineasData } from "@/types/sections";
+import { getLocaleFromPathname } from "@/lib/i18n";
+import { lineaToSlug } from "@/lib/product-utils";
 
 interface HomeCarouselLineasProps {
   data: HomeCarouselLineasData;
@@ -10,6 +13,8 @@ interface HomeCarouselLineasProps {
 
 export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
   const { sectionTitle, lineas } = data;
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPathname(pathname);
   if (!lineas?.length) return null;
 
   return (
@@ -29,7 +34,7 @@ export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
           {lineas.map((linea) => (
             <Link
               key={linea.id}
-              href={linea.href}
+              href={`/${locale}/productos?linea=${encodeURIComponent(lineaToSlug(linea.name))}`}
               className="group flex flex-col items-center rounded-xl border border-white/20 bg-white/5 p-4 backdrop-blur-sm transition focus:outline-none focus:ring-0 hover:bg-white/10 hover:border-white/30"
             >
               <span className="relative inline-block h-[85px] w-[145px] overflow-hidden rounded-lg">

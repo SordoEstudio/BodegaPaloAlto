@@ -30,6 +30,7 @@ export const API_CONFIG = {
     CLIENT_CONFIG: "/client-config",
     CMS_COMPONENTS: "/cms-components",
     PRODUCTS: "/products",
+    FORMS: "/forms",
   },
 } as const;
 
