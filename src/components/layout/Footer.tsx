@@ -23,6 +23,37 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Ubicación: MapPin,
 };
 
+/** Claves en minúsculas sin acentos; incluye equivalentes EN del CMS */
+const iconByNormalizedLabel: Record<string, React.ComponentType<{ className?: string }>> = {
+  facebook: FaFacebookF,
+  instagram: FaInstagram,
+  whatsapp: FaWhatsapp,
+  ubicacion: MapPin,
+  ubicación: MapPin,
+  location: MapPin,
+  map: MapPin,
+  mapa: MapPin,
+  maps: MapPin,
+  "google maps": MapPin,
+};
+
+function normalizeIconKey(label: string): string {
+  return label
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .trim()
+    .toLowerCase();
+}
+
+function getIconForFooterLink(label: string): React.ComponentType<{ className?: string }> | undefined {
+  const direct = iconMap[label];
+  if (direct) return direct;
+  const key = normalizeIconKey(label);
+  if (iconByNormalizedLabel[key]) return iconByNormalizedLabel[key];
+  if (/\b(location|ubicacion|mapa|maps?)\b/i.test(label)) return MapPin;
+  return undefined;
+}
+
 function getLocaleFromPathname(pathname: string): "es" | "en" {
   return pathname.startsWith("/en") ? "en" : "es";
 }
@@ -34,7 +65,7 @@ function SocialIconLink({
   link: FooterLinkItem;
   variant?: "default" | "destileria";
 }) {
-  const Icon = iconMap[link.label];
+  const Icon = getIconForFooterLink(link.label);
   const tooltipContent = link.value || link.ariaLabel;
   const linkClass =
     variant === "destileria"
@@ -136,7 +167,7 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
 <h3 className="font-heading mb-4 text-xs font-bold uppercase tracking-wider text-palo-alto-primary/90 ">{locale === "en" ? "Destilería" : "Destilería"}</h3>
 <ul className="flex flex-wrap gap-3" role="list">
   {(lista_contacto_destileria ?? []).map((link) => {
-    const Icon = iconMap[link.label];
+    const Icon = getIconForFooterLink(link.label);
     return (
       <li key={link.label} role="listitem">
         <Link
@@ -225,7 +256,9 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
             </Link>
           </div>
           <p className="text-sm font-medium text-white/90">
-            Bodega Palo Alto - Todos los derechos reservados - 2026
+            {locale === "en"
+              ? "Bodega Palo Alto - All rights reserved - 2026"
+              : "Bodega Palo Alto - Todos los derechos reservados - 2026"}
           </p>
           <p className="text-sm text-white/70">
             {developedByUrl ? (

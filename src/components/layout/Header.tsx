@@ -2,26 +2,36 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import type { HeaderData } from "@/types/sections";
-import { getLocaleFromPathname, getLocalizedPath, getPathWithoutLocale } from "@/lib/i18n";
+import { getLocaleFromPathname, getLocalizedPath, getPathWithoutLocale, isValidLocale, type Locale } from "@/lib/i18n";
 
 interface HeaderProps {
   dataEs: HeaderData;
   dataEn: HeaderData;
 }
 
+const PREFERRED_LOCALE_MAX_AGE = 60 * 60 * 24 * 365;
+
+function setPreferredLocaleCookie(next: Locale) {
+  if (typeof document === "undefined") return;
+  document.cookie = `preferredLocale=${next}; path=/; max-age=${PREFERRED_LOCALE_MAX_AGE}; SameSite=Lax`;
+}
+
 export function Header({ dataEs, dataEn }: HeaderProps) {
   const pathname = usePathname() ?? "/";
+  const searchParams = useSearchParams();
+  const querySuffix = (() => {
+    const q = searchParams.toString();
+    return q ? `?${q}` : "";
+  })();
   const locale = getLocaleFromPathname(pathname);
   const data = locale === "en" ? dataEn : dataEs;
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { logo, nav, languages } = data;
-  const otherLocale = locale === "en" ? "es" : "en";
-  const switchPath = getLocalizedPath(pathname, otherLocale);
   const currentPath = getPathWithoutLocale(pathname);
 
   const isActive = (href: string) => {
@@ -120,20 +130,31 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
           {/* Idiomas + menú móvil */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1" role="group" aria-label="Idioma">
-              {languages.map((lang) => (
-                <Link
-                  key={lang.code}
-                  href={lang.code === locale ? pathname : switchPath}
-                  className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded px-2 text-sm font-bold transition focus:outline-none focus:ring-0 ${
-                    lang.code === locale
-                      ? "text-palo-alto-primary"
-                      : "text-white/90 hover:text-white"
-                  }`}
-                  aria-current={lang.code === locale ? "true" : undefined}
-                >
-                  {lang.label}
-                </Link>
-              ))}
+              {languages.map((lang) => {
+                const langCodeRaw = String(lang.code).toLowerCase();
+                const langCode: Locale = isValidLocale(langCodeRaw) ? langCodeRaw : locale;
+                const isActive = langCode === locale;
+                const href = isActive
+                  ? `${pathname}${querySuffix}`
+                  : `${getLocalizedPath(pathname, langCode)}${querySuffix}`;
+                return (
+                  <Link
+                    key={lang.code}
+                    href={href}
+                    className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded px-2 text-sm font-bold transition focus:outline-none focus:ring-0 ${
+                      isActive
+                        ? "text-palo-alto-primary"
+                        : "text-white/90 hover:text-white"
+                    }`}
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={() => {
+                      if (!isActive) setPreferredLocaleCookie(langCode);
+                    }}
+                  >
+                    {lang.label}
+                  </Link>
+                );
+              })}
             </div>
             <button
               type="button"

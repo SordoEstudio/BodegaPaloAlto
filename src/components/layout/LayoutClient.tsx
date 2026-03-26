@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -33,7 +33,9 @@ export function LayoutClient({
   return (
     <>
       {!isWelcome && (
-        <Header dataEs={headerEs} dataEn={headerEn} />
+        <Suspense fallback={null}>
+          <Header dataEs={headerEs} dataEn={headerEn} />
+        </Suspense>
       )}
       <main
         id="main-content"
