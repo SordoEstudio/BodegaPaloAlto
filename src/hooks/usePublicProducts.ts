@@ -32,6 +32,8 @@ export interface PublicProduct {
   slug: string;
   visible?: boolean;
   is_for_sale?: boolean;
+  sale_link_label?: string;
+  sale_link_url?: string;
   productType?: string | null;
   locale: ProductLocale;
   categories?: string[];
