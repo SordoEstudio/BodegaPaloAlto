@@ -18,6 +18,7 @@ export interface UsePublicProductsOptions {
   category?: string;
   productType?: string;
   status?: string;
+  featured?: boolean;
 }
 
 export interface ProductLocale {
@@ -80,6 +81,7 @@ export function usePublicProducts(
     category,
     productType,
     status = "published",
+    featured,
   } = options;
 
   const [products, setProducts] = useState<PublicProduct[] | null>(null);
@@ -101,6 +103,7 @@ export function usePublicProducts(
       };
       if (category) params.category = category;
       if (productType) params.productType = productType;
+      if (typeof featured === "boolean") params.featured = String(featured);
 
       const cacheKey = JSON.stringify(params);
       const cached = productsCache.get(cacheKey);
@@ -125,6 +128,11 @@ export function usePublicProducts(
       const data = json?.data;
       const products = data?.products ?? [];
       const pagination = data?.pagination ?? null;
+      console.log("[usePublicProducts] products", products);
+      console.log("[usePublicProducts] products summary", {
+        total: pagination?.total ?? products.length,
+        count: products.length,
+      });
 
       productsCache.set(cacheKey, { data: { products, pagination }, ts: Date.now() });
       setProducts(products);
@@ -137,7 +145,7 @@ export function usePublicProducts(
     } finally {
       setLoading(false);
     }
-  }, [clientSlug, locale, page, limit, category, productType, status]);
+  }, [clientSlug, locale, page, limit, category, productType, status, featured]);
 
   useEffect(() => {
     fetchProducts();

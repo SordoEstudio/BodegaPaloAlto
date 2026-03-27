@@ -4,6 +4,7 @@ import { Ubuntu, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { LayoutClient } from "@/components/layout/LayoutClient";
 import { getHeaderData, getFooterData } from "@/lib/data";
+import { getSiteUrl, getDefaultOgImage } from "@/lib/seo";
 import { ClientConfigProvider, CMSComponentsProvider } from "@/portable-dynamic-cms";
 import { getClientConfig } from "@/portable-dynamic-cms/config/client-config-loader";
 
@@ -24,9 +25,28 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Bodega Palo Alto | Mendoza, Argentina",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: "Bodega Palo Alto | Mendoza, Argentina",
+    template: "%s | Bodega Palo Alto",
+  },
   description:
     "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+  openGraph: {
+    type: "website",
+    siteName: "Bodega Palo Alto",
+    title: "Bodega Palo Alto | Mendoza, Argentina",
+    description:
+      "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+    images: [{ url: getDefaultOgImage() }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bodega Palo Alto | Mendoza, Argentina",
+    description:
+      "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+    images: [getDefaultOgImage()],
+  },
 };
 
 export default async function RootLayout({

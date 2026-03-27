@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { ProductDetail } from "@/components/products/ProductDetail";
 import { getUITranslations } from "@/lib/ui-translations";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
+import { getSiteUrl, getDefaultOgImage } from "@/lib/seo";
 import type { PublicProduct } from "@/hooks/usePublicProducts";
 
 const CLIENT_SLUG = process.env.NEXT_PUBLIC_CLIENT_SLUG ?? "bodega-palo-alto";
@@ -80,9 +81,23 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale, slug } = await params;
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const product = await fetchProduct(slug, loc);
+  const site = getSiteUrl();
+  const productPath = `/productos/${slug}`;
 
   if (!product) {
-    return { title: loc === "es" ? "Producto no encontrado" : "Product not found" };
+    const title = loc === "es" ? "Producto no encontrado" : "Product not found";
+    return {
+      title,
+      alternates: {
+        canonical: `${site}/es${productPath}`,
+        languages: {
+          es: `${site}/es${productPath}`,
+          en: `${site}/en${productPath}`,
+          "x-default": `${site}/es${productPath}`,
+        },
+      },
+      robots: { index: false, follow: true },
+    };
   }
 
   const meta = product.locale?.seo;
@@ -90,12 +105,28 @@ export async function generateMetadata({ params }: PageProps) {
   const description = meta?.meta_description || product.locale?.summary;
 
   return {
-    title: title ? `${title} | Bodega Palo Alto` : "Bodega Palo Alto",
+    title: title ?? "Bodega Palo Alto",
     description: description ?? undefined,
+    alternates: {
+      canonical: `${site}/es${productPath}`,
+      languages: {
+        es: `${site}/es${productPath}`,
+        en: `${site}/en${productPath}`,
+        "x-default": `${site}/es${productPath}`,
+      },
+    },
     openGraph: {
-      title: title ?? undefined,
+      title: title ?? "Bodega Palo Alto",
       description: description ?? undefined,
-      images: product.images?.[0]?.url ? [product.images[0].url] : undefined,
+      type: "article",
+      url: `/${loc}${productPath}`,
+      images: product.images?.[0]?.url ? [product.images[0].url] : [getDefaultOgImage()],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title ?? "Bodega Palo Alto",
+      description: description ?? undefined,
+      images: product.images?.[0]?.url ? [product.images[0].url] : [getDefaultOgImage()],
     },
   };
 }

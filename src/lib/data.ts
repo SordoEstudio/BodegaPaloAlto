@@ -353,12 +353,29 @@ function mapListaContactoToBlock(
 
 /** Mapea data CMS de carousel_promociones a PromoCarouselData */
 export function mapPromoCarouselFromCms(raw: Record<string, unknown>): PromoCarouselData {
-  const listaSlides = (raw.lista_slides as Record<string, unknown>[]) ?? [];
+  const listaSlides =
+    ((raw.lista_slides ?? raw.lista_banners ?? raw.slides) as Record<string, unknown>[]) ?? [];
   const config = (raw._configuracion as { autoplay?: boolean; intervalo_segundos?: number }) ?? {};
   const slides: PromoCarouselSlide[] = listaSlides.map((item) => {
-    const tipo = (item.tipo_slide as string) ?? "imagen_con_texto";
-    const linkDestino = item.link_destino_optional as { url?: string; label?: string } | undefined;
-    const linkBoton = item.link_boton_optional as { url?: string; label?: string } | undefined;
+    const tipo = ((item.tipo_slide as string) ?? (item.txt_tipo as string) ?? "imagen_con_texto").toLowerCase();
+    const linkDestinoRaw =
+      (item.link_destino_optional as { url?: string; label?: string } | undefined) ??
+      (item.btn_destino_optional as { link_url?: string; txt_label?: string } | undefined);
+    const linkBotonRaw =
+      (item.link_boton_optional as { url?: string; label?: string } | undefined) ??
+      (item.btn_boton_optional as { link_url?: string; txt_label?: string } | undefined);
+    const linkDestino = linkDestinoRaw
+      ? {
+          url: String((linkDestinoRaw as Record<string, unknown>).url ?? (linkDestinoRaw as Record<string, unknown>).link_url ?? ""),
+          label: String((linkDestinoRaw as Record<string, unknown>).label ?? (linkDestinoRaw as Record<string, unknown>).txt_label ?? ""),
+        }
+      : undefined;
+    const linkBoton = linkBotonRaw
+      ? {
+          url: String((linkBotonRaw as Record<string, unknown>).url ?? (linkBotonRaw as Record<string, unknown>).link_url ?? ""),
+          label: String((linkBotonRaw as Record<string, unknown>).label ?? (linkBotonRaw as Record<string, unknown>).txt_label ?? ""),
+        }
+      : undefined;
     const img = (item.img_imagen as string) ?? "";
     const alt = (item.txt_alt_imagen as string) ?? "";
     const esDestileria = item.boolean_destileria ?? item.pertenece_destileria ?? item.es_destileria;
@@ -734,7 +751,15 @@ function mapDestileriaFromCms(raw: Record<string, unknown>): DestileriaData {
   };
 
   const manifestoRaw = (raw.manifesto ?? {}) as Record<string, unknown>;
-  const listaLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as string[];
+  const rawLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as unknown[];
+  const listaLineas = (Array.isArray(rawLineas) ? rawLineas : [])
+    .map((linea) => {
+      if (typeof linea === "string") return linea;
+      const item = (linea ?? {}) as Record<string, unknown>;
+      return String(item.txt_item ?? item.txt_linea ?? item.text ?? item.label ?? "");
+    })
+    .map((linea) => linea.trim())
+    .filter((linea): linea is string => linea.length > 0);
   const galleryImgs = (manifestoRaw.gallery_imagenes ?? manifestoRaw.lista_imagenes ?? manifestoRaw.images ?? []) as unknown[];
   const images = galleryImgs.map((img) => {
     const r = (img ?? {}) as Record<string, unknown>;
@@ -820,7 +845,15 @@ export function mapHistoriaDestileriaFromCms(raw: Record<string, unknown>): Dest
 /** Mapea data de manifest (API) a DestileriaManifestoData. Acepta data bajo manifesto. */
 export function mapManifestFromCms(raw: Record<string, unknown>): DestileriaManifestoData {
   const manifestoRaw = (raw.manifesto ?? raw) as Record<string, unknown>;
-  const listaLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as string[];
+  const rawLineas = (manifestoRaw.lista_lineas ?? manifestoRaw.lines ?? []) as unknown[];
+  const listaLineas = (Array.isArray(rawLineas) ? rawLineas : [])
+    .map((linea) => {
+      if (typeof linea === "string") return linea;
+      const item = (linea ?? {}) as Record<string, unknown>;
+      return String(item.txt_item ?? item.txt_linea ?? item.text ?? item.label ?? "");
+    })
+    .map((linea) => linea.trim())
+    .filter((linea): linea is string => linea.length > 0);
   const galleryImgs = (manifestoRaw.gallery_imagenes ?? manifestoRaw.lista_imagenes ?? manifestoRaw.images ?? []) as unknown[];
   const images = galleryImgs
     .map((img) => {

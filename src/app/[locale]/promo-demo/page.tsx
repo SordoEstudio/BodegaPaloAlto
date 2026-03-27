@@ -11,6 +11,10 @@ interface PageProps {
 export const metadata = {
   title: "Demo carrusel promociones | Bodega Palo Alto",
   description: "Vista previa del carrusel de promociones con ambos tipos de slide.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function PromoDemoPage({ params }: PageProps) {

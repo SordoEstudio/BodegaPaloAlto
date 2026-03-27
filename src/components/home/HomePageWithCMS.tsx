@@ -6,6 +6,7 @@ import {
   homeComponentMap as componentMap,
   getHomeComponentProps,
 } from "@/lib/cms-home-map";
+import { HomeProductosDestacados } from "@/components/home/HomeProductosDestacados";
 
 interface HomePageWithCMSProps {
   useCmsLayout: boolean;
@@ -21,12 +22,16 @@ export function HomePageWithCMS({ useCmsLayout }: HomePageWithCMSProps) {
   }
 
   return (
-    <DynamicLayout
-      pageType="Inicio"
-      cmsTypeToLayoutName={cmsTypeToLayoutName}
-      componentMap={componentMap}
-      getComponentProps={getHomeComponentProps}
-      overlayGroup={{ first: "home-hero", second: "home-carousel-lineas" }}
-    />
+    <>
+      <DynamicLayout
+        pageType="Inicio"
+        cmsTypeToLayoutName={cmsTypeToLayoutName}
+        componentMap={componentMap}
+        getComponentProps={getHomeComponentProps}
+        overlayGroup={{ first: "home-hero", second: "home-carousel-lineas" }}
+      />
+      {/* Fallback global: mostrar destacados aunque el CMS no envíe el bloque específico */}
+      <HomeProductosDestacados data={{ sectionTitle: "", products: [] }} />
+    </>
   );
 }
