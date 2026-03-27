@@ -52,7 +52,10 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
 
   const formComp = getComponentByType("formulario_contacto");
   const redesComp = getComponentByType("contacto_redes");
-  const carruselComp = getComponentByType("carrusel_contacto");
+  const carruselComp =
+    getComponentByType("carrusel_contacto") ??
+    getComponentByType("carrusel_promocional") ??
+    getComponentByType("slider_banner");
 
   if (!formComp?.data || !redesComp?.data) {
     return <ContactMissingData />;

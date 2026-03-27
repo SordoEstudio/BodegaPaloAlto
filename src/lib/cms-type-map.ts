@@ -9,6 +9,7 @@ export const cmsTypeToLayoutName: Record<string, string> = {
   home_banner: "home-banner",
   home_productos_destacados: "home-productos-destacados",
   carrusel_promocional: "promo-carousel",
+  slider_banner: "promo-carousel",
   carrusel_bodega: "promo-carousel",
   carrusel_destileria: "promo-carousel",
   carrusel_contacto: "promo-carousel",
