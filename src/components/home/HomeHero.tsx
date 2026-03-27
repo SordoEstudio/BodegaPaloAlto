@@ -17,7 +17,13 @@ export function HomeHero({ data }: HomeHeroProps) {
       <div >
         {img_logo && (
           <div className="flex justify-center">
-            <img src={img_logo} alt={logoAlt} width={400} height={400} className="object-contain" />
+            <img
+              src={img_logo}
+              alt={logoAlt}
+              width={400}
+              height={400}
+              className="h-auto w-[200px] object-contain sm:w-[400px]"
+            />
           </div>
         )}
         <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">

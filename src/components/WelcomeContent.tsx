@@ -35,7 +35,13 @@ export function WelcomeContent({ data, locale = "es" }: WelcomeContentProps) {
 <div className="backdrop-blur-sm bg-black/30 rounded-2xl border border-white/35 px-8 py-10 ">
   {logoImage && (
     <div className="flex justify-center">
-      <img src={logoImage} alt={logoAlt} width={400} height={400} className="object-contain" />
+      <img
+        src={logoImage}
+        alt={logoAlt}
+        width={400}
+        height={400}
+        className="h-auto w-[200px] object-contain sm:w-[400px]"
+      />
     </div>
   )}
          <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">

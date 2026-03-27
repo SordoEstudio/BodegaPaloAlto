@@ -35,7 +35,7 @@ export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
             <Link
               key={linea.id}
               href={`/${locale}/productos?linea=${encodeURIComponent(lineaToSlug(linea.name))}`}
-              className="group flex flex-col items-center rounded-xl border border-white/20 bg-white/5 p-4 backdrop-blur-sm transition focus:outline-none focus:ring-0 hover:bg-white/10 hover:border-white/30"
+              className="group flex flex-col items-center rounded-xl border border-white/20 bg-white/5 p-2 sm:p-4 backdrop-blur-sm transition focus:outline-none focus:ring-0 hover:bg-white/10 hover:border-white/30"
             >
               <span className="relative inline-block h-[85px] w-[145px] overflow-hidden rounded-lg">
                 <Image
