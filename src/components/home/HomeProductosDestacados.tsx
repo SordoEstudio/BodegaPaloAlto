@@ -28,13 +28,13 @@ export function HomeProductosDestacados({ data }: HomeProductosDestacadosProps) 
 
   return (
     <section
-      className="bg-[var(--background)] px-6 py-16"
+      className="bg-header-bg px-6 py-16"
       aria-labelledby="productos-destacados-heading"
     >
       <div className="mx-auto max-w-6xl">
         <h2
           id="productos-destacados-heading"
-          className="font-heading text-center text-2xl font-bold text-palo-alto-secondary sm:text-3xl"
+          className="font-heading text-center text-2xl font-bold text-white sm:text-3xl"
         >
           {sectionTitle || (locale === "en" ? "Featured products" : "Productos destacados")}
         </h2>
@@ -62,7 +62,7 @@ export function HomeProductosDestacados({ data }: HomeProductosDestacadosProps) 
         <div className="mt-8 text-center">
           <Link
             href={`/${locale}/productos`}
-            className="inline-flex text-sm font-semibold text-palo-alto-secondary underline underline-offset-4 transition hover:opacity-80 focus:outline-none focus:ring-0"
+            className="inline-flex text-sm font-semibold text-palo-alto-primary underline underline-offset-4 transition hover:opacity-80 focus:outline-none focus:ring-0"
           >
             {locale === "en" ? "View all products" : "Ver todos los productos"}
           </Link>
