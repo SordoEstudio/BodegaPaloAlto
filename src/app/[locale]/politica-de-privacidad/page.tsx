@@ -1,5 +1,6 @@
 import { getPrivacyPolicyData } from "@/lib/data";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
+import { getLocalizedAlternates, getDefaultOgImage } from "@/lib/seo";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -12,9 +13,25 @@ export async function generateMetadata({ params }: PageProps) {
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const data = getPrivacyPolicyData(loc);
   const isEn = loc === "en";
+  const title = isEn ? "Privacy Policy" : "Política de Privacidad";
+  const description = data.metaDescription;
   return {
-    title: isEn ? "Privacy Policy | Bodega Palo Alto" : "Política de Privacidad | Bodega Palo Alto",
-    description: data.metaDescription,
+    title,
+    description,
+    alternates: getLocalizedAlternates("/politica-de-privacidad"),
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/${loc}/politica-de-privacidad`,
+      images: [{ url: getDefaultOgImage() }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [getDefaultOgImage()],
+    },
   };
 }
 

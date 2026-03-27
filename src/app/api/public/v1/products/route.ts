@@ -50,6 +50,14 @@ export async function GET(request: Request) {
   try {
     const res = await fetch(url, { headers });
     const data = await res.json();
+    console.log("[products API] Response:", {
+      ok: res.ok,
+      status: res.status,
+      url,
+      total: data?.data?.pagination?.total ?? null,
+      count: Array.isArray(data?.data?.products) ? data.data.products.length : null,
+      data,
+    });
 
     if (!res.ok) {
       return NextResponse.json(

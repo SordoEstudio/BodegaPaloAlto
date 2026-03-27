@@ -1,5 +1,6 @@
 import { BodegaPageWithCMS } from "@/components/bodega/BodegaPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
+import { getLocalizedAlternates, getDefaultOgImage } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
 const useCmsLayout = process.env.NEXT_PUBLIC_USE_CMS_LAYOUT === "true";
@@ -12,11 +13,27 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const isEn = loc === "en";
+  const title = isEn ? "Winery" : "Bodega";
+  const description = isEn
+    ? "Who we are, our team and our estates: Alto Ugarteche and Palo Alto, Mendoza, Argentina."
+    : "Quiénes somos, nuestro equipo y nuestras fincas: Alto Ugarteche y Palo Alto en Mendoza, Argentina.";
   return {
-    title: isEn ? "Winery | Bodega Palo Alto" : "Bodega | Bodega Palo Alto",
-    description: isEn
-      ? "Who we are, our team and our estates: Alto Ugarteche and Palo Alto, Mendoza, Argentina."
-      : "Quiénes somos, nuestro equipo y nuestras fincas: Alto Ugarteche y Palo Alto en Mendoza, Argentina.",
+    title,
+    description,
+    alternates: getLocalizedAlternates("/bodega"),
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/${loc}/bodega`,
+      images: [{ url: getDefaultOgImage() }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [getDefaultOgImage()],
+    },
   };
 }
 
