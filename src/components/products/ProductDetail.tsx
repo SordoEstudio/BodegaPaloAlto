@@ -17,13 +17,24 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
   const attrs = product.attributes ?? {};
+  const resolveLocalizedAttr = (value: unknown): string => {
+    if (typeof value === "string") return value.trim();
+    if (value && typeof value === "object") {
+      const localized = value as { es?: unknown; en?: unknown };
+      const preferred = locale === "en" ? localized.en : localized.es;
+      const fallback = locale === "en" ? localized.es : localized.en;
+      if (typeof preferred === "string" && preferred.trim()) return preferred.trim();
+      if (typeof fallback === "string" && fallback.trim()) return fallback.trim();
+    }
+    return "";
+  };
   const isForSale = product.is_for_sale === true;
   const images = (product.images ?? []).sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0)
   );
-  const vista = String(attrs.vista ?? "").trim();
-  const nariz = String(attrs.nariz ?? "").trim();
-  const boca = String(attrs.boca ?? "").trim();
+  const vista = resolveLocalizedAttr(attrs.vista);
+  const nariz = resolveLocalizedAttr(attrs.nariz);
+  const boca = resolveLocalizedAttr(attrs.boca);
   const hasNotasCata = vista || nariz || boca;
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
