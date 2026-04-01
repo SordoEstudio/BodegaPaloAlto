@@ -26,6 +26,10 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
+  icons: {
+    icon: [{ url: "/logos/iso-c-m.png", type: "image/png", sizes: "2000x2000" }],
+    apple: "/logos/iso-c-m.png",
+  },
   title: {
     default: "Bodega Palo Alto | Mendoza, Argentina",
     template: "%s | Bodega Palo Alto",
