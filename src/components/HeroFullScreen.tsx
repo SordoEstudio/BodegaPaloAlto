@@ -87,8 +87,10 @@ export function HeroFullScreen({
               alt={slide.imageAlt}
               fill
               className="object-cover"
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1360px"
+              quality={65}
               priority={i === 0}
+              fetchPriority={i === 0 ? "high" : "low"}
             />
           </div>
         ))

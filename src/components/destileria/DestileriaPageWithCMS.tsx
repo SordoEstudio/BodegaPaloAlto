@@ -13,6 +13,7 @@ import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySpl
 import { DestileriaTextHighlight } from "@/components/destileria/DestileriaTextHighlight";
 import { DestileriaMissionVision } from "@/components/destileria/DestileriaMissionVision";
 import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto";
+import { DestileriaPageSkeleton } from "@/components/destileria/DestileriaPageSkeleton";
 import { isValidLocale } from "@/lib/i18n";
 
 function DestileriaStaticContent() {
@@ -66,6 +67,7 @@ export function DestileriaPageWithCMS({ useCmsLayout }: DestileriaPageWithCMSPro
       componentMap={componentMap}
       getComponentProps={getDestileriaComponentProps}
       EmptyComponent={DestileriaEmptyFallback}
+      LoadingComponent={DestileriaPageSkeleton}
     />
   );
 }

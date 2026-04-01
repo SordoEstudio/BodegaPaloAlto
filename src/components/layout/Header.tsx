@@ -67,7 +67,9 @@ export function Header({ dataEs, dataEn }: HeaderProps) {
                 src={logo.imageSrc}
                 alt={logo.imageAlt ?? logo.text}
                 width={140}
-                height={140}
+                height={20}
+                sizes="140px"
+                className="h-5 w-[140px] object-contain object-left"
               />
             ) : (
               logo.text

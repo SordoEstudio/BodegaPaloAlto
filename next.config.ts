@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    // Punto medio entre 1200 y 1920 para viewports ~1280–1400px (menos bytes en hero full-bleed).
+    deviceSizes: [640, 750, 828, 1080, 1200, 1280, 1360, 1440, 1920, 2048, 3840],
   },
   async headers() {
     return [

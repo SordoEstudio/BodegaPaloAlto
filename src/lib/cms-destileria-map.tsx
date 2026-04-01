@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentType } from "react";
+import dynamic from "next/dynamic";
 import type { CMSComponent } from "@/portable-dynamic-cms/types/cms-components";
 import type { DynamicLayoutComponentProps } from "@/portable-dynamic-cms/components/DynamicLayout";
 import {
@@ -12,13 +13,25 @@ import {
   mapBannerFromCms,
   mapPromoCarouselFromCms,
 } from "@/lib/data";
-import { DestileriaHero } from "@/components/destileria/DestileriaHero";
-import { DestileriaStorySplit } from "@/components/destileria/DestileriaStorySplit";
-import { DestileriaTextHighlight } from "@/components/destileria/DestileriaTextHighlight";
-import { DestileriaMissionVision } from "@/components/destileria/DestileriaMissionVision";
-import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto";
-import { HomeBanner } from "@/components/home/HomeBanner";
-import { PromoCarousel } from "@/components/promo/PromoCarousel";
+const DestileriaHero = dynamic(() =>
+  import("@/components/destileria/DestileriaHero").then((mod) => mod.DestileriaHero)
+);
+const DestileriaStorySplit = dynamic(() =>
+  import("@/components/destileria/DestileriaStorySplit").then((mod) => mod.DestileriaStorySplit)
+);
+const DestileriaTextHighlight = dynamic(() =>
+  import("@/components/destileria/DestileriaTextHighlight").then((mod) => mod.DestileriaTextHighlight)
+);
+const DestileriaMissionVision = dynamic(() =>
+  import("@/components/destileria/DestileriaMissionVision").then((mod) => mod.DestileriaMissionVision)
+);
+const DestileriaManifesto = dynamic(() =>
+  import("@/components/destileria/DestileriaManifesto").then((mod) => mod.DestileriaManifesto)
+);
+const HomeBanner = dynamic(() => import("@/components/home/HomeBanner").then((mod) => mod.HomeBanner));
+const PromoCarousel = dynamic(() =>
+  import("@/components/promo/PromoCarousel").then((mod) => mod.PromoCarousel)
+);
 import type {
   DestileriaHeroData,
   DestileriaStorySplitData,

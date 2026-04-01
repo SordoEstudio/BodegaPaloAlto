@@ -2,6 +2,7 @@
 
 import { useCMSComponentsFromContext } from "@/portable-dynamic-cms";
 import { ContactPageSection } from "@/components/contact/ContactPageSection";
+import { ContactPageSkeleton } from "@/components/contact/ContactPageSkeleton";
 import { PromoCarousel } from "@/components/promo/PromoCarousel";
 import { mapFormularioContactoFromCms, mapContactoRedesFromCms, mapPromoCarouselFromCms } from "@/lib/data";
 import type { ContactPageData } from "@/types/sections";
@@ -12,11 +13,7 @@ interface ContactPageWithCMSProps {
 }
 
 function ContactLoading() {
-  return (
-    <div className="flex min-h-[480px] items-center justify-center px-6 py-16">
-      <p className="text-foreground/70">Cargando formulario de contacto...</p>
-    </div>
-  );
+  return <ContactPageSkeleton />;
 }
 
 function ContactError({ message }: { message: string }) {
@@ -85,6 +82,7 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
         <PromoCarousel
           data={carouselData}
           minHeight="50vh"
+          prioritizeFirstSlide={false}
         />
       ) : null}
     </>

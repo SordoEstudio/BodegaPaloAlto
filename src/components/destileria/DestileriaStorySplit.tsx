@@ -42,7 +42,9 @@ export function DestileriaStorySplit({ data }: DestileriaStorySplitProps) {
                 alt={imageAltText}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 600px"
+                quality={70}
+                loading="lazy"
               />
             </div>
           )}

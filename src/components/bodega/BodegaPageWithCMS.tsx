@@ -10,6 +10,7 @@ import {
 import { getBodegaData } from "@/lib/data";
 import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
 import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
+import { BodegaPageSkeleton } from "@/components/bodega/BodegaPageSkeleton";
 import { isValidLocale } from "@/lib/i18n";
 
 function BodegaStaticContent() {
@@ -60,6 +61,7 @@ export function BodegaPageWithCMS({ useCmsLayout }: BodegaPageWithCMSProps) {
       getComponentProps={getBodegaComponentProps}
       excludeLayoutNames={["team-bodega"]}
       EmptyComponent={BodegaEmptyFallback}
+      LoadingComponent={BodegaPageSkeleton}
     />
   );
 }

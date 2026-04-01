@@ -13,7 +13,6 @@ export function DestileriaTextHighlight({ data }: DestileriaTextHighlightProps) 
     highlightQuote,
     backgroundImage,
     backgroundImageAlt,
-    parallax = false,
     textAlign = "left",
   } = data;
 
@@ -53,31 +52,22 @@ export function DestileriaTextHighlight({ data }: DestileriaTextHighlightProps) 
   if (hasBg) {
     return (
       <section
-        className="destileria-section relative overflow-hidden py-16 md:py-24"
+        className="destileria-section relative min-h-[460px] overflow-hidden py-16 md:min-h-[520px] md:py-24"
         aria-labelledby={sectionId}
       >
-        {parallax ? (
-          <div
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundAttachment: "fixed",
-            }}
-            aria-hidden
+        <div className="absolute inset-0 z-0" aria-hidden>
+          <Image
+            src={backgroundImage!}
+            alt={backgroundImageAlt ?? ""}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 1360px"
+            quality={62}
+            loading="lazy"
           />
-        ) : (
-          <div className="absolute inset-0 z-0" aria-hidden>
-            <Image
-              src={backgroundImage!}
-              alt={backgroundImageAlt ?? ""}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        )}
+        </div>
         <div className="absolute inset-0 z-10 bg-black/60" aria-hidden />
-          <div className={`relative z-20 [&_h2]:text-white! [&_p]:text-white/95! [&_blockquote]:text-white/95! ${
+        <div className={`relative z-20 [&_h2]:text-white! [&_p]:text-white/95! [&_blockquote]:text-white/95! ${
             textAlign === "right"
               ? "[&_blockquote]:border-r-4 [&_blockquote]:border-r-magic-stone-primary! [&_blockquote]:border-l-0"
               : "[&_blockquote]:border-l-4 [&_blockquote]:border-l-magic-stone-primary! [&_blockquote]:border-r-0"

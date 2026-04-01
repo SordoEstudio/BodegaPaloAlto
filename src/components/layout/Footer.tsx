@@ -151,12 +151,16 @@ export function Footer({ dataEs, dataEn }: FooterProps) {
               aria-label={logo.imageAlt || logo.text}
             >
               {logo.imageSrc ? (
-                <Image
-                  src={logo.imageSrc}
-                  alt={logo.imageAlt ?? logo.text}
-                  width={200}
-                  height={36}
-                />
+                <span className="relative inline-block h-[58px] w-[200px] shrink-0">
+                  <Image
+                    src={logo.imageSrc}
+                    alt={logo.imageAlt ?? logo.text}
+                    fill
+                    sizes="200px"
+                    className="object-contain"
+                    loading="eager"
+                  />
+                </span>
               ) : (
                 logo.text
               )}
