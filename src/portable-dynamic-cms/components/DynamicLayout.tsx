@@ -1,6 +1,12 @@
 "use client";
 
 import { useMemo, useCallback, type ReactNode, type ComponentType } from "react";
+import { PromoCarousel } from "@/components/promo/PromoCarousel";
+import {
+  getGlobalUniqueSliderBanner,
+  pageHasScopedPromoCarousel,
+} from "@/lib/cms-global-banner";
+import { mapPromoCarouselFromCms } from "@/lib/data";
 import { useClientConfig } from "../contexts/ClientConfigProvider";
 import { useCMSComponentsFromContext } from "../contexts/CMSComponentsProvider";
 import type { CMSComponent } from "../types/cms-components";
@@ -246,6 +252,26 @@ export function DynamicLayout({
           );
         })
       )}
+
+      {cmsLoading || components === null
+        ? null
+        : (() => {
+            if (pageHasScopedPromoCarousel(components, pageType)) return null;
+            const globalComp = getGlobalUniqueSliderBanner(components);
+            if (!globalComp?.data) return null;
+            const carouselData = mapPromoCarouselFromCms(
+              globalComp.data as Record<string, unknown>
+            );
+            if (!carouselData.slides?.length) return null;
+            return (
+              <PromoCarousel
+                key={`cms-global-slider-${globalComp._id}`}
+                data={carouselData}
+                minHeight="50vh"
+                prioritizeFirstSlide={false}
+              />
+            );
+          })()}
     </>
   );
 }
