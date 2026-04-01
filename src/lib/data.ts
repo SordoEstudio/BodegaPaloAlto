@@ -70,11 +70,29 @@ function normalizeLocale(locale: string | undefined): Locale {
 export function mapBannerFromCms(raw: Record<string, unknown>): HomeBannerData {
   const link = raw.link_destino as { url?: string; label?: string } | undefined;
   const config = raw._configuracion as { parallax?: boolean } | undefined;
+  const imageSrc =
+    (raw.img_fondo as string) ||
+    (raw.img_imagen_de_fondo as string) ||
+    (raw.img_imagen as string) ||
+    "";
+  const imageAlt =
+    (raw.txt_alt_optional as string) ||
+    (raw.txt_alt_imagen_de_fondo as string) ||
+    (raw.txt_alt_imagen as string) ||
+    "";
+  const title =
+    (raw.txt_titulo as string) ||
+    (raw.txt_titulo_optional as string) ||
+    undefined;
+  const href =
+    typeof link === "object" && link?.url
+      ? link.url
+      : (raw.link_url as string | undefined);
   return {
-    imageSrc: (raw.img_fondo as string) ?? "",
-    imageAlt: (raw.txt_alt_optional as string) ?? "",
-    title: raw.txt_titulo as string | undefined,
-    href: typeof link === "object" && link?.url ? link.url : (raw.link_url as string | undefined),
+    imageSrc,
+    imageAlt,
+    title,
+    href,
     config: config ? { parallax: config.parallax } : undefined,
   };
 }

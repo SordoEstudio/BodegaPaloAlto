@@ -2,17 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { HomeBannerData } from "@/types/sections";
+import { getLocaleFromPathname, type Locale } from "@/lib/i18n";
 
 interface HomeBannerProps {
   data: HomeBannerData;
+}
+
+/** Enlaces internos del CMS sin prefijo (/bodega) → /es/bodega | /en/bodega */
+function localizeBannerHref(href: string, locale: Locale): string {
+  const trimmed = href.trim();
+  if (!trimmed || /^https?:\/\//i.test(trimmed) || trimmed.startsWith("//")) {
+    return href;
+  }
+  if (/^\/(es|en)(\/|$)/.test(trimmed)) {
+    return trimmed;
+  }
+  const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  return `/${locale}${path === "/" ? "" : path}`;
 }
 
 const bannerContentClass =
   "relative block w-full overflow-hidden min-h-[200px] sm:min-h-[280px]";
 
 export function HomeBanner({ data }: HomeBannerProps) {
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPathname(pathname);
   const { imageSrc, imageAlt, title, href, config } = data;
+  const resolvedHref = href ? localizeBannerHref(href, locale) : undefined;
   const useParallax = config?.parallax === true;
 
   const content = useParallax ? (
@@ -53,10 +71,10 @@ export function HomeBanner({ data }: HomeBannerProps) {
     </span>
   );
 
-  if (href) {
+  if (resolvedHref) {
     return (
       <Link
-        href={href}
+        href={resolvedHref}
         className="block focus:outline-none focus:ring-0"
       >
         {content}

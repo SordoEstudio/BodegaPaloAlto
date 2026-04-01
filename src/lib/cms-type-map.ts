@@ -7,6 +7,8 @@ export const cmsTypeToLayoutName: Record<string, string> = {
   home_hero: "home-hero",
   home_carrousel_lineas: "home-carousel-lineas",
   home_banner: "home-banner",
+  /** Mismo bloque visual que home_banner (contrato alineado en mapBannerFromCms). */
+  banner_con_imagen_de_fondo_2: "home-banner",
   home_productos_destacados: "home-productos-destacados",
   carrusel_promocional: "promo-carousel",
   slider_banner: "promo-carousel",
