@@ -44,6 +44,8 @@ export function HomeCarouselLineas({ data }: HomeCarouselLineasProps) {
                   width={145}
                   height={85}
                   className="object-cover transition group-hover:scale-105"
+                  sizes="(max-width: 640px) 145px, 145px"
+                  quality={75}
                 />
               </span>
               <span className="mt-3 hidden text-center font-semibold sm:inline">

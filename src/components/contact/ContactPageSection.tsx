@@ -95,7 +95,7 @@ export function ContactPageSection({ data, locale, sourcePage = "contacto" }: Co
   );
 
   const content = (
-    <div className="grid min-h-[480px] grid-cols-1 lg:grid-cols-2">
+    <div className="grid min-h-[560px] grid-cols-1 lg:grid-cols-2">
             {/* Mitad izquierda: overlay + formulario */}
             <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 border-r">
         {hasBg && <div className="absolute inset-0 z-0 bg-black/60 backdrop-blur-sm " aria-hidden />}
@@ -156,26 +156,18 @@ export function ContactPageSection({ data, locale, sourcePage = "contacto" }: Co
         className="relative overflow-hidden"
         aria-labelledby="contact-form-heading"
       >
-        {data.parallax ? (
-          <div
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${data.backgroundImage})`,
-              backgroundAttachment: "fixed",
-            }}
-            aria-hidden
+        <div className="absolute inset-0 z-0" aria-hidden>
+          <Image
+            src={data.backgroundImage!}
+            alt={data.backgroundImageAlt ?? ""}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 1360px"
+            quality={62}
+            priority
+            fetchPriority="high"
           />
-        ) : (
-          <div className="absolute inset-0 z-0" aria-hidden>
-            <Image
-              src={data.backgroundImage!}
-              alt={data.backgroundImageAlt ?? ""}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        )}
+        </div>
         <div className="relative z-10">{content}</div>
       </section>
     );

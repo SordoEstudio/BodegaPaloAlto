@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentType } from "react";
+import dynamic from "next/dynamic";
 import type { CMSComponent } from "@/portable-dynamic-cms/types/cms-components";
 import type { DynamicLayoutComponentProps } from "@/portable-dynamic-cms/components/DynamicLayout";
 import {
@@ -10,11 +11,17 @@ import {
   mapProductosDestacadosFromCms,
   mapPromoCarouselFromCms,
 } from "@/lib/data";
-import { HomeHero } from "@/components/home/HomeHero";
-import { HomeCarouselLineas } from "@/components/home/HomeCarouselLineas";
-import { HomeBanner } from "@/components/home/HomeBanner";
-import { HomeProductosDestacados } from "@/components/home/HomeProductosDestacados";
-import { PromoCarousel } from "@/components/promo/PromoCarousel";
+const HomeHero = dynamic(() => import("@/components/home/HomeHero").then((mod) => mod.HomeHero));
+const HomeCarouselLineas = dynamic(() =>
+  import("@/components/home/HomeCarouselLineas").then((mod) => mod.HomeCarouselLineas)
+);
+const HomeBanner = dynamic(() => import("@/components/home/HomeBanner").then((mod) => mod.HomeBanner));
+const HomeProductosDestacados = dynamic(() =>
+  import("@/components/home/HomeProductosDestacados").then((mod) => mod.HomeProductosDestacados)
+);
+const PromoCarousel = dynamic(() =>
+  import("@/components/promo/PromoCarousel").then((mod) => mod.PromoCarousel)
+);
 import type {
   HomeHeroData,
   HomeCarouselLineasData,

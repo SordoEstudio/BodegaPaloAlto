@@ -50,7 +50,9 @@ export function BodegaQuienesSomos({ data, equipo }: BodegaQuienesSomosProps) {
                   alt={imageLeft.imageAlt ?? ""}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 1024px) 100vw, 320px"
+                  quality={72}
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -175,7 +177,7 @@ export function BodegaQuienesSomos({ data, equipo }: BodegaQuienesSomosProps) {
   if (hasBg) {
     return (
       <section
-        className="relative overflow-hidden bg-palo-alto-secondary"
+        className="relative min-h-[560px] overflow-hidden bg-palo-alto-secondary"
         aria-labelledby="quienes-somos-heading"
       >
         <div
@@ -184,10 +186,13 @@ export function BodegaQuienesSomos({ data, equipo }: BodegaQuienesSomosProps) {
         >
           <Image
             src={backgroundImage!.imageSrc}
-            alt=""
+            alt={backgroundImage!.imageAlt ?? ""}
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 1360px"
+            quality={63}
+            priority
+            fetchPriority="high"
           />
         </div>
         {/* Overlay igual que hero: bg-black/70 */}

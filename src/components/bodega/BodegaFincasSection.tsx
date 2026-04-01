@@ -73,7 +73,7 @@ export function BodegaFincasSection({
           </button>
         </div>
       </div>
-      <div id="fincas-content" role="tabpanel" aria-labelledby={`tab-${selectedFinca}`}>
+      <div id="fincas-content" role="tabpanel" aria-labelledby={`tab-${selectedFinca}`} className="min-h-[420px]">
         {firstHalf.length > 0 && (
           <DestileriaStorySplit
             data={{
@@ -104,7 +104,7 @@ export function BodegaFincasSection({
   if (hasBg) {
     return (
       <section
-        className="relative overflow-hidden bg-palo-alto-secondary"
+        className="relative min-h-[520px] overflow-hidden bg-palo-alto-secondary"
         aria-labelledby="fincas-heading"
       >
         <div
@@ -113,10 +113,12 @@ export function BodegaFincasSection({
         >
           <Image
             src={backgroundImage!.imageSrc}
-            alt=""
+            alt={backgroundImage!.imageAlt ?? ""}
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 1360px"
+            quality={62}
+            loading="lazy"
           />
         </div>
         <div className="absolute inset-0 z-1 bg-black/70" aria-hidden />

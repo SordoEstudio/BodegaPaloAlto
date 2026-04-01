@@ -533,7 +533,7 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
     highlight: (qs.txt_destacado as string) || undefined,
     imageLeft: imgLeft ? { imageSrc: imgLeft, imageAlt: (qs.txt_alt_izquierda_optional as string) || undefined } : undefined,
     backgroundImage: imgFondo ? { imageSrc: imgFondo, imageAlt: (qs.txt_alt_fondo_optional as string) || undefined } : undefined,
-    showEquipo: (qs.mostrar_equipo_optional ?? (qs as Record<string, unknown>)._show_team_optional) as boolean ?? false,
+    showEquipo: cmsQuienesSomosMostrarEquipo(qs),
   };
 
   const avatarLayoutRaw = (eq.avatar_layout_optional as string) ?? "";
@@ -933,6 +933,22 @@ export function mapBannerFullToHighlightFromCms(raw: Record<string, unknown>): D
   };
 }
 
+/** API/CMS: mostrar bloque equipo en quienes_somos (`_mostrar_equipo_optional` actual o campos legado). */
+function cmsQuienesSomosMostrarEquipo(qs: Record<string, unknown>): boolean {
+  const v =
+    qs._mostrar_equipo_optional ??
+    qs.mostrar_equipo_optional ??
+    qs._show_team_optional;
+  if (v === true) return true;
+  if (v === false) return false;
+  if (typeof v === "string") {
+    const s = v.trim().toLowerCase();
+    return s === "true" || s === "1" || s === "yes";
+  }
+  if (typeof v === "number") return v === 1;
+  return false;
+}
+
 /** Mapea data de about (bodega, API) a BodegaQuienesSomosData. Acepta quienes_somos anidado o data directa. */
 export function mapAboutBodegaFromCms(raw: Record<string, unknown>): BodegaQuienesSomosData & { equipo?: BodegaEquipoData } {
   const qs = (raw.quienes_somos ?? raw) as Record<string, unknown>;
@@ -952,7 +968,7 @@ export function mapAboutBodegaFromCms(raw: Record<string, unknown>): BodegaQuien
     highlight: (qs.txt_destacado as string) || undefined,
     imageLeft: imgLeft ? { imageSrc: imgLeft, imageAlt: (qs.txt_alt_izquierda_optional as string) || undefined } : undefined,
     backgroundImage: imgFondo ? { imageSrc: imgFondo, imageAlt: (qs.txt_alt_fondo_optional as string) || undefined } : undefined,
-    showEquipo: qs.mostrar_equipo_optional === true || qs.mostrar_equipo_optional === "true",
+    showEquipo: cmsQuienesSomosMostrarEquipo(qs),
   };
   const eq = (raw.equipo ?? qs.equipo) as Record<string, unknown> | undefined;
   let equipo: BodegaEquipoData | undefined;

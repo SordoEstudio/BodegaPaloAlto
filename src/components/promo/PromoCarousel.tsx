@@ -10,12 +10,19 @@ interface PromoCarouselProps {
   /** Altura mínima del carrusel (ej. "400px" o "50vh") */
   minHeight?: string;
   className?: string;
+  /**
+   * Si hay otra imagen LCP arriba (p. ej. hero con `priority`), poner en false para no
+   * cargar en paralelo dos recursos `high` y empeorar LCP.
+   */
+  prioritizeFirstSlide?: boolean;
 }
 
 function SlideSoloImagen({
   slide,
+  isPriority = false,
 }: {
   slide: Extract<PromoCarouselSlide, { tipo_slide: "solo_imagen" }>;
+  isPriority?: boolean;
 }) {
   const content = (
     <div className="relative h-full w-full">
@@ -25,6 +32,9 @@ function SlideSoloImagen({
         fill
         className="object-cover"
         sizes="100vw"
+        quality={75}
+        priority={isPriority}
+        loading={isPriority ? "eager" : "lazy"}
       />
     </div>
   );
@@ -46,9 +56,11 @@ function SlideSoloImagen({
 function SlideImagenConTexto({
   slide,
   esDestileria,
+  isPriority = false,
 }: {
   slide: Extract<PromoCarouselSlide, { tipo_slide: "imagen_con_texto" }>;
   esDestileria?: boolean;
+  isPriority?: boolean;
 }) {
   const hasText =
     slide.title || slide.subtitle || slide.detail || (slide.buttonLabel && slide.buttonUrl);
@@ -69,6 +81,9 @@ function SlideImagenConTexto({
           fill
           className="object-cover"
           sizes="100vw"
+          quality={75}
+          priority={isPriority}
+          loading={isPriority ? "eager" : "lazy"}
         />
       ) : (
         <div
@@ -112,7 +127,12 @@ function SlideImagenConTexto({
   );
 }
 
-export function PromoCarousel({ data, minHeight = "400px", className = "" }: PromoCarouselProps) {
+export function PromoCarousel({
+  data,
+  minHeight = "400px",
+  className = "",
+  prioritizeFirstSlide = true,
+}: PromoCarouselProps) {
   const { slides, config } = data;
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalMs = (config.intervalo_segundos ?? 5) * 1000;
@@ -156,9 +176,13 @@ export function PromoCarousel({ data, minHeight = "400px", className = "" }: Pro
             aria-hidden={i !== currentIndex}
           >
             {slide.tipo_slide === "solo_imagen" ? (
-              <SlideSoloImagen slide={slide} />
+              <SlideSoloImagen slide={slide} isPriority={prioritizeFirstSlide && i === 0} />
             ) : (
-              <SlideImagenConTexto slide={slide} esDestileria={slide.esDestileria} />
+              <SlideImagenConTexto
+                slide={slide}
+                esDestileria={slide.esDestileria}
+                isPriority={prioritizeFirstSlide && i === 0}
+              />
             )}
           </div>
         ))}
@@ -170,7 +194,7 @@ export function PromoCarousel({ data, minHeight = "400px", className = "" }: Pro
           <button
             type="button"
             onClick={goPrev}
-            className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white opacity-0 transition-opacity duration-200 hover:bg-black/70 focus:opacity-100 focus:outline-none group-hover/carousel:opacity-100"
+            className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity duration-200 hover:bg-black/70 focus:opacity-100 focus:outline-none group-hover/carousel:opacity-100"
             aria-label="Slide anterior"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +204,7 @@ export function PromoCarousel({ data, minHeight = "400px", className = "" }: Pro
           <button
             type="button"
             onClick={goNext}
-            className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white opacity-0 transition-opacity duration-200 hover:bg-black/70 focus:opacity-100 focus:outline-none group-hover/carousel:opacity-100"
+            className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity duration-200 hover:bg-black/70 focus:opacity-100 focus:outline-none group-hover/carousel:opacity-100"
             aria-label="Slide siguiente"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,11 +226,15 @@ export function PromoCarousel({ data, minHeight = "400px", className = "" }: Pro
                 aria-selected={i === currentIndex}
                 aria-label={`Ir a slide ${i + 1}`}
                 onClick={() => setCurrentIndex(i)}
-                className="h-2.5 w-2.5 rounded-full transition-colors focus:outline-none"
-                style={{
-                  backgroundColor: i === currentIndex ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.5)",
-                }}
-              />
+                className="flex h-11 w-11 items-center justify-center rounded-full transition-colors focus:outline-none"
+              >
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{
+                    backgroundColor: i === currentIndex ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.5)",
+                  }}
+                />
+              </button>
             ))}
           </div>
         </>

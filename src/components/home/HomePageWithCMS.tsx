@@ -7,12 +7,15 @@ import {
   getHomeComponentProps,
 } from "@/lib/cms-home-map";
 import { HomeProductosDestacados } from "@/components/home/HomeProductosDestacados";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 
 interface HomePageWithCMSProps {
   useCmsLayout: boolean;
 }
 
 export function HomePageWithCMS({ useCmsLayout }: HomePageWithCMSProps) {
+  const HomeLoadingSkeleton = () => <PageSkeleton compact />;
+
   if (!useCmsLayout) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center text-center text-foreground/80">
@@ -29,6 +32,7 @@ export function HomePageWithCMS({ useCmsLayout }: HomePageWithCMSProps) {
         componentMap={componentMap}
         getComponentProps={getHomeComponentProps}
         overlayGroup={{ first: "home-hero", second: "home-carousel-lineas" }}
+        LoadingComponent={HomeLoadingSkeleton}
       />
       {/* Fallback global: mostrar destacados aunque el CMS no envíe el bloque específico */}
       <HomeProductosDestacados data={{ sectionTitle: "", products: [] }} />
