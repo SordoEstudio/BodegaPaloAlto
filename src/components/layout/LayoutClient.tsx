@@ -4,6 +4,7 @@ import { Suspense, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { GlobalUniquePromoSlot } from "./GlobalUniquePromoSlot";
 import { getLocaleFromPathname } from "@/lib/i18n";
 import type { HeaderData, FooterData } from "@/types/sections";
 
@@ -43,6 +44,11 @@ export function LayoutClient({
       >
         {children}
       </main>
+      {!isWelcome && (
+        <Suspense fallback={null}>
+          <GlobalUniquePromoSlot />
+        </Suspense>
+      )}
       {!isWelcome && (
         <Footer dataEs={footerEs} dataEn={footerEn} />
       )}

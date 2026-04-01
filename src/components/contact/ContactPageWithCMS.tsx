@@ -4,6 +4,10 @@ import { useCMSComponentsFromContext } from "@/portable-dynamic-cms";
 import { ContactPageSection } from "@/components/contact/ContactPageSection";
 import { ContactPageSkeleton } from "@/components/contact/ContactPageSkeleton";
 import { PromoCarousel } from "@/components/promo/PromoCarousel";
+import {
+  findPageScopedPromoCarousel,
+  getGlobalUniqueSliderBanner,
+} from "@/lib/cms-global-banner";
 import { mapFormularioContactoFromCms, mapContactoRedesFromCms, mapPromoCarouselFromCms } from "@/lib/data";
 import type { ContactPageData } from "@/types/sections";
 
@@ -49,10 +53,8 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
 
   const formComp = getComponentByType("formulario_contacto");
   const redesComp = getComponentByType("contacto_redes");
-  const carruselComp =
-    getComponentByType("carrusel_contacto") ??
-    getComponentByType("carrusel_promocional") ??
-    getComponentByType("slider_banner");
+  const carruselComp = findPageScopedPromoCarousel(components, "contacto");
+  const carruselCompFallback = carruselComp ?? getGlobalUniqueSliderBanner(components);
 
   if (!formComp?.data || !redesComp?.data) {
     return <ContactMissingData />;
@@ -67,8 +69,8 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
   };
 
   const carouselData =
-    carruselComp?.data != null
-      ? mapPromoCarouselFromCms(carruselComp.data as Record<string, unknown>)
+    carruselCompFallback?.data != null
+      ? mapPromoCarouselFromCms(carruselCompFallback.data as Record<string, unknown>)
       : null;
 
   return (

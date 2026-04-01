@@ -1,0 +1,77 @@
+{
+    "name": "Slider Banner Único",
+    "description": "Slider Banner que se mustra igual en todas las paginas del sitio y reemplaza los banner promocionales de cada pagina.",
+    "type": "slider_banner",
+    "page": "Baner Único",
+    "data": {
+        "_configuracion": {
+            "variant": "default",
+            "layout": "default",
+            "autoplay": true,
+            "intervalo_segundos": 5
+        },
+        "lista_banners": [
+            {
+                "txt_tipo": "imagen_con_texto",
+                "img_imagen": "https://yi4v6kde7clqp3do.public.blob.vercel-storage.com/media/image/2026/02/1771280508491-38.webp",
+                "txt_alt_imagen": "Descripcio de la imagen",
+                "txt_titulo_optional": "Título del Banner",
+                "txt_subtitulo_optional": "Subtitulo del banner",
+                "txt_detalle_optional": "Aca toda la descripcion del Banner, informacion, tenxo, y demas.",
+                "txt_label_boton_optional": "Conocer más",
+                "btn_boton_optional": {
+                    "link_url": "/contactos",
+                    "txt_label": "Conocer más"
+                }
+            },
+            {
+                "txt_tipo": "solo_imagen",
+                "img_imagen": "https://yi4v6kde7clqp3do.public.blob.vercel-storage.com/media/image/2026/02/1771280503552-1.webp",
+                "txt_alt_imagen": "Informacion de la imagen",
+                "btn_destino_optional": {
+                    "link_url": "/transparencia/licitaciones/",
+                    "txt_label": "Más información "
+                }
+            }
+        ]
+    },
+    "thumbnail": null,
+    "isVisible": true,
+    "isActive": true,
+    "createdAt": "2026-04-01T18:52:13.133Z",
+    "updatedAt": "2026-04-01T19:02:54.571Z",
+    "clientName": "Bodega Palo Alto",
+    "_id": "69cd695d50f260cd15af6aa9",
+    "content": {
+        "_configuracion": {
+            "variant": "default",
+            "layout": "default",
+            "autoplay": true,
+            "intervalo_segundos": 5
+        },
+        "lista_banners": [
+            {
+                "txt_tipo": "imagen_con_texto",
+                "img_imagen": "https://yi4v6kde7clqp3do.public.blob.vercel-storage.com/media/image/2026/02/1771280508491-38.webp",
+                "txt_alt_imagen": "Descripcio de la imagen",
+                "txt_titulo_optional": "Título del Banner",
+                "txt_subtitulo_optional": "Subtitulo del banner",
+                "txt_detalle_optional": "Aca toda la descripcion del Banner, informacion, tenxo, y demas.",
+                "txt_label_boton_optional": "Conocer más",
+                "btn_boton_optional": {
+                    "link_url": "/contactos",
+                    "txt_label": "Conocer más"
+                }
+            },
+            {
+                "txt_tipo": "solo_imagen",
+                "img_imagen": "https://yi4v6kde7clqp3do.public.blob.vercel-storage.com/media/image/2026/02/1771280503552-1.webp",
+                "txt_alt_imagen": "Informacion de la imagen",
+                "btn_destino_optional": {
+                    "link_url": "/transparencia/licitaciones/",
+                    "txt_label": "Más información "
+                }
+            }
+        ]
+    }
+}
