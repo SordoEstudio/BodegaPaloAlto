@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Ubuntu, Cormorant_Garamond } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { LayoutClient } from "@/components/layout/LayoutClient";
 import { getHeaderData, getFooterData } from "@/lib/data";
@@ -90,6 +91,7 @@ export default async function RootLayout({
           </LayoutClient>
           </CMSComponentsProvider>
         </ClientConfigProvider>
+        <Analytics />
       </body>
     </html>
   );
