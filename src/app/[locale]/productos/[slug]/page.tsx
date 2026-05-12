@@ -18,17 +18,12 @@ async function fetchProduct(slug: string, locale: string): Promise<PublicProduct
     ? `${protocol}://${host}/api/public/v1/products/${encodeURIComponent(slug)}?locale=${locale}&clientSlug=${CLIENT_SLUG}`
     : `${(process.env.NEXT_PUBLIC_API_DEV ?? process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "")}/products/${encodeURIComponent(slug)}?locale=${locale}&clientSlug=${CLIENT_SLUG}`;
 
-  console.log("[ProductDetail] Llamada:", {
-    slug,
-    locale,
-    useProxy,
-    url,
-    headers: useProxy ? undefined : { "X-Original-Host": host.split(":")[0] },
-  });
-
   try {
     const res = await fetch(url, {
-      next: { revalidate: 60 },
+      next: {
+        revalidate: 300,
+        tags: ["products", `product:${slug}`],
+      },
       headers: useProxy
         ? { "Content-Type": "application/json" }
         : {
@@ -38,37 +33,32 @@ async function fetchProduct(slug: string, locale: string): Promise<PublicProduct
     });
     const bodyText = await res.text();
 
-    console.log("[ProductDetail] Respuesta:", {
-      status: res.status,
-      ok: res.ok,
-      bodyLength: bodyText?.length ?? 0,
-      body: bodyText ? (bodyText.length > 500 ? bodyText.slice(0, 500) + "..." : bodyText) : "(vacío)",
-    });
-
     let json: Record<string, unknown> = {};
     try {
       json = bodyText ? JSON.parse(bodyText) : {};
     } catch {
-      console.error("[ProductDetail] Body no es JSON válido:", bodyText?.slice(0, 200));
+      if (process.env.NODE_ENV !== "production") {
+        console.error("[ProductDetail] Body inválido:", bodyText?.slice(0, 200));
+      }
       return null;
     }
 
     if (!res.ok || !json?.success) {
-      console.warn("[ProductDetail] Fallo:", {
-        status: res.status,
-        code: json?.code,
-        message: json?.message,
-        json,
-      });
-      if (json?.code === "DOMAIN_NOT_ALLOWED") {
-        console.error("[ProductDetail] 403 DOMAIN_NOT_ALLOWED: añadir el dominio en domains[] del cliente en el CMS");
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[ProductDetail] Fallo:", {
+          status: res.status,
+          code: json?.code,
+          message: json?.message,
+        });
       }
       return null;
     }
 
     return json.data as PublicProduct;
   } catch (err) {
-    console.error("[ProductDetail] Error:", err);
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[ProductDetail] Error:", err);
+    }
     return null;
   }
 }

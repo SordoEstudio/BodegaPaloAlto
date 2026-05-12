@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import { getDefaultConfig } from "@/portable-dynamic-cms/config/default-config";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const host = searchParams.get("host") ?? request.headers.get("host") ?? "localhost";
-
+export async function GET() {
   const config = getDefaultConfig();
   return NextResponse.json({
     success: true,

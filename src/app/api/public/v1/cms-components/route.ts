@@ -1,81 +1,80 @@
 import { NextResponse } from "next/server";
-import type { CMSComponent } from "@/portable-dynamic-cms/types/cms-components";
-import heroEs from "@/data/es/home/hero.json";
-import carouselLineasEs from "@/data/es/home/carousel-lineas.json";
-import banner1Es from "@/data/es/home/banner-1.json";
-import banner2Es from "@/data/es/home/banner-2.json";
-import productosDestacadosEs from "@/data/es/home/productos-destacados.json";
-import heroEn from "@/data/en/home/hero.json";
-import carouselLineasEn from "@/data/en/home/carousel-lineas.json";
-import banner1En from "@/data/en/home/banner-1.json";
-import banner2En from "@/data/en/home/banner-2.json";
-import productosDestacadosEn from "@/data/en/home/productos-destacados.json";
 
-export const dynamic = "force-dynamic";
+const getCMSBaseUrl = () => {
+  const url =
+    process.env.NEXT_PUBLIC_API_DEV ??
+    process.env.NEXT_PUBLIC_API_URL ??
+    "";
+  return url.replace(/\/$/, "");
+};
 
-const now = new Date().toISOString();
-const client = { id: "palo-alto-1", name: "Bodega Palo Alto", slug: "palo-alto" };
-
-function buildComponent(
-  type: string,
-  name: string,
-  order: number,
-  data: Record<string, unknown>,
-  page = "Inicio"
-): CMSComponent {
-  return {
-    _id: `mock-${type}-${order}`,
-    name,
-    type,
-    page,
-    data: { ...data, _orden: order },
-    status: "published",
-    isActive: true,
-    isVisible: true,
-    createdAt: now,
-    updatedAt: now,
-    clientName: client.name,
-  };
-}
-
-function useEnglishLocale(request: Request, searchParams: URLSearchParams): boolean {
-  const q = searchParams.get("locale")?.toLowerCase();
-  if (q === "en") return true;
-  if (q === "es") return false;
-  const al = (request.headers.get("accept-language") ?? "").trim().toLowerCase();
-  return al.startsWith("en");
-}
+const CMS_REVALIDATE_SECONDS = Number(
+  process.env.CMS_REVALIDATE_SECONDS ?? 300
+);
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const requestInfo = {
-    url: request.url,
-    searchParams: Object.fromEntries(searchParams.entries()),
-    headers: {
-      "content-type": request.headers.get("content-type"),
-      "user-agent": request.headers.get("user-agent")?.slice(0, 50),
-      "accept-language": request.headers.get("accept-language")?.slice(0, 40),
-    },
-  };
-  console.log("[cms-components API] Petición recibida:", requestInfo);
+  const host =
+    request.headers.get("host") ??
+    request.headers.get("x-forwarded-host") ??
+    "localhost";
+  const cleanHost = host.split(":")[0];
 
-  const en = useEnglishLocale(request, searchParams);
-  const hero = en ? heroEn : heroEs;
-  const carouselLineas = en ? carouselLineasEn : carouselLineasEs;
-  const banner1 = en ? banner1En : banner1Es;
-  const banner2 = en ? banner2En : banner2Es;
-  const productosDestacados = en ? productosDestacadosEn : productosDestacadosEs;
+  const locale = searchParams.get("locale") ?? "es";
+  const clientSlug =
+    searchParams.get("clientSlug") ??
+    process.env.NEXT_PUBLIC_CLIENT_SLUG ??
+    "bodega-palo-alto";
 
-  const components: CMSComponent[] = [
-    buildComponent("home_hero", "Hero inicio", 1, hero as Record<string, unknown>),
-    buildComponent("home_carousel_lineas", "Carousel líneas", 2, carouselLineas as Record<string, unknown>),
-    buildComponent("home_banner", "Banner raíces", 3, banner1 as Record<string, unknown>),
-    buildComponent("home_banner", "Banner vinos", 4, banner2 as Record<string, unknown>),
-    buildComponent("home_productos_destacados", "Productos destacados", 5, productosDestacados as Record<string, unknown>),
-  ];
+  const params = new URLSearchParams({ locale, clientSlug });
+  const type = searchParams.get("type");
+  if (type) params.set("type", type);
+  const page_filter = searchParams.get("page_filter");
+  if (page_filter) params.set("page_filter", page_filter);
 
-  const payload = { success: true, data: { components, client } };
-  console.log("[cms-components API] Respuesta:", { componentsCount: components.length, client, componentTypes: components.map((c) => c.type) });
+  const baseUrl = getCMSBaseUrl();
+  const url = `${baseUrl}/cms-components?${params.toString()}`;
 
-  return NextResponse.json(payload);
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  const protocol = request.headers.get("x-forwarded-proto") ?? "http";
+  const constructedOrigin = `${protocol}://${host}`;
+
+  try {
+    const res = await fetch(url, {
+      headers: {
+        "X-Original-Host": cleanHost,
+        "Content-Type": "application/json",
+        Origin: origin ?? constructedOrigin,
+        Referer: referer ?? constructedOrigin,
+      },
+      next: {
+        revalidate: CMS_REVALIDATE_SECONDS,
+        tags: [
+          "cms-components",
+          `cms-components:${clientSlug}:${locale}`,
+          ...(type ? [`cms-components:type:${type}`] : []),
+          ...(page_filter ? [`cms-components:page:${page_filter}`] : []),
+        ],
+      },
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { success: false, message: data?.message ?? "Error al obtener componentes CMS" },
+        { status: res.status }
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (err) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[cms-components API] Error:", err);
+    }
+    return NextResponse.json(
+      { success: false, message: "Error al conectar con el CMS" },
+      { status: 500 }
+    );
+  }
 }
