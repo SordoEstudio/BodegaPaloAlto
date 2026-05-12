@@ -41,14 +41,24 @@ const nextConfig: NextConfig = {
         source: "/fonts/(.*)",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
-      // Cache para las API públicas en el CDN de Vercel
+      // Cache CDN para las API públicas. Combinado con next.revalidate del
+      // fetch interno: la respuesta queda cacheada en el edge y el CMS sólo
+      // recibe hits cuando expira el Data Cache o se invalida por tag.
       {
         source: "/api/public/v1/products(.*)",
-        headers: [{ key: "Cache-Control", value: "s-maxage=60, stale-while-revalidate=120" }],
+        headers: [{ key: "Cache-Control", value: "s-maxage=300, stale-while-revalidate=86400" }],
       },
       {
         source: "/api/public/v1/cms-components(.*)",
-        headers: [{ key: "Cache-Control", value: "s-maxage=120, stale-while-revalidate=300" }],
+        headers: [{ key: "Cache-Control", value: "s-maxage=300, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/api/public/v1/product-attribute-config(.*)",
+        headers: [{ key: "Cache-Control", value: "s-maxage=3600, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/api/public/v1/client-config(.*)",
+        headers: [{ key: "Cache-Control", value: "s-maxage=600, stale-while-revalidate=86400" }],
       },
     ];
   },

@@ -115,11 +115,9 @@ export function usePublicProducts(
       }
 
       const url = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS, params);
-      console.log("[usePublicProducts] API request", { method: "GET", url, params });
 
       const res = await fetch(url, { headers: { "Content-Type": "application/json" } });
       const json = await res.json().catch(() => null);
-      console.log("[usePublicProducts] API response", { ok: res.ok, status: res.status });
 
       if (!res.ok) {
         throw new Error(`Error ${res.status}: ${res.statusText}`);
@@ -138,7 +136,9 @@ export function usePublicProducts(
       setProducts(products);
       setPagination(pagination);
     } catch (err) {
-      console.error("[usePublicProducts] API error", err);
+      if (process.env.NODE_ENV !== "production") {
+        console.error("[usePublicProducts] API error", err);
+      }
       setError(err instanceof Error ? err.message : "Error al cargar productos");
       setProducts(null);
       setPagination(null);

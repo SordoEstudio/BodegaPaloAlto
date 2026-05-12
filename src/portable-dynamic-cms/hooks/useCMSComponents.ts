@@ -48,14 +48,6 @@ export function useCMSComponents(
 
       const url = buildApiUrl(API_CONFIG.ENDPOINTS.CMS_COMPONENTS, params);
 
-      console.log("[useCMSComponents] Llamada API:", {
-        url,
-        method: "GET",
-        params,
-        filters: currentFilters,
-        locale: currentLocale,
-      });
-
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -73,14 +65,6 @@ export function useCMSComponents(
       const data = json?.data;
       const inner = data?.data ?? data;
       const list: CMSComponent[] = Array.isArray(inner?.components) ? inner.components : (json?.data?.components ?? []);
-
-      console.log("[useCMSComponents] Respuesta API:", {
-        ok: response.ok,
-        status: response.status,
-        data: json,
-        componentsCount: list.length,
-        extractedFrom: inner === data ? "data.components" : "data.data.components",
-      });
 
       const visible = list.filter((c) => c.isVisible !== false);
       setCacheData(cacheKey, visible);
