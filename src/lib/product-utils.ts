@@ -27,6 +27,12 @@ export function isEspumante(product: PublicProduct): boolean {
   return dosaje.length > 0;
 }
 
+/** Detecta si un producto es gin */
+export function isGin(product: PublicProduct): boolean {
+  const pt = (product.productType ?? "").toLowerCase();
+  return pt.includes("gin");
+}
+
 /** Detecta si un producto es blend (corte: "Sí" o blend: true o varietal con comas) */
 export function isBlend(product: PublicProduct): boolean {
   const attrs = product.attributes ?? {};

@@ -48,6 +48,7 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
     return () => clearInterval(id);
   }, [hasCarousel, images.length]);
 
+  const isEnglish = locale === "en";
   const attributeLabels: Record<string, string> = {
     linea: ui.filters.linea,
     color: ui.filters.color,
@@ -57,9 +58,34 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
     dosaje: "Dosaje",
     metodo: "Método",
     metodo_elaboracion: "Método",
+    tipo: isEnglish ? "Type" : "Tipo",
+    botanicos: isEnglish ? "Botanicals" : "Botánicos",
+    destilacion: isEnglish ? "Distillation" : "Destilación",
+    destilacin: isEnglish ? "Distillation" : "Destilación",
+    origen: isEnglish ? "Origin" : "Origen",
+    graduacion_alcoholica: isEnglish ? "ABV" : "Graduación alcohólica",
+    graduacin_alcohlica: isEnglish ? "ABV" : "Graduación alcohólica",
+    perfil_de_sabor: isEnglish ? "Flavor profile" : "Perfil de sabor",
   };
 
-  const attributeKeys = ["linea", "color", "varietal", "crianza", "corte", "dosaje", "metodo", "metodo_elaboracion"] as const;
+  const attributeKeys = [
+    "linea",
+    "color",
+    "varietal",
+    "crianza",
+    "corte",
+    "dosaje",
+    "metodo",
+    "metodo_elaboracion",
+    "tipo",
+    "origen",
+    "graduacion_alcoholica",
+    "graduacin_alcohlica",
+    "destilacion",
+    "destilacin",
+    "botanicos",
+    "perfil_de_sabor",
+  ] as const;
   const fallbackContactUrl = `/${locale}/contacto`;
   const rawSaleUrl = String(product.sale_link_url ?? "").trim();
   const saleUrl = rawSaleUrl
@@ -218,9 +244,12 @@ export function ProductDetail({ product, locale, ui }: ProductDetailProps) {
               {product.locale?.title ?? ""}
             </h1>
             {(() => {
-              const parts = [String(attrs.varietal ?? "")].filter(Boolean);
-              return parts.length > 0 ? (
-                <p className="mt-2 text-white/80">{parts.join(" · ")}</p>
+              const isGinProduct = (product.productType ?? "").toLowerCase().includes("gin");
+              const subtitle = isGinProduct
+                ? String(attrs.tipo ?? "")
+                : String(attrs.varietal ?? "");
+              return subtitle.trim() ? (
+                <p className="mt-2 text-white/80">{subtitle}</p>
               ) : null;
             })()}
           </div>
