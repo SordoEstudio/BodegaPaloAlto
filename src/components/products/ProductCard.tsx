@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingBag } from "react-icons/fa";
 import type { PublicProduct } from "@/hooks/usePublicProducts";
-import { isBlend, isEspumante } from "@/lib/product-utils";
+import { isBlend, isEspumante, isGin } from "@/lib/product-utils";
 
 interface ProductCardProps {
   product: PublicProduct;
@@ -25,12 +25,18 @@ export function ProductCard({ product, locale, featuredLabel = "Destacado", blen
   const varietalRaw = String(attrs.varietal ?? "").trim();
   const dosaje = String(attrs.dosaje ?? "").trim();
   const espumante = isEspumante(product);
+  const gin = isGin(product);
   const varietal = espumante
     ? varietalRaw.replace(/, /g, " · ")
     : isBlend(product)
       ? blendLabel
       : varietalRaw.replace(/, /g, " · ");
   const crianza = String(attrs.crianza ?? "").trim();
+  const tipo = String(attrs.tipo ?? "").trim();
+  const productTitle = product.locale?.title ?? "";
+  const primaryLine = gin ? productTitle : linea;
+  const secondaryLine = gin ? tipo : varietal;
+  const tertiaryLine = gin ? "" : crianza;
 
   return (
     <Link
@@ -54,14 +60,14 @@ export function ProductCard({ product, locale, featuredLabel = "Destacado", blen
       </span>
       <div className="flex min-h-[88px] items-start justify-between gap-2 p-3">
         <div className="min-w-0">
-          {linea && (
+          {primaryLine && (
             <p className="mt-1 truncate text-base font-semibold text-white/95">
-              {linea}
+              {primaryLine}
             </p>
           )}
-          {varietal && (
+          {secondaryLine && (
             <p className="mt-0.5 truncate text-sm text-white/80">
-              {varietal}
+              {secondaryLine}
             </p>
           )}
           {espumante && dosaje && (
@@ -69,9 +75,9 @@ export function ProductCard({ product, locale, featuredLabel = "Destacado", blen
               {dosaje}
             </p>
           )}
-          {crianza && (
+          {tertiaryLine && (
             <p className="mt-0.5 truncate text-xs text-white/60">
-              {crianza}
+              {tertiaryLine}
             </p>
           )}
         </div>
