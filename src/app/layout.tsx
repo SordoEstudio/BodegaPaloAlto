@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import Script from "next/script";
 import { Ubuntu, Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -8,6 +9,7 @@ import { getHeaderData, getFooterData } from "@/lib/data";
 import { getSiteUrl, getDefaultOgImage } from "@/lib/seo";
 import { ClientConfigProvider, CMSComponentsProvider } from "@/portable-dynamic-cms";
 import { getClientConfig } from "@/portable-dynamic-cms/config/client-config-loader";
+import { getCmsComponents } from "@/lib/cms-fetch";
 
 /** Tipografía secundaria (textos): Ubuntu – Manual de marca */
 const ubuntu = Ubuntu({
@@ -75,12 +77,27 @@ export default async function RootLayout({
   const headerEn = getHeaderData("en");
   const footerEs = getFooterData("es");
   const footerEn = getFooterData("en");
+  const cmsComponents = await getCmsComponents(htmlLang);
 
   return (
     <html lang={htmlLang} className={`${ubuntu.variable} ${cormorant.variable}`}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-QWYEJ5ZE5D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QWYEJ5ZE5D');
+          `}
+        </Script>
+      </head>
       <body className="font-sans antialiased">
         <ClientConfigProvider initialConfig={initialConfig}>
-          <CMSComponentsProvider>
+          <CMSComponentsProvider initialComponents={cmsComponents}>
           <LayoutClient
             headerEs={headerEs}
             headerEn={headerEn}
