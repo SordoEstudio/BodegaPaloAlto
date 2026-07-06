@@ -1,86 +1,76 @@
 import { NextResponse } from "next/server";
 import { revalidateTag, revalidatePath } from "next/cache";
 
-/**
- * On-demand revalidation. Llamable desde el CMS al publicar cambios.
- *
- * Auth: header `x-revalidate-secret` o query `?secret=` debe coincidir con
- * `REVALIDATE_SECRET` (env var). En desarrollo se permite sin secret.
- *
- * Body JSON (POST) o query (GET) admite:
- *   - tag: string | string[]   → invalida tag(s)
- *   - path: string | string[]  → invalida path(s)
- *
- * Ejemplos:
- *   POST /api/revalidate
- *     headers: { "x-revalidate-secret": "..." }
- *     body: { "tag": ["cms-components", "products"] }
- *
- *   GET /api/revalidate?secret=...&tag=cms-components
- */
+const SECRET = process.env.CMS_REVALIDATE_SECRET ?? process.env.REVALIDATE_SECRET;
 
-const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET;
+const PAGE_TO_PATHS: Record<string, string[]> = {
+  Inicio:       ["/es", "/en"],
+  bodega:       ["/es/bodega", "/en/bodega"],
+  destileria:   ["/es/destileria", "/en/destileria"],
+  contacto:     ["/es/contacto", "/en/contacto"],
+  bienvenida:   ["/es/bienvenida", "/en/bienvenida"],
+};
 
-function isAuthorized(request: Request, urlSecret: string | null): boolean {
-  if (process.env.NODE_ENV !== "production" && !REVALIDATE_SECRET) return true;
-  if (!REVALIDATE_SECRET) return false;
-  const headerSecret = request.headers.get("x-revalidate-secret");
-  return headerSecret === REVALIDATE_SECRET || urlSecret === REVALIDATE_SECRET;
+function isAuthorized(req: Request, bodySecret?: string): boolean {
+  if (process.env.NODE_ENV !== "production" && !SECRET) return true;
+  if (!SECRET) return false;
+  const url = new URL(req.url);
+  return (
+    req.headers.get("x-revalidate-secret") === SECRET ||
+    url.searchParams.get("secret") === SECRET ||
+    bodySecret === SECRET
+  );
 }
 
-function toArray(value: unknown): string[] {
-  if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string");
-  if (typeof value === "string" && value.trim()) return [value];
+function toArray(v: unknown): string[] {
+  if (Array.isArray(v)) return v.filter((x): x is string => typeof x === "string");
+  if (typeof v === "string" && v.trim()) return [v];
   return [];
 }
 
-async function handle(
-  request: Request,
-  payload: { tag?: unknown; path?: unknown },
-  urlSecret: string | null
-) {
-  if (!isAuthorized(request, urlSecret)) {
-    return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+async function handle(req: Request) {
+  let body: Record<string, unknown> = {};
+  try { body = (await req.clone().json()) ?? {}; } catch { /* GET or empty body */ }
+
+  const url = new URL(req.url);
+  if (!isAuthorized(req, typeof body.secret === "string" ? body.secret : undefined)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const tags = toArray(payload.tag);
-  const paths = toArray(payload.path);
+  const revalidated: { tags: string[]; paths: string[] } = { tags: [], paths: [] };
 
-  if (!tags.length && !paths.length) {
-    return NextResponse.json(
-      { success: false, message: "Missing tag or path" },
-      { status: 400 }
-    );
+  // CMS format: { secret, page }
+  const page = typeof body.page === "string" ? body.page : url.searchParams.get("page") ?? "";
+  if (page === "all" || page === "") {
+    revalidateTag("cms-components", "default");
+    revalidated.tags.push("cms-components");
+  } else {
+    const pagePaths = PAGE_TO_PATHS[page];
+    if (pagePaths) {
+      for (const p of pagePaths) revalidatePath(p);
+      revalidated.paths.push(...pagePaths);
+    }
+    revalidateTag("cms-components-es", "default");
+    revalidateTag("cms-components-en", "default");
+    revalidated.tags.push("cms-components-es", "cms-components-en");
   }
 
-  for (const tag of tags) revalidateTag(tag, "max");
-  for (const path of paths) revalidatePath(path);
-
-  return NextResponse.json({ success: true, revalidated: { tags, paths } });
-}
-
-export async function POST(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const urlSecret = searchParams.get("secret");
-  let body: { tag?: unknown; path?: unknown } = {};
-  try {
-    body = (await request.json()) ?? {};
-  } catch {
-    body = {};
+  // Generic format: { tag, path } (for manual use / other callers)
+  for (const tag of toArray(body.tag ?? url.searchParams.getAll("tag"))) {
+    revalidateTag(tag, "default");
+    revalidated.tags.push(tag);
   }
-  const payload = {
-    tag: body.tag ?? searchParams.getAll("tag"),
-    path: body.path ?? searchParams.getAll("path"),
-  };
-  return handle(request, payload, urlSecret);
+  for (const path of toArray(body.path ?? url.searchParams.getAll("path"))) {
+    revalidatePath(path);
+    revalidated.paths.push(path);
+  }
+
+  if (!revalidated.tags.length && !revalidated.paths.length) {
+    return NextResponse.json({ error: "Nothing to revalidate. Send page, tag, or path." }, { status: 400 });
+  }
+
+  return NextResponse.json({ revalidated: true, ...revalidated, timestamp: new Date().toISOString() });
 }
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const urlSecret = searchParams.get("secret");
-  return handle(
-    request,
-    { tag: searchParams.getAll("tag"), path: searchParams.getAll("path") },
-    urlSecret
-  );
-}
+export async function POST(request: Request) { return handle(request); }
+export async function GET(request: Request)  { return handle(request); }
