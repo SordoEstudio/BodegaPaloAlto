@@ -1,19 +1,23 @@
 import { ContactPageWithCMS } from "@/components/contact/ContactPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
-import { getLocalizedAlternates, getDefaultOgImage } from "@/lib/seo";
+import { getLocalizedAlternates, getDefaultOgImage, getSiteUrl } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
+export function generateStaticParams() {
+  return [{ locale: "es" }, { locale: "en" }];
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const isEn = loc === "en";
-  const title = isEn ? "Contact" : "Contacto";
+  const title = isEn ? "Contact Bodega Palo Alto" : "Contacto – Bodega Palo Alto";
   const description = isEn
-    ? "Get in touch. Bodega Palo Alto and Magic Stone Distillery, Mendoza."
+    ? "Contact Bodega Palo Alto and Magic Stone Distillery in Mendoza, Argentina. Find our location, social channels, and reach us via our contact form."
     : "Escribinos. Bodega Palo Alto y Destilería Magic Stone, Mendoza. Ubicación, redes y formulario de contacto.";
   return {
     title,
@@ -23,7 +27,8 @@ export async function generateMetadata({ params }: PageProps) {
       title,
       description,
       type: "website",
-      url: `/${loc}/contacto`,
+      url: `${getSiteUrl()}/${loc}/contacto`,
+      locale: isEn ? "en_US" : "es_AR",
       images: [{ url: getDefaultOgImage() }],
     },
     twitter: {

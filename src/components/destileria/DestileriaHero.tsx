@@ -12,10 +12,12 @@ export function DestileriaHero({ data }: DestileriaHeroProps) {
   const hasImage = Boolean(backgroundImage?.trim());
   const hasLogo = Boolean(logoImage?.trim());
 
+  const heroAlt = title || "Magic Stone Distillery";
+
   return (
     <HeroFullScreen
       imageSrc={hasImage ? backgroundImage : undefined}
-      imageAlt="Magic Stone Destilería"
+      imageAlt={heroAlt}
       contentClassName="text-black"
       dark={false}
       contentPosition={position ?? "top"}
@@ -25,7 +27,7 @@ export function DestileriaHero({ data }: DestileriaHeroProps) {
           <div className="animate-rock-stone inline-flex h-24 w-24 shrink-0 origin-bottom sm:h-28 sm:w-28">
             <Image
               src={logoImage!}
-              alt="Magic Stone Destilería"
+              alt={heroAlt}
               width={112}
               height={112}
               sizes="(max-width: 640px) 96px, 112px"

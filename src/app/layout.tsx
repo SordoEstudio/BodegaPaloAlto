@@ -66,32 +66,35 @@ export const metadata: Metadata = {
   },
 };
 
-const wineryStructuredData = {
-  "@context": "https://schema.org",
-  "@type": ["Winery", "Organization"],
-  name: "Bodega Palo Alto",
-  alternateName: ["Palo Alto", "Palo Alto Argentina", "Palo Alto Mendoza", "Bodegas Palo Alto"],
-  description:
-    "Bodega y destilería artesanal en Mendoza, Argentina. Vinos, espumantes y destilados de autor elaborados en fincas propias en Alto Ugarteche y Palo Alto.",
-  url: "https://bodegapaloalto.com",
-  logo: "https://bodegapaloalto.com/logos/tipo-b.png",
-  image: "https://bodegapaloalto.com/logos/tipo-b.png",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Mendoza",
-    addressRegion: "Mendoza",
-    addressCountry: "AR",
-  },
-  foundingLocation: {
-    "@type": "Place",
-    name: "Mendoza, Argentina",
-  },
-  areaServed: [
-    { "@type": "Country", name: "Argentina" },
-  ],
-  hasMap: "https://maps.google.com/?q=Mendoza+Argentina",
-  knowsAbout: ["vinos", "espumantes", "destilados", "Mendoza", "Palo Alto Argentina"],
-};
+function getWineryStructuredData(locale: string) {
+  const site = getSiteUrl();
+  const isEn = locale === "en";
+  return {
+    "@context": "https://schema.org",
+    "@type": ["Winery", "Organization"],
+    name: "Bodega Palo Alto",
+    alternateName: ["Palo Alto", "Palo Alto Argentina", "Palo Alto Mendoza", "Bodegas Palo Alto"],
+    description: isEn
+      ? "Winery and craft distillery in Mendoza, Argentina. Author-crafted wines, sparkling wines and spirits from estate vineyards in Alto Ugarteche and Palo Alto."
+      : "Bodega y destilería artesanal en Mendoza, Argentina. Vinos, espumantes y destilados de autor elaborados en fincas propias en Alto Ugarteche y Palo Alto.",
+    url: site,
+    logo: `${site}/logos/tipo-b.png`,
+    image: `${site}/logos/tipo-b.png`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Mendoza",
+      addressRegion: "Mendoza",
+      addressCountry: "AR",
+    },
+    foundingLocation: {
+      "@type": "Place",
+      name: "Mendoza, Argentina",
+    },
+    areaServed: [{ "@type": "Country", name: "Argentina" }],
+    hasMap: "https://maps.google.com/?q=Mendoza+Argentina",
+    knowsAbout: ["vinos", "espumantes", "destilados", "Mendoza", "Palo Alto Argentina"],
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -119,7 +122,7 @@ export default async function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(wineryStructuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getWineryStructuredData(htmlLang)) }}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QWYEJ5ZE5D"
