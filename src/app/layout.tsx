@@ -30,8 +30,12 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   icons: {
-    icon: "/favicon.ico",
-    apple: "/logos/iso-c-m.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/logos/iso-c-m.png", sizes: "2000x2000", type: "image/png" },
+    ],
+    apple: { url: "/logos/iso-c-m.png", sizes: "2000x2000" },
+    shortcut: "/logos/iso-c-m.png",
   },
   title: {
     default: "Bodega Palo Alto | Vinos y Espumantes – Mendoza, Argentina",
