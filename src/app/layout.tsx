@@ -30,8 +30,12 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   icons: {
-    icon: "/favicon.ico",
-    apple: "/logos/iso-c-m.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/logos/iso-c-m.png", sizes: "2000x2000", type: "image/png" },
+    ],
+    apple: { url: "/logos/iso-c-m.png", sizes: "2000x2000" },
+    shortcut: "/logos/iso-c-m.png",
   },
   title: {
     default: "Bodega Palo Alto | Vinos y Espumantes – Mendoza, Argentina",
@@ -71,7 +75,7 @@ function getWineryStructuredData(locale: string) {
   const isEn = locale === "en";
   return {
     "@context": "https://schema.org",
-    "@type": ["Winery", "Organization"],
+    "@type": ["Winery", "LocalBusiness", "Organization"],
     name: "Bodega Palo Alto",
     alternateName: ["Palo Alto", "Palo Alto Argentina", "Palo Alto Mendoza", "Bodegas Palo Alto"],
     description: isEn
@@ -80,19 +84,36 @@ function getWineryStructuredData(locale: string) {
     url: site,
     logo: `${site}/logos/tipo-b.png`,
     image: `${site}/logos/tipo-b.png`,
+    telephone: "+54-261-499-0407",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Mendoza",
+      streetAddress: "Videla Aranda 502",
+      addressLocality: "Maipú",
       addressRegion: "Mendoza",
       addressCountry: "AR",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -32.9808,
+      longitude: -68.7751,
+    },
+    hasMap: "https://maps.google.com/?q=Videla+Aranda+502+Maipú+Mendoza+Argentina",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+54-261-499-0407",
+      contactType: "customer service",
+      availableLanguage: ["Spanish", "English"],
+    },
+    sameAs: [
+      "https://www.instagram.com/paloaltobodega/",
+      "https://www.facebook.com/bodegapaloalto/",
+    ],
     foundingLocation: {
       "@type": "Place",
-      name: "Mendoza, Argentina",
+      name: "Maipú, Mendoza, Argentina",
     },
     areaServed: [{ "@type": "Country", name: "Argentina" }],
-    hasMap: "https://maps.google.com/?q=Mendoza+Argentina",
-    knowsAbout: ["vinos", "espumantes", "destilados", "Mendoza", "Palo Alto Argentina"],
+    knowsAbout: ["vinos", "espumantes", "destilados", "Mendoza", "Palo Alto Argentina", "Maipú"],
   };
 }
 
