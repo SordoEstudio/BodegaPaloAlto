@@ -5,6 +5,14 @@ import { isValidLocale } from "@/lib/i18n";
 
 const PREFERRED_LOCALE_COOKIE = "preferredLocale";
 
+const BOT_UA_RE =
+  /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|sogou|exabot|facebot|facebookexternalhit|ia_archiver|ahrefsbot|semrushbot/i;
+
+function isSearchBot(request: NextRequest): boolean {
+  const ua = request.headers.get("user-agent") ?? "";
+  return BOT_UA_RE.test(ua);
+}
+
 function getPreferredLocale(request: NextRequest): "es" | "en" {
   const cookieLocale = request.cookies.get(PREFERRED_LOCALE_COOKIE)?.value;
   if (cookieLocale && isValidLocale(cookieLocale)) return cookieLocale;
@@ -27,6 +35,14 @@ export function middleware(request: NextRequest) {
   // Ya está en bienvenida (ej. /es/bienvenida, /en/bienvenida)
   if (isValidLocale(first) && segments[1] === "bienvenida") {
     return NextResponse.next();
+  }
+
+  // Bots de búsqueda no tienen cookies — saltear age gate para que indexen el contenido
+  if (isSearchBot(request)) {
+    const detectedLocale = isValidLocale(first) ? first : preferredLocale;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-locale", detectedLocale);
+    return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   const verified = request.cookies.get(AGE_VERIFIED_COOKIE)?.value;
