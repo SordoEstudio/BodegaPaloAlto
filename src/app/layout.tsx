@@ -34,26 +34,63 @@ export const metadata: Metadata = {
     apple: "/logos/iso-c-m.png",
   },
   title: {
-    default: "Bodega Palo Alto | Mendoza, Argentina",
-    template: "%s | Bodega Palo Alto",
+    default: "Bodega Palo Alto | Vinos y Espumantes – Mendoza, Argentina",
+    template: "%s | Bodega Palo Alto – Mendoza, Argentina",
   },
   description:
-    "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+    "Bodega Palo Alto: vinos y espumantes de autor elaborados en Mendoza, Argentina. Empresa familiar con fincas en Alto Ugarteche y Palo Alto.",
+  keywords: [
+    "Palo Alto",
+    "Palo Alto Argentina",
+    "Palo Alto Mendoza",
+    "Bodega Palo Alto",
+    "vinos Palo Alto",
+    "vinos Mendoza",
+    "espumantes Mendoza",
+    "bodega Mendoza Argentina",
+  ],
   openGraph: {
     type: "website",
     siteName: "Bodega Palo Alto",
-    title: "Bodega Palo Alto | Mendoza, Argentina",
+    title: "Bodega Palo Alto | Vinos y Espumantes – Mendoza, Argentina",
     description:
-      "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+      "Bodega Palo Alto: vinos y espumantes de autor elaborados en Mendoza, Argentina. Empresa familiar con fincas en Alto Ugarteche y Palo Alto.",
     images: [{ url: getDefaultOgImage() }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bodega Palo Alto | Mendoza, Argentina",
+    title: "Bodega Palo Alto | Vinos y Espumantes – Mendoza, Argentina",
     description:
-      "La pasión por las tierras mendocinas y la nobleza de la vid dieron origen a esta formidable empresa familiar.",
+      "Bodega Palo Alto: vinos y espumantes de autor elaborados en Mendoza, Argentina. Empresa familiar con fincas en Alto Ugarteche y Palo Alto.",
     images: [getDefaultOgImage()],
   },
+};
+
+const wineryStructuredData = {
+  "@context": "https://schema.org",
+  "@type": ["Winery", "Organization"],
+  name: "Bodega Palo Alto",
+  alternateName: ["Palo Alto", "Palo Alto Argentina", "Palo Alto Mendoza", "Bodegas Palo Alto"],
+  description:
+    "Bodega y destilería artesanal en Mendoza, Argentina. Vinos, espumantes y destilados de autor elaborados en fincas propias en Alto Ugarteche y Palo Alto.",
+  url: "https://bodegapaloalto.com",
+  logo: "https://bodegapaloalto.com/logos/tipo-b.png",
+  image: "https://bodegapaloalto.com/logos/tipo-b.png",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mendoza",
+    addressRegion: "Mendoza",
+    addressCountry: "AR",
+  },
+  foundingLocation: {
+    "@type": "Place",
+    name: "Mendoza, Argentina",
+  },
+  areaServed: [
+    { "@type": "Country", name: "Argentina" },
+  ],
+  hasMap: "https://maps.google.com/?q=Mendoza+Argentina",
+  knowsAbout: ["vinos", "espumantes", "destilados", "Mendoza", "Palo Alto Argentina"],
 };
 
 export default async function RootLayout({
@@ -82,6 +119,10 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang} className={`${ubuntu.variable} ${cormorant.variable}`}>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(wineryStructuredData) }}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QWYEJ5ZE5D"
           strategy="afterInteractive"

@@ -13,14 +13,14 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const isEn = loc === "en";
-  const title = isEn ? "Winery" : "Bodega";
+  const title = isEn ? "Palo Alto Winery – Who We Are" : "Bodega Palo Alto – Quiénes Somos";
   const description = isEn
-    ? "Who we are, our team and our estates: Alto Ugarteche and Palo Alto, Mendoza, Argentina."
-    : "Quiénes somos, nuestro equipo y nuestras fincas: Alto Ugarteche y Palo Alto en Mendoza, Argentina.";
+    ? "Palo Alto winery in Mendoza, Argentina. Our story, team and estate vineyards: Alto Ugarteche and Palo Alto."
+    : "Bodega Palo Alto en Mendoza, Argentina. Nuestra historia, equipo y fincas: Alto Ugarteche y Palo Alto.";
   return {
     title,
     description,
-    alternates: getLocalizedAlternates("/bodega"),
+    alternates: getLocalizedAlternates("/bodega", loc),
     openGraph: {
       title,
       description,

@@ -12,6 +12,7 @@ import { BodegaQuienesSomos } from "@/components/bodega/BodegaQuienesSomos";
 import { BodegaFincasSection } from "@/components/bodega/BodegaFincasSection";
 import { BodegaPageSkeleton } from "@/components/bodega/BodegaPageSkeleton";
 import { isValidLocale } from "@/lib/i18n";
+import { getUITranslations } from "@/lib/ui-translations";
 
 function BodegaStaticContent() {
   const params = useParams();
@@ -32,14 +33,16 @@ function BodegaStaticContent() {
 }
 
 function BodegaEmptyFallback({ pageType }: { pageType?: string }) {
+  const params = useParams();
+  const rawLocale = typeof params?.locale === "string" ? params.locale : "es";
+  const locale = isValidLocale(rawLocale) ? rawLocale : "es";
+  const t = getUITranslations(locale);
   return (
     <div className="flex min-h-[40vh] flex-col items-center justify-center gap-4 px-6 py-16 text-center">
       <p className="text-muted-foreground">
-        No hay componentes de bodega configurados para la página &quot;{pageType ?? "Bodega"}&quot;.
+        {t.cms.emptyPagePrefix} &quot;{pageType ?? "Bodega"}&quot;.
       </p>
-      <p className="text-sm text-muted-foreground/80">
-        Conecta la API del CMS y configura <code className="rounded bg-muted px-1.5 py-0.5">about</code> (con equipo opcional integrado) y <code className="rounded bg-muted px-1.5 py-0.5">fincas</code> con <code className="rounded bg-muted px-1.5 py-0.5">page: &quot;bodega&quot;</code>.
-      </p>
+      <p className="text-sm text-muted-foreground/80">{t.cms.bodegaEmptyHelp}</p>
     </div>
   );
 }

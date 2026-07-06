@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title,
     description,
-    alternates: getLocalizedAlternates("/productos"),
+    alternates: getLocalizedAlternates("/productos", loc),
     openGraph: {
       title,
       description,

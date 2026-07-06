@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n";
+import { getLocalizedPath, type Locale } from "@/lib/i18n";
 
 const FALLBACK_SITE_URL = "https://bodegapaloalto.com";
 
@@ -7,15 +7,11 @@ export function getSiteUrl(): string {
   return raw.replace(/\/$/, "");
 }
 
-export function getLocalizedPath(path: string, locale: Locale): string {
-  const normalized = path.startsWith("/") ? path : `/${path}`;
-  return normalized === "/" ? `/${locale}` : `/${locale}${normalized}`;
-}
-
-export function getLocalizedAlternates(path: string) {
+export function getLocalizedAlternates(path: string, locale?: Locale) {
   const site = getSiteUrl();
+  const canonicalLocale = locale ?? "es";
   return {
-    canonical: `${site}${getLocalizedPath(path, "es")}`,
+    canonical: `${site}${getLocalizedPath(path, canonicalLocale)}`,
     languages: {
       es: `${site}${getLocalizedPath(path, "es")}`,
       en: `${site}${getLocalizedPath(path, "en")}`,

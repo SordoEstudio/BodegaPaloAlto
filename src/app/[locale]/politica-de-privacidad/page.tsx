@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title,
     description,
-    alternates: getLocalizedAlternates("/politica-de-privacidad"),
+    alternates: getLocalizedAlternates("/politica-de-privacidad", loc),
     openGraph: {
       title,
       description,

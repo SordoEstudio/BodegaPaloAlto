@@ -15,6 +15,7 @@ import { DestileriaMissionVision } from "@/components/destileria/DestileriaMissi
 import { DestileriaManifesto } from "@/components/destileria/DestileriaManifesto";
 import { DestileriaPageSkeleton } from "@/components/destileria/DestileriaPageSkeleton";
 import { isValidLocale } from "@/lib/i18n";
+import { getUITranslations } from "@/lib/ui-translations";
 
 function DestileriaStaticContent() {
   const params = useParams();
@@ -39,14 +40,16 @@ function DestileriaStaticContent() {
 }
 
 function DestileriaEmptyFallback({ pageType }: { pageType?: string }) {
+  const params = useParams();
+  const rawLocale = typeof params?.locale === "string" ? params.locale : "es";
+  const locale = isValidLocale(rawLocale) ? rawLocale : "es";
+  const t = getUITranslations(locale);
   return (
     <div className="flex min-h-[40vh] flex-col items-center justify-center gap-4 px-6 py-16 text-center">
       <p className="text-muted-foreground">
-        No hay componentes de destilería configurados para la página &quot;{pageType ?? "Destilería"}&quot;.
+        {t.cms.emptyPagePrefix} &quot;{pageType ?? "Destilería"}&quot;.
       </p>
-      <p className="text-sm text-muted-foreground/80">
-        Conecta la API del CMS y configura componentes <code className="rounded bg-muted px-1.5 py-0.5">portada_destileria</code>, <code className="rounded bg-muted px-1.5 py-0.5">historia_destileria</code>, <code className="rounded bg-muted px-1.5 py-0.5">banner_full</code>, <code className="rounded bg-muted px-1.5 py-0.5">mision_vision_values</code>, <code className="rounded bg-muted px-1.5 py-0.5">manifest</code> con <code className="rounded bg-muted px-1.5 py-0.5">page: &quot;destileria&quot;</code>.
-      </p>
+      <p className="text-sm text-muted-foreground/80">{t.cms.destileriaEmptyHelp}</p>
     </div>
   );
 }
