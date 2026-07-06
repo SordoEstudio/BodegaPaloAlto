@@ -482,11 +482,12 @@ export function mapContactoRedesToFooterLinks(raw: Record<string, unknown>): {
 }
 
 /** Mapea componente CMS contacto_redes a datos de sección contacto (bodega, destileria, fondo, config, mapa) */
-export function mapContactoRedesFromCms(raw: Record<string, unknown>): Omit<ContactPageData, "form"> {
+export function mapContactoRedesFromCms(raw: Record<string, unknown>, locale?: string): Omit<ContactPageData, "form"> {
   const empresas = (raw.lista_empresas as { txt_titulo?: string; lista_contacto?: { icon_contacto?: string; link_destino?: string; txt_valor?: string }[] }[]) ?? [];
   const config = (raw._config as { contactCardFloating?: boolean; parallax?: boolean; showMap?: boolean }) ?? {};
   const bodega = mapListaContactoToBlock(empresas[0]?.txt_titulo ?? "", empresas[0]?.lista_contacto ?? []);
   const destileria = mapListaContactoToBlock(empresas[1]?.txt_titulo ?? "", empresas[1]?.lista_contacto ?? []);
+  const isEn = locale === "en";
   return {
     bodega,
     destileria,
@@ -494,15 +495,15 @@ export function mapContactoRedesFromCms(raw: Record<string, unknown>): Omit<Cont
     backgroundImage: (raw.img_imagen_de_fondo as string) || undefined,
     backgroundImageAlt: (raw.txt_alt_imagen_de_fondo as string) || undefined,
     parallax: config.parallax,
-    mapTitle: (raw.txt_titulo_mapa as string) ?? "Ubicación",
-    mapLinkLabel: (raw.txt_label_mapa as string) ?? "Ver en Google Maps",
+    mapTitle: (raw.txt_titulo_mapa as string) ?? (isEn ? "Location" : "Ubicación"),
+    mapLinkLabel: (raw.txt_label_mapa as string) ?? (isEn ? "View on Google Maps" : "Ver en Google Maps"),
     mapLinkUrl: (raw.link_mapa as string) ?? "",
     mapEmbedUrl: (raw.url_embed_mapa as string) || undefined,
   };
 }
 
 /** Mapea bodega en formato CMS (quienes_somos, equipo, finca_1, finca_2) a BodegaData */
-function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
+function mapBodegaFromCms(raw: Record<string, unknown>, locale?: string): BodegaData {
   const qs = (raw.quienes_somos as Record<string, unknown>) ?? {};
   const eq = (raw.equipo as Record<string, unknown>) ?? {};
   const listaEquipo = (eq.lista_equipo as Record<string, unknown>[]) ?? [];
@@ -526,8 +527,9 @@ function mapBodegaFromCms(raw: Record<string, unknown>): BodegaData {
   const lista2 = mapCaracteristicas(f2.lista_caracteristicas);
 
   const imgFondoFincas = fs.img_fondo_optional as string | undefined;
+  const isEn = locale === "en";
   const fincasSection: BodegaFincasSectionData = {
-    title: (fs.txt_titulo as string) ?? "Nuestras Fincas",
+    title: (fs.txt_titulo as string) ?? (isEn ? "Our Estates" : "Nuestras Fincas"),
     backgroundImage: imgFondoFincas
       ? { imageSrc: imgFondoFincas, imageAlt: (fs.txt_alt_fondo_optional as string) || undefined }
       : undefined,
@@ -651,7 +653,7 @@ function normalizeFincaFromRaw(obj: unknown): BodegaFincaData | null {
 export function getBodegaData(locale?: string): BodegaData {
   const loc = normalizeLocale(locale);
   const raw = (loc === "en" ? bodegaEn : bodegaEs) as Record<string, unknown>;
-  const base = raw.quienes_somos != null ? mapBodegaFromCms(raw) : (raw as unknown as BodegaData);
+  const base = raw.quienes_somos != null ? mapBodegaFromCms(raw, loc) : (raw as unknown as BodegaData);
   const directFinca1 = normalizeFincaFromRaw(raw.finca1);
   const directFinca2 = normalizeFincaFromRaw(raw.finca2);
   if (directFinca1 && directFinca2) {
@@ -1031,12 +1033,14 @@ export function mapTeamBodegaFromCms(raw: Record<string, unknown>): BodegaEquipo
 
 /** Mapea data de fincas (bodega, API) a { section, finca1, finca2 }. */
 export function mapFincasBodegaFromCms(
-  raw: Record<string, unknown>
+  raw: Record<string, unknown>,
+  locale?: string
 ): { section: BodegaFincasSectionData; finca1: BodegaFincaData; finca2: BodegaFincaData } {
   const listaFincas = (raw.lista_fincas ?? []) as Record<string, unknown>[];
   const fs = (raw.fincas_seccion ?? raw) as Record<string, unknown>;
+  const isEn = locale === "en";
   const section: BodegaFincasSectionData = {
-    title: String(fs.txt_titulo ?? fs.txt_titulo_seccion ?? "Nuestras Fincas"),
+    title: String(fs.txt_titulo ?? fs.txt_titulo_seccion ?? (isEn ? "Our Estates" : "Nuestras Fincas")),
     backgroundImage: fs.img_fondo_optional
       ? { imageSrc: String(fs.img_fondo_optional), imageAlt: (fs.txt_alt_fondo_optional as string) || undefined }
       : undefined,

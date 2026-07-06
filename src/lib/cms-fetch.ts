@@ -32,7 +32,8 @@ export async function getCmsComponents(locale: string): Promise<CMSComponent[]> 
     const data = json?.data;
     const inner = data?.data ?? data;
     const list = Array.isArray(inner?.components) ? inner.components : (json?.data?.components ?? []);
-    return (list as CMSComponent[]).filter((c) => c.isVisible !== false);
+    const visible = (list as CMSComponent[]).filter((c) => c.isVisible !== false);
+    return visible;
   } catch {
     return [];
   }

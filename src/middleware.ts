@@ -48,7 +48,10 @@ export function middleware(request: NextRequest) {
     return res;
   }
 
-  return NextResponse.next();
+  const detectedLocale = isValidLocale(first) ? first : preferredLocale;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", detectedLocale);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {

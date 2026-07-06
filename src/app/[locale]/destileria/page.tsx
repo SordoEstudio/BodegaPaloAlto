@@ -13,14 +13,14 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   const loc = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
   const isEn = loc === "en";
-  const title = isEn ? "Magic Stone | Tandil Distillery" : "Magic Stone | Destilería Tandil";
+  const title = isEn ? "Magic Stone Distillery | Palo Alto Argentina" : "Magic Stone | Destilería Artesanal – Palo Alto Argentina";
   const description = isEn
-    ? "Author-crafted spirits born in Tandil. Technical craftsmanship and locally rooted identity."
-    : "Destilados de autor nacidos en Tandil. Artesanía técnica, identidad local y bebidas pensadas para el encuentro.";
+    ? "Magic Stone craft distillery by Bodega Palo Alto, Argentina. Author-crafted spirits born in Tandil with technical craftsmanship and local identity."
+    : "Destilería artesanal Magic Stone de Bodega Palo Alto, Argentina. Destilados de autor nacidos en Tandil, con identidad local y artesanía técnica.";
   return {
     title,
     description,
-    alternates: getLocalizedAlternates("/destileria"),
+    alternates: getLocalizedAlternates("/destileria", loc),
     openGraph: {
       title,
       description,

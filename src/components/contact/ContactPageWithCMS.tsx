@@ -9,6 +9,7 @@ import {
   getGlobalUniqueSliderBanner,
 } from "@/lib/cms-global-banner";
 import { mapFormularioContactoFromCms, mapContactoRedesFromCms, mapPromoCarouselFromCms } from "@/lib/data";
+import { getUITranslations } from "@/lib/ui-translations";
 import type { ContactPageData } from "@/types/sections";
 
 interface ContactPageWithCMSProps {
@@ -30,12 +31,11 @@ function ContactError({ message }: { message: string }) {
   );
 }
 
-function ContactMissingData() {
+function ContactMissingData({ locale }: { locale: string }) {
+  const t = getUITranslations(locale);
   return (
     <div className="flex min-h-[480px] flex-col items-center justify-center gap-4 px-6 py-16 text-center">
-      <p className="text-muted-foreground">
-        No hay datos de contacto configurados. Configura los componentes &quot;formulario_contacto&quot; y &quot;contacto_redes&quot; en el CMS para la página contacto.
-      </p>
+      <p className="text-muted-foreground">{t.cms.contactMissingData}</p>
     </div>
   );
 }
@@ -57,11 +57,11 @@ export function ContactPageWithCMS({ locale, sourcePage = "contacto" }: ContactP
   const carruselCompFallback = carruselComp ?? getGlobalUniqueSliderBanner(components);
 
   if (!formComp?.data || !redesComp?.data) {
-    return <ContactMissingData />;
+    return <ContactMissingData locale={locale} />;
   }
 
   const formData = mapFormularioContactoFromCms(formComp.data as Record<string, unknown>);
-  const redesData = mapContactoRedesFromCms(redesComp.data as Record<string, unknown>);
+  const redesData = mapContactoRedesFromCms(redesComp.data as Record<string, unknown>, locale);
 
   const data: ContactPageData = {
     form: formData,
