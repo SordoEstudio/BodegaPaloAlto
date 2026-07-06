@@ -1,6 +1,6 @@
 import { getLocalizedPath, type Locale } from "@/lib/i18n";
 
-const FALLBACK_SITE_URL = "https://bodegapaloalto.com";
+const FALLBACK_SITE_URL = "https://www.bodegapaloalto.com.ar";
 
 export function getSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || FALLBACK_SITE_URL;
