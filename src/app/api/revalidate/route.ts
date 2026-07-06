@@ -29,17 +29,23 @@ function toArray(v: unknown): string[] {
 }
 
 async function handle(req: Request) {
+  const ts = new Date().toISOString();
+  const origin = req.headers.get("origin") ?? req.headers.get("referer") ?? "unknown";
+
   let body: Record<string, unknown> = {};
   try { body = (await req.clone().json()) ?? {}; } catch { /* GET or empty body */ }
 
   const url = new URL(req.url);
-  if (!isAuthorized(req, typeof body.secret === "string" ? body.secret : undefined)) {
+  const authorized = isAuthorized(req, typeof body.secret === "string" ? body.secret : undefined);
+
+  if (!authorized) {
+    // console.warn survives removeConsole in production — visible in Vercel Logs
+    console.warn(`[revalidate] 401 UNAUTHORIZED origin=${origin} ts=${ts}`);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const revalidated: { tags: string[]; paths: string[] } = { tags: [], paths: [] };
 
-  // CMS format: { secret, page }
   const page = typeof body.page === "string" ? body.page : url.searchParams.get("page") ?? "";
   if (page === "all" || page === "") {
     revalidateTag("cms-components", "default");
@@ -55,7 +61,6 @@ async function handle(req: Request) {
     revalidated.tags.push("cms-components-es", "cms-components-en");
   }
 
-  // Generic format: { tag, path } (for manual use / other callers)
   for (const tag of toArray(body.tag ?? url.searchParams.getAll("tag"))) {
     revalidateTag(tag, "default");
     revalidated.tags.push(tag);
@@ -66,10 +71,15 @@ async function handle(req: Request) {
   }
 
   if (!revalidated.tags.length && !revalidated.paths.length) {
+    console.warn(`[revalidate] 400 NOTHING_TO_REVALIDATE origin=${origin} ts=${ts}`);
     return NextResponse.json({ error: "Nothing to revalidate. Send page, tag, or path." }, { status: 400 });
   }
 
-  return NextResponse.json({ revalidated: true, ...revalidated, timestamp: new Date().toISOString() });
+  console.warn(
+    `[revalidate] OK tags=[${revalidated.tags.join(",")}] paths=[${revalidated.paths.join(",")}] page="${page}" origin=${origin} ts=${ts}`
+  );
+
+  return NextResponse.json({ revalidated: true, ...revalidated, timestamp: ts });
 }
 
 export async function POST(request: Request) { return handle(request); }
