@@ -1,12 +1,16 @@
 import { BodegaPageWithCMS } from "@/components/bodega/BodegaPageWithCMS";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
-import { getLocalizedAlternates, getDefaultOgImage } from "@/lib/seo";
+import { getLocalizedAlternates, getDefaultOgImage, getSiteUrl } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
 const useCmsLayout = process.env.NEXT_PUBLIC_USE_CMS_LAYOUT === "true";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export function generateStaticParams() {
+  return [{ locale: "es" }, { locale: "en" }];
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -25,7 +29,8 @@ export async function generateMetadata({ params }: PageProps) {
       title,
       description,
       type: "website",
-      url: `/${loc}/bodega`,
+      url: `${getSiteUrl()}/${loc}/bodega`,
+      locale: isEn ? "en_US" : "es_AR",
       images: [{ url: getDefaultOgImage() }],
     },
     twitter: {

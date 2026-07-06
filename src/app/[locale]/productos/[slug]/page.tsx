@@ -74,49 +74,46 @@ export async function generateMetadata({ params }: PageProps) {
   const site = getSiteUrl();
   const productPath = `/productos/${slug}`;
 
+  const langAlternates = {
+    es: `${site}/es${productPath}`,
+    en: `${site}/en${productPath}`,
+    "x-default": `${site}/es${productPath}`,
+  };
+
   if (!product) {
     const title = loc === "es" ? "Producto no encontrado" : "Product not found";
     return {
       title,
-      alternates: {
-        canonical: `${site}/es${productPath}`,
-        languages: {
-          es: `${site}/es${productPath}`,
-          en: `${site}/en${productPath}`,
-          "x-default": `${site}/es${productPath}`,
-        },
-      },
+      alternates: { canonical: `${site}/${loc}${productPath}`, languages: langAlternates },
       robots: { index: false, follow: true },
     };
   }
 
   const meta = product.locale?.seo;
   const title = meta?.meta_title || product.locale?.title;
-  const description = meta?.meta_description || product.locale?.summary;
+  const description =
+    meta?.meta_description ||
+    product.locale?.summary ||
+    `${product.locale?.title ?? "Vino"} – Bodega Palo Alto, Mendoza, Argentina`;
+  const ogImage = product.images?.[0]?.url ? [product.images[0].url] : [getDefaultOgImage()];
 
   return {
     title: title ?? "Bodega Palo Alto",
-    description: description ?? undefined,
-    alternates: {
-      canonical: `${site}/es${productPath}`,
-      languages: {
-        es: `${site}/es${productPath}`,
-        en: `${site}/en${productPath}`,
-        "x-default": `${site}/es${productPath}`,
-      },
-    },
+    description,
+    alternates: { canonical: `${site}/${loc}${productPath}`, languages: langAlternates },
     openGraph: {
       title: title ?? "Bodega Palo Alto",
-      description: description ?? undefined,
+      description,
       type: "article",
-      url: `/${loc}${productPath}`,
-      images: product.images?.[0]?.url ? [product.images[0].url] : [getDefaultOgImage()],
+      url: `${site}/${loc}${productPath}`,
+      locale: loc === "en" ? "en_US" : "es_AR",
+      images: ogImage,
     },
     twitter: {
       card: "summary_large_image",
       title: title ?? "Bodega Palo Alto",
-      description: description ?? undefined,
-      images: product.images?.[0]?.url ? [product.images[0].url] : [getDefaultOgImage()],
+      description,
+      images: ogImage,
     },
   };
 }

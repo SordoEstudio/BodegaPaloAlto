@@ -15,7 +15,7 @@ export function getLocalizedAlternates(path: string, locale?: Locale) {
     languages: {
       es: `${site}${getLocalizedPath(path, "es")}`,
       en: `${site}${getLocalizedPath(path, "en")}`,
-      "x-default": `${site}/es`,
+      "x-default": `${site}${getLocalizedPath(path, "es")}`,
     },
   };
 }

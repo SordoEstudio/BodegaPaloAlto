@@ -1,10 +1,14 @@
 import { ProductosPageClient } from "@/components/products/ProductosPageClient";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
-import { getLocalizedAlternates, getDefaultOgImage } from "@/lib/seo";
+import { getLocalizedAlternates, getDefaultOgImage, getSiteUrl } from "@/lib/seo";
 import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
+}
+
+export function generateStaticParams() {
+  return [{ locale: "es" }, { locale: "en" }];
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -13,8 +17,8 @@ export async function generateMetadata({ params }: PageProps) {
   const isEn = loc === "en";
   const title = isEn ? "Our Products" : "Nuestros Productos";
   const description = isEn
-    ? "Discover our selection of wines and sparkling wines from Mendoza, Argentina."
-    : "Descubrí nuestra selección de vinos y espumantes de Mendoza, Argentina.";
+    ? "Discover Bodega Palo Alto's selection of wines and sparkling wines from Mendoza, Argentina. Palo Alto – author-crafted wines from estate vineyards."
+    : "Descubrí la selección de vinos y espumantes de Bodega Palo Alto, elaborados en fincas propias en Mendoza, Argentina.";
   return {
     title,
     description,
@@ -23,7 +27,8 @@ export async function generateMetadata({ params }: PageProps) {
       title,
       description,
       type: "website",
-      url: `/${loc}/productos`,
+      url: `${getSiteUrl()}/${loc}/productos`,
+      locale: isEn ? "en_US" : "es_AR",
       images: [{ url: getDefaultOgImage() }],
     },
     twitter: {

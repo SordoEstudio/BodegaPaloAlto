@@ -3,6 +3,10 @@ import { getWelcomeData } from "@/lib/data";
 import { isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 interface PageProps {
   params: Promise<{ locale: string }>;
 }

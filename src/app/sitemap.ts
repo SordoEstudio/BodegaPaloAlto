@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bodegapaloalto.com";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://bodegapaloalto.com").replace(/\/$/, "");
 const locales = ["es", "en"] as const;
 
-// Rutas estáticas del sitio (excluye bienvenida y promo-demo)
 const staticRoutes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },
   { path: "/bodega", priority: 0.8, changeFrequency: "monthly" as const },
@@ -17,19 +16,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const route of staticRoutes) {
-    const alternates: Record<string, string> = {};
+    const languages: Record<string, string> = {};
     for (const locale of locales) {
-      alternates[locale] = `${siteUrl}/${locale}${route.path}`;
+      languages[locale] = `${siteUrl}/${locale}${route.path}`;
     }
+    languages["x-default"] = `${siteUrl}/es${route.path}`;
 
-    // Entrada canónica en español
-    entries.push({
-      url: `${siteUrl}/es${route.path}`,
-      lastModified: new Date(),
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
-      alternates: { languages: alternates },
-    });
+    // Entry for each locale as primary URL (required by hreflang spec)
+    for (const locale of locales) {
+      entries.push({
+        url: `${siteUrl}/${locale}${route.path}`,
+        lastModified: new Date(),
+        changeFrequency: route.changeFrequency,
+        priority: locale === "es" ? route.priority : route.priority * 0.9,
+        alternates: { languages },
+      });
+    }
   }
 
   return entries;
