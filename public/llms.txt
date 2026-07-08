@@ -1,0 +1,29 @@
+# Bodega Palo Alto
+
+> Bodega y destilería artesanal en Mendoza, Argentina. Vinos, espumantes y destilados de autor elaborados en fincas propias.
+
+## Sitio
+
+- [Inicio](https://www.bodegapaloalto.com.ar/es)
+- [Bodega](https://www.bodegapaloalto.com.ar/es/bodega)
+- [Destilería Magic Stone](https://www.bodegapaloalto.com.ar/es/destileria)
+- [Productos](https://www.bodegapaloalto.com.ar/es/productos)
+- [Contacto](https://www.bodegapaloalto.com.ar/es/contacto)
+
+## Empresa
+
+- Nombre: Bodega Palo Alto
+- También conocida como: Palo Alto, Palo Alto Argentina, Palo Alto Mendoza
+- Dirección: Videla Aranda 502, Maipú, Mendoza, Argentina
+- Teléfono: +54-261-499-0407
+- Instagram: https://www.instagram.com/paloaltobodega/
+- Facebook: https://www.facebook.com/bodegapaloalto/
+
+## Productos
+
+Vinos tintos, blancos, rosados y espumantes de autor elaborados en fincas propias en Alto Ugarteche y Palo Alto, Mendoza.
+Destilados artesanales bajo la marca Magic Stone, nacidos en Tandil con identidad local.
+
+## Idiomas
+
+Sitio disponible en español (`/es`) e inglés (`/en`).

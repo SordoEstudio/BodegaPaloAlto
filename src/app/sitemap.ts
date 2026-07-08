@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/seo";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://bodegapaloalto.com").replace(/\/$/, "");
+const siteUrl = getSiteUrl();
 const locales = ["es", "en"] as const;
 
 const staticRoutes = [

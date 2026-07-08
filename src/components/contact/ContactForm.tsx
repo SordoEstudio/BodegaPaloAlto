@@ -19,14 +19,14 @@ interface LocalizedText {
 
 interface FormOption {
   value: string;
-  label?: LocalizedText;
+  label?: LocalizedText | string;
 }
 
 interface DynamicField {
   id: string;
   type: string;
-  label?: LocalizedText;
-  placeholder?: LocalizedText;
+  label?: LocalizedText | string;
+  placeholder?: LocalizedText | string;
   required?: boolean;
   order?: number;
   width?: "full" | "half";
@@ -35,11 +35,11 @@ interface DynamicField {
 
 interface FormSchema {
   slug: string;
-  name?: LocalizedText;
-  description?: LocalizedText;
+  name?: LocalizedText | string;
+  description?: LocalizedText | string;
   fields: DynamicField[];
   settings?: {
-    success_message?: LocalizedText;
+    success_message?: LocalizedText | string;
   };
 }
 
@@ -53,8 +53,9 @@ interface ContactFormProps {
   onDark?: boolean;
 }
 
-function localize(text: LocalizedText | undefined, locale: string, fallback: string) {
+function localize(text: LocalizedText | string | undefined, locale: string, fallback: string): string {
   if (!text) return fallback;
+  if (typeof text === "string") return text || fallback;
   return text[locale] ?? text.es ?? fallback;
 }
 
